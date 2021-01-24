@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Pathfinding;
 
 namespace EveTravel
 {
@@ -26,11 +27,49 @@ namespace EveTravel
         }
     }
 
+    public interface ITransition
+    {
+        void CheckCondition();
+    }
+
+
+
+
     public interface IState
     {
         void Enter(NPC owner);
         void Update(NPC owner);
         void Exit(NPC owner);
+    }
+
+    public class PathState : IState
+    {
+        public Vector2 targetPos { get; set; }
+        bool pathComplete = false;
+        NPC npc;
+
+        private void OnPathComplete(Path path)
+        {
+            pathComplete = true;
+            npc.path = path;
+        }
+
+        public void Enter(NPC owner)
+        {
+            npc = owner;
+            owner.Animator.Play("walk");
+            //find Path
+            owner.seeker.StartPath(owner.transform.position, targetPos, OnPathComplete);
+        }
+
+        public void Update(NPC owner)
+        {
+        }
+
+        public void Exit(NPC owner)
+        {
+            pathComplete = false;
+        }
     }
 
     public class MoveState : IState
