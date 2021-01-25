@@ -11,7 +11,7 @@ namespace EveTravel
         [SerializeField] private NPCStat _stat;
         [SerializeField] private Animator _animator;
 
-        private FSM fsm;
+        private FSM<NPC> fsm;
         private Seeker _seeker;
 
         public Animator Animator { get { return _animator; } }
@@ -21,6 +21,7 @@ namespace EveTravel
 
         private void Awake()
         {
+            fsm = new FSM<NPC>(this, new MoveState());
         }
 
         // Start is called before the first frame update
@@ -34,20 +35,6 @@ namespace EveTravel
         {
             fsm.Update();
         }
-
-        private void OnJoyStick(JoyStickDir dir)
-        {
-            switch (dir)
-            {
-                case JoyStickDir.Left:
-                    break;
-                case JoyStickDir.Right:
-                    break;
-                case JoyStickDir.Up:
-                    break;
-                case JoyStickDir.Down:
-                    break;
-            }
-        }
+        
     }
 }

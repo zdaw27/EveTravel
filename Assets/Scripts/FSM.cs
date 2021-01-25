@@ -9,21 +9,29 @@ namespace EveTravel
     public class FSM<T>
     {
         private T owner;
-        private IState<T> entry;
+        private IState<T> current;
 
         public FSM(T owner, IState<T> entryState)
         {
             this.owner = owner;
-            entry = entryState;
+            current = entryState;
+        }
+
+        public void ChangeState(IState<T> nextState)
+        {
+            current.Exit(owner);
+            current = nextState;
+            current.Enter(owner);
         }
 
         public void StartFSM()
         {
-            entry.Enter(owner);
+            current.Enter(owner);
         }
 
         public void Update()
         {
+            current.Update(owner);
         }
     }
 
@@ -36,16 +44,37 @@ namespace EveTravel
 
     public class PlayerState : IState<GameManager>
     {
+        NPC player;
+        bool isJoystickPushed = false;
+        JoyStickDir direction;
+
+        public PlayerState(NPC player, Action<JoyStickDir> onJoystickDir)
+        {
+            onJoystickDir += OnJoystickDir;
+            this.player = player;
+        }
+
+        private void OnJoystickDir(JoyStickDir dir)
+        {
+            direction = dir;
+            isJoystickPushed = true;
+        }
+
         public void Enter(GameManager owner)
         {
         }
 
         public void Exit(GameManager owner)
         {
+            isJoystickPushed = false;
         }
 
         public void Update(GameManager owner)
         {
+            if(isJoystickPushed)
+            {
+            }
+
         }
     }
 
