@@ -2,17 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Joystick : MonoBehaviour
+namespace EveTravel
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Joystick : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private UIObserver uiObserver = null;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void OnLeftButton()
+        {
+            uiObserver.JoyStickDir = JoyStickDir.Left;
+        }
+
+        public void OnRightButton()
+        {
+            uiObserver.JoyStickDir = JoyStickDir.Right;
+        }
+
+        public void OnUpButton()
+        {
+            uiObserver.JoyStickDir = JoyStickDir.Up;
+        }
+
+        public void OnDownButton()
+        {
+            uiObserver.JoyStickDir = JoyStickDir.Down;
+        }
     }
 }

@@ -10,9 +10,9 @@ namespace Pathfinding {
 	/// \ingroup relevant
 	/// This is a component which is meant to be attached to a single unit (AI, Robot, Player, whatever) to handle its pathfinding calls.
 	/// It also handles post-processing of paths using modifiers.
-	///
+	/// 
 	/// [Open online documentation to see images]
-	///
+	/// 
 	/// See: calling-pathfinding (view in online documentation for working links)
 	/// See: modifiers (view in online documentation for working links)
 	/// </summary>

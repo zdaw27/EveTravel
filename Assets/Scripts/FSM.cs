@@ -6,12 +6,12 @@ using Pathfinding;
 
 namespace EveTravel
 {
-    public class FSM
+    public class FSM<T>
     {
-        private NPC owner;
-        private IState entry;
+        private T owner;
+        private IState<T> entry;
 
-        public FSM(NPC owner, IState entryState)
+        public FSM(T owner, IState<T> entryState)
         {
             this.owner = owner;
             entry = entryState;
@@ -27,22 +27,59 @@ namespace EveTravel
         }
     }
 
-    public interface ITransition
+    public interface IState<T>
     {
-        void CheckCondition();
+        void Enter(T owner);
+        void Update(T owner);
+        void Exit(T owner);
     }
 
-
-
-
-    public interface IState
+    public class PlayerState : IState<GameManager>
     {
-        void Enter(NPC owner);
-        void Update(NPC owner);
-        void Exit(NPC owner);
+        public void Enter(GameManager owner)
+        {
+        }
+
+        public void Exit(GameManager owner)
+        {
+        }
+
+        public void Update(GameManager owner)
+        {
+        }
     }
 
-    public class PathState : IState
+    public class MonsterState : IState<GameManager>
+    {
+        public void Enter(GameManager owner)
+        {
+        }
+
+        public void Exit(GameManager owner)
+        {
+        }
+
+        public void Update(GameManager owner)
+        {
+        }
+    }
+
+    public class BattleState : IState<GameManager>
+    {
+        public void Enter(GameManager owner)
+        {
+        }
+
+        public void Exit(GameManager owner)
+        {
+        }
+
+        public void Update(GameManager owner)
+        {
+        }
+    }
+
+    public class PathState : IState<NPC>
     {
         public Vector2 targetPos { get; set; }
         bool pathComplete = false;
@@ -72,7 +109,7 @@ namespace EveTravel
         }
     }
 
-    public class MoveState : IState
+    public class MoveState : IState<NPC>
     {
         public Vector2 targetPos { get; set; }
 
@@ -97,7 +134,7 @@ namespace EveTravel
         }
     }
 
-    public class IdleState : IState
+    public class IdleState : IState<NPC>
     {
 
         public void Enter(NPC owner)
@@ -114,7 +151,7 @@ namespace EveTravel
         }
     }
 
-    public class AttackState : IState
+    public class AttackState : IState<NPC>
     {
         public NPC attackTaget { get; set; }
 

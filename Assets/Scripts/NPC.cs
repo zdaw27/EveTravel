@@ -7,6 +7,7 @@ namespace EveTravel
 {
     public class NPC : MonoBehaviour
     {
+        [SerializeField] private UIObserver UIopserver;
         [SerializeField] private NPCStat _stat;
         [SerializeField] private Animator _animator;
 
@@ -20,8 +21,6 @@ namespace EveTravel
 
         private void Awake()
         {
-            _seeker = GetComponent<Seeker>();
-            fsm = new FSM(this , new IdleState());
         }
 
         // Start is called before the first frame update
@@ -34,6 +33,21 @@ namespace EveTravel
         void Update()
         {
             fsm.Update();
+        }
+
+        private void OnJoyStick(JoyStickDir dir)
+        {
+            switch (dir)
+            {
+                case JoyStickDir.Left:
+                    break;
+                case JoyStickDir.Right:
+                    break;
+                case JoyStickDir.Up:
+                    break;
+                case JoyStickDir.Down:
+                    break;
+            }
         }
     }
 }
