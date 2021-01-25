@@ -6,7 +6,7 @@ namespace EveTravel
 {
     public class Joystick : MonoBehaviour
     {
-        [SerializeField] private UIObserver uiObserver = null;
+        [SerializeField] private UIObserver uiObserver;
 
         public void OnLeftButton()
         {

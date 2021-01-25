@@ -10,7 +10,9 @@ namespace EveTravel
     {
         private JoyStickDir _joyStickDir;
 
-        public JoyStickDir JoyStickDir { get { return _joyStickDir; } set { _joyStickDir = value; OnJoyStick(value); } }
+        public JoyStickDir JoyStickDir { get { return _joyStickDir; } set {
+                _joyStickDir = value;
+                OnJoyStick(value); } }
         public Action<JoyStickDir> OnJoyStick { get; set; }
     }
 
