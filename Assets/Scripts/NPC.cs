@@ -7,36 +7,21 @@ namespace EveTravel
 {
     public class NPC : MonoBehaviour
     {
-        [SerializeField] private UIObserver UIopserver;
-        [SerializeField] private NPCStat _stat;
-        [SerializeField] private Animator _animator;
+        [SerializeField] protected UIObserver UIopserver;
+        [SerializeField] protected GameData gameData;
+        [SerializeField] protected NPCStat _stat;
+        [SerializeField] protected Animator _animator;
         [SerializeField] private Seeker _seeker;
 
-        private FSM<NPC> fsm;
+        protected FSM<NPC> fsm;
 
         public Animator Animator { get { return _animator; } }
         public NPCStat Stat { get { return _stat; } set { _stat = value; } }
-        public Seeker Seeker { get { return _seeker; } set { _seeker = value; } }
         public Path Path { get; set; }
         public FSM<NPC> Fsm { get { return fsm; } set { fsm = value; } }
-
-        private void Awake()
-        {
-            fsm = new FSM<NPC>(this, new IdleState());
-            fsm.AddState(new MoveState());
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            fsm.StartFSM();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            fsm.Update();
-        }
+        public Vector3 NextPos { get; set; }
+        public Seeker Seeker { get { return _seeker; } set { _seeker = value; } }
+        
         
     }
 }

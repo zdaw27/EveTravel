@@ -13,7 +13,9 @@ namespace EveTravel
         public JoyStickDir JoyStickDir { get { return _joyStickDir; } set {
                 _joyStickDir = value;
                 OnJoyStick(value); } }
+
         public Action<JoyStickDir> OnJoyStick { get; set; }
+        public Action OnAttakcButton { get; set; }
     }
 
     public enum JoyStickDir

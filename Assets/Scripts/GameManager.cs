@@ -6,20 +6,25 @@ namespace EveTravel
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] NPC player;
-        [SerializeField] NPC monster;
+        [SerializeField] Player player;
+        [SerializeField] Enemy enemy;
         [SerializeField] UIObserver uiObserver;
+        [SerializeField] GameData gameData;
 
-        public NPC Player { get { return player; } private set { } }
+        public Player Player { get { return player; } private set { } }
+        public Enemy Enemy { get { return enemy; } private set { } }
         public FSM<GameManager> Fsm { get { return fsm; } private set { } }
 
         private FSM<GameManager> fsm;
 
         private void Awake()
         {
-            fsm = new FSM<GameManager>(this, new PlayerState(Player, uiObserver));
-            fsm.AddState<ReadyState>(new ReadyState());
-            
+            gameData.Enemys.Add(enemy);
+            gameData.player = player;
+            fsm = new FSM<GameManager>(this, new InputState(Player, uiObserver));
+            fsm.AddState(new PlayState());
+            fsm.AddState(new ReadyState());
+
         }
         // Start is called before the first frame update
         void Start()

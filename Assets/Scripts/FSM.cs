@@ -6,7 +6,7 @@ using Pathfinding;
 
 namespace EveTravel
 {
-    public class FSM<T>
+    public class FSM<T> where T : MonoBehaviour
     {
         private T owner;
         private IState<T> current;
@@ -35,6 +35,7 @@ namespace EveTravel
             current.Exit(owner);
             current = states[type];
             current.Enter(owner);
+            Debug.Log(owner.name + current.ToString());
         }
 
         public bool CheckCurrentState(Type type)
@@ -60,13 +61,13 @@ namespace EveTravel
         void Exit(T owner);
     }
 
-    public class PlayerState : IState<GameManager>
+    public class InputState : IState<GameManager>
     {
         NPC player;
         bool isJoystickPushed = false;
         Vector3 direction;
 
-        public PlayerState(NPC player, UIObserver uiObserver)
+        public InputState(NPC player, UIObserver uiObserver)
         {
             uiObserver.OnJoyStick += OnJoystickDir;
             this.player = player;
@@ -74,6 +75,7 @@ namespace EveTravel
 
         private void OnJoystickDir(JoyStickDir dir)
         {
+
             switch (dir)
             {
                 case JoyStickDir.Left:
@@ -95,10 +97,12 @@ namespace EveTravel
 
         public void Enter(GameManager owner)
         {
+            isJoystickPushed = false;
         }
 
         public void Exit(GameManager owner)
         {
+            player.NextPos = direction;
             isJoystickPushed = false;
         }
 
@@ -106,22 +110,20 @@ namespace EveTravel
         {
             if (isJoystickPushed)
             {
-                owner.Player.Fsm.GetState<MoveState>().nextPath = owner.Player.transform.position + direction;
-                owner.Player.Fsm.ChangeState(typeof(MoveState));
-                isJoystickPushed = false;
-            }
-
-            if (player.Fsm.CheckCurrentState(typeof(IdleState)))
-            {
-                owner.Fsm.ChangeState(typeof(ReadyState));
+                owner.Fsm.ChangeState(typeof(PlayState));
             }
         }
     }
 
-    public class MonsterState : IState<GameManager>
+    public class PlayState : IState<GameManager>
     {
         public void Enter(GameManager owner)
         {
+            owner.Player.NextPos = owner.Player.transform.position + owner.Player.NextPos;
+            owner.Player.Fsm.ChangeState(typeof(MoveState));
+            
+            owner.Enemy.Fsm.ChangeState(typeof(PathState));
+            
         }
 
         public void Exit(GameManager owner)
@@ -130,7 +132,10 @@ namespace EveTravel
 
         public void Update(GameManager owner)
         {
-            
+            if (owner.Player.Fsm.CheckCurrentState(typeof(IdleState)) && owner.Enemy.Fsm.CheckCurrentState(typeof(IdleState)))
+            {
+                owner.Fsm.ChangeState(typeof(ReadyState));
+            }
         }
     }
 
@@ -146,39 +151,29 @@ namespace EveTravel
 
         public void Update(GameManager owner)
         {
-            owner.Fsm.ChangeState(typeof(PlayerState));
+            owner.Fsm.ChangeState(typeof(InputState));
         }
     }
 
     public class MoveState : IState<NPC>
     {
-        public Vector3 nextPath { get; set; }
-        bool isPathComplete = false;
-
-        private void OnPathComplete(Path path)
-        {
-            nextPath = (Vector3)path.path[0].position;
-            isPathComplete = true;
-        }
-
         public void Enter(NPC owner)
         {
-            isPathComplete = false;
             owner.Animator.Play("walk");
-            if (nextPath.x - owner.transform.position.x > 0)
+            if (owner.NextPos.x - owner.transform.position.x > 0)
                 owner.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-            else if(nextPath.x - owner.transform.position.x < 0)
+            else if(owner.NextPos.x - owner.transform.position.x < 0)
                 owner.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             //owner.Seeker.StartPath(owner.transform.position, nextPath, OnPathComplete);
         }
 
         public void Update(NPC owner)
         {
-            
-            owner.transform.position = Vector3.MoveTowards(owner.transform.position, nextPath, Time.deltaTime * 2f);
-            
+            Vector3 move = Vector3.MoveTowards(owner.transform.position, owner.NextPos, Time.deltaTime * 2f);
+            Debug.Log(move);
+            owner.transform.position = move;
 
-            if(Vector3.Distance(owner.transform.position, nextPath) <= 0f)
+            if(Vector3.Distance(owner.transform.position, owner.NextPos) <= 0f)
             {
                 owner.Fsm.ChangeState(typeof(IdleState));
             }
@@ -186,7 +181,6 @@ namespace EveTravel
 
         public void Exit(NPC owner)
         {
-            isPathComplete = false;
         }
     }
 
@@ -204,6 +198,41 @@ namespace EveTravel
 
         public void Exit(NPC owner)
         {
+        }
+    }
+
+    public class PathState : IState<NPC>
+    {
+        private NPC player;
+        private Path path;
+        private bool isPathComplete;
+        private NPC owner;
+
+        void OnPathComplete(Path path)
+        {
+            isPathComplete = true;
+            this.path = path;
+            owner.NextPos = (Vector3)path.path[1].position;
+        }
+
+        public void Enter(NPC owner)
+        {
+            this.owner = owner;
+            isPathComplete = false;
+            owner.Seeker.StartPath(owner.transform.position, GameData.I.player.NextPos, OnPathComplete);
+        }
+
+        public void Exit(NPC owner)
+        {
+            isPathComplete = false;
+        }
+
+        public void Update(NPC owner)
+        {
+            if(isPathComplete)
+            {
+                owner.Fsm.ChangeState(typeof(MoveState));
+            }
         }
     }
 
