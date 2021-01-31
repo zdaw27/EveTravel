@@ -11,6 +11,8 @@ namespace EveTravel
         [SerializeField] UIObserver uiObserver;
         [SerializeField] GameData gameData;
 
+        public static GameManager I { get; set; }
+
         public Player Player { get { return player; } private set { } }
         public Enemy Enemy { get { return enemy; } private set { } }
         public FSM<GameManager> Fsm { get { return fsm; } private set { } }
@@ -19,8 +21,9 @@ namespace EveTravel
 
         private void Awake()
         {
+            I = this;
             gameData.Enemys.Add(enemy);
-            gameData.player = player;
+            gameData.Player = player;
             fsm = new FSM<GameManager>(this, new InputState(Player, uiObserver));
             fsm.AddState(new PlayState());
             fsm.AddState(new ReadyState());

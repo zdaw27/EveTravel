@@ -18,12 +18,6 @@ namespace EveTravel
         public Action OnAttakcButton { get; set; }
     }
 
-    public enum JoyStickDir
-    {
-        Left,
-        Right,
-        Up,
-        Down
-    }
+    
 
 }

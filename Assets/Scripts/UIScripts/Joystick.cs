@@ -28,4 +28,12 @@ namespace EveTravel
             uiObserver.JoyStickDir = JoyStickDir.Down;
         }
     }
+
+    public enum JoyStickDir
+    {
+        Left,
+        Right,
+        Up,
+        Down
+    }
 }

@@ -169,7 +169,7 @@ namespace EveTravel
 
         public void Update(NPC owner)
         {
-            Vector3 move = Vector3.MoveTowards(owner.transform.position, owner.NextPos, Time.deltaTime * 2f);
+            Vector3 move = Vector3.MoveTowards(owner.transform.position, owner.NextPos, Time.deltaTime * owner.GameData.NpcSpeed);
             Debug.Log(move);
             owner.transform.position = move;
 
@@ -219,7 +219,7 @@ namespace EveTravel
         {
             this.owner = owner;
             isPathComplete = false;
-            owner.Seeker.StartPath(owner.transform.position, GameData.I.player.NextPos, OnPathComplete);
+            owner.Seeker.StartPath(owner.transform.position, owner.GameData.Player.NextPos, OnPathComplete);
         }
 
         public void Exit(NPC owner)

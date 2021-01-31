@@ -21,6 +21,7 @@ namespace EveTravel
         public FSM<NPC> Fsm { get { return fsm; } set { fsm = value; } }
         public Vector3 NextPos { get; set; }
         public Seeker Seeker { get { return _seeker; } set { _seeker = value; } }
+        public GameData GameData { get { return gameData; } private set { } }
         
         
     }
