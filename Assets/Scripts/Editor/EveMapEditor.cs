@@ -9,13 +9,8 @@ namespace EveTravel
     public class EveMapEditor : EditorWindow
     {
         static private EveMapEditor mapEditor = null;
-        static FlexibleViewer flexibleViewer = null;
-
-        static private Rect _editorRect = new Rect();
-        static public Rect editorRect { get { return _editorRect; } set { _editorRect = value;
-                if(_editorRect.size != value.size)
-                    onEditorSizeChanged(value); } }
-        static public System.Action<Rect> onEditorSizeChanged { get; set; }
+        private EditMode mode;
+        private bool enableEditMode = false;
 
 
         [MenuItem("Editor/EveMapEditor")]
@@ -24,27 +19,33 @@ namespace EveTravel
             Init();
             mapEditor.Show();
         }
-
-        private void OnEnable()
-        {
-            _editorRect = this.position;
-        }
+        
 
         static void Init()
         {
-            if (flexibleViewer == null)
-                flexibleViewer = new FlexibleViewer();
-
             if (mapEditor == null)
                 mapEditor = (EveMapEditor)EditorWindow.GetWindow(typeof(EveMapEditor));
         }
 
         void OnGUI()
         {
-            editorRect = this.position;
+            EditorGUILayout.EnumPopup(mode);
 
-            flexibleViewer.OnGUI();
-            Repaint();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("ENABLE EDIT");
+            EditorGUILayout.Toggle(enableEditMode);
+            EditorGUILayout.EndHorizontal();
         }
+
+        private void OnDisable()
+        {
+            enableEditMode = false;
+        }
+    }
+
+    public enum EditMode
+    {
+        Draw,
+        Erase
     }
 }
