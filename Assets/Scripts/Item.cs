@@ -4,10 +4,10 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public struct Item
+public class Item
 {
-    public int itemID;
-    public int Attack;
+    public int itemID = 0;
+    public int grade = 1;
+    public int attack = 10;
+    public Sprite itemSprite;
 }
-
-

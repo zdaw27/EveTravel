@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9da4534ddb8d814c9fb36fad5d0f1fc, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
+  npcSpeed: 3
   equiped:
     itemID: 0
-    Attack: 0
+    grade: 1
+    attack: 10
+    itemSprite: {fileID: 0}
   inventory: []
