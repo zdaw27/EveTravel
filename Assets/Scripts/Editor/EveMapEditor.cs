@@ -40,10 +40,7 @@ namespace EveTravel
             tilePrefab1 = (GameObject)EditorGUILayout.ObjectField(tilePrefab1, typeof(GameObject), false);
             tilePrefab2 = (GameObject)EditorGUILayout.ObjectField(tilePrefab2, typeof(GameObject), false);
            
-
-            Handles.SetCamera(UnityEditor.SceneView.lastActiveSceneView.camera);
-            Vector3 editorFloorPos = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition).origin;
-            editorFloorPos.y = 0;
+            
             
         }
 
@@ -61,8 +58,6 @@ namespace EveTravel
             {
                 cursor = (GameObject)PrefabUtility.InstantiatePrefab(cursorPrefab);
             }
-
-            
         }
 
         private void OnDisable()
@@ -85,9 +80,10 @@ namespace EveTravel
             int controlID = GUIUtility.GetControlID(FocusType.Passive);
             Event e = Event.current;
 
-            Ray ray;
-            ray = Camera.current.ScreenPointToRay(new Vector3(e.mousePosition.x, -e.mousePosition.y + Camera.current.pixelHeight));
-            Vector3 mousePos = ray.origin;
+            Debug.Log(e.mousePosition);
+            //Ray ray;
+            //ray = Camera.current.ScreenPointToRay(new Vector3(e.mousePosition.x, -e.mousePosition.y + Camera.current.pixelHeight));
+            Vector3 mousePos = HandleUtility.GUIPointToWorldRay(e.mousePosition).origin;
 
             DrawCursor(mousePos);
             DrawGrid(1, 1, Color.blue);
@@ -95,7 +91,9 @@ namespace EveTravel
 
         void DrawCursor(Vector3 mousePos)
         {
-            cursor.transform.position = new Vector3(GetTilePosition(mousePos.x), GetTilePosition(mousePos.y), 0);
+            Vector3 currentTile = new Vector3(GetTilePosition(mousePos.x), GetTilePosition(mousePos.y), 0);
+            if (Vector3.Distance(currentTile, cursor.transform.position) > .1f)
+                cursor.transform.position = currentTile;
         }
 
         public float GetTilePosition(float pos)
