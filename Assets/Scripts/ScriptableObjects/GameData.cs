@@ -13,9 +13,6 @@ namespace EveTravel
         [SerializeField] private Item equiped;
         [SerializeField] private List<Item> inventory;
 
-
-        
-
         public Player Player { get; set; }
         public List<Enemy> Enemys { get; set; } = new List<Enemy>();
         public Item Equiped { get; set; }

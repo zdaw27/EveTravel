@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6263857364329313328}
   - component: {fileID: 6263857364329313329}
   m_Layer: 0
-  m_Name: New Sprite (11)
+  m_Name: Tile2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3549fe650d0a6af45b02cf08c2034c0c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 38e758de59633904a8a2c48d4a563fd9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
