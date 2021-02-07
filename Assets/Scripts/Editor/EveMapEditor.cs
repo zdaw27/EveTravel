@@ -9,16 +9,15 @@ namespace EveTravel
     public class EveMapEditor : EditorWindow
     {
         static private EveMapEditor mapEditor = null;
+
         private EditMode mode;
         private bool enableEditMode = false;
-        private GameObject tilePrefab1;
-        private GameObject tilePrefab2;
-
         private float tileWidth = 1f;
-
+        private EditorData editorData;
+         
         private SerializedProperty objectFieldSP;
-
         private GameObject cursor = null;
+        private EveMap eveMap;
 
         [MenuItem("Editor/EveMapEditor")]
         static void OpenEditor()
@@ -36,12 +35,25 @@ namespace EveTravel
             EditorGUILayout.LabelField("ENABLE EDIT");
             EditorGUILayout.Toggle(enableEditMode);
             EditorGUILayout.EndHorizontal();
-            
-            tilePrefab1 = (GameObject)EditorGUILayout.ObjectField(tilePrefab1, typeof(GameObject), false);
-            tilePrefab2 = (GameObject)EditorGUILayout.ObjectField(tilePrefab2, typeof(GameObject), false);
-           
-            
-            
+
+            EditorGUILayout.LabelField("TILE1");
+            editorData.tile1 = (GameObject)EditorGUILayout.ObjectField( editorData.tile1, typeof(GameObject), false);
+            EditorGUILayout.LabelField("TILE2");
+            editorData.tile2 = (GameObject)EditorGUILayout.ObjectField( editorData.tile2, typeof(GameObject), false);
+            EditorGUILayout.LabelField("Target MAP");
+            eveMap = (EveMap)EditorGUILayout.ObjectField(eveMap, typeof(EveMap), true);
+
+            EditorGUILayout.LabelField("Map width");
+            editorData.width = EditorGUILayout.IntField(editorData.width);
+            EditorGUILayout.LabelField("Map height");
+            editorData.height = EditorGUILayout.IntField(editorData.height);
+            EditorUtility.SetDirty(editorData);
+
+
+            if (GUILayout.Button("Init Map"))
+            {
+
+            }
         }
 
         
@@ -51,12 +63,13 @@ namespace EveTravel
             Init();
             SceneView.duringSceneGui += SceneUpdate;
 
-            string cursorPath = "Assets/Tile1.prefab";
+            string cursorPath = "Assets/Prefabs/Tiles/Tile1.prefab";
             GameObject cursorPrefab = (GameObject)AssetDatabase.LoadAssetAtPath(cursorPath, typeof(GameObject));
-
+            editorData = (EditorData)AssetDatabase.LoadAssetAtPath("Assets/Scripts/Editor/ScriptableObjects/EditorData.asset", typeof(EditorData));
             if (!cursor)
             {
                 cursor = (GameObject)PrefabUtility.InstantiatePrefab(cursorPrefab);
+                cursor.layer = 8;
             }
         }
 
@@ -120,8 +133,8 @@ namespace EveTravel
 
             for (float y = camPos.y - 10.0f; y < camPos.y + 10.0f; y += height)
             {
-                Handles.DrawLine(new Vector3(-10.0f, Mathf.Floor(y / height) * height, 0.0f),
-                    new Vector3(10.0f, Mathf.Floor(y / height) * height, 0.0f));
+                Handles.DrawLine(new Vector3(-10.0f + camPos.x, Mathf.Floor(y / height) * height, 0.0f),
+                    new Vector3(10.0f + camPos.x, Mathf.Floor(y / height) * height, 0.0f));
             }
 
             for (float x = camPos.x - 10.0f; x < camPos.x + 10.0f; x += width)
