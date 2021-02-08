@@ -23,9 +23,20 @@ public class EveMap : MonoBehaviour
     public int Height { get => height; set => height = value; }
     public int Width { get => width; set => width = value; }
 
-    private void Start()
+    public bool CheckWalkablePosition(Vector3 position)
     {
-        
+        int index = GetIndex((int)position.x, (int)position.y);
+        return IsInRange(position) && tileCell[index].Type == TileType.walkable;
+    }
+
+    private bool IsInRange(Vector3 position)
+    {
+        return position.x >= 0 && position.x < width && position.y >= 0 && position.y < height;
+    }
+
+    private int GetIndex(int xPos, int yPos)
+    {
+        return xPos + yPos * width;
     }
 }
 

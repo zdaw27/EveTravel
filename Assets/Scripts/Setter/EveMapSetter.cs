@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EveTravel
 {
-    [RequireComponent(typeof(Player))]
+    [RequireComponent(typeof(EveMap))]
     public class EveMapSetter : MonoBehaviour
     {
         [SerializeField] private GameData gameData;

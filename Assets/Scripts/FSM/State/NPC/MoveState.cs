@@ -15,7 +15,6 @@ namespace EveTravel
                 owner.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             else if (owner.NextPos.x - owner.transform.position.x < 0)
                 owner.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-            //owner.Seeker.StartPath(owner.transform.position, nextPath, OnPathComplete);
         }
 
         public void Update(NPC owner)

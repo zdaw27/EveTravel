@@ -45,14 +45,14 @@ namespace EveTravel
 
         public void Exit(GameManager owner)
         {
-            gameData.Player.NextPos = direction;
             isJoystickPushed = false;
         }
 
         public void Update(GameManager owner)
         {
-            if (isJoystickPushed)
+            if (isJoystickPushed && gameData.EveMap.CheckWalkablePosition(gameData.Player.transform.position + direction))
             {
+                gameData.Player.NextPos = gameData.Player.transform.position + direction;
                 owner.Fsm.ChangeState(typeof(PlayState));
             }
         }

@@ -8,7 +8,6 @@ namespace EveTravel
     {
         public void Enter(GameManager owner)
         {
-            owner.GameData.Player.NextPos = owner.GameData.Player.transform.position + owner.GameData.Player.NextPos;
             owner.GameData.Player.Fsm.ChangeState(typeof(MoveState));
             foreach(Enemy enemy in owner.GameData.Enemys)
             {
