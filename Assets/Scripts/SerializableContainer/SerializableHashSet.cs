@@ -195,4 +195,7 @@ public abstract class SerializableHashSet<T> : SerializableHashSetBase, ISet<T>,
 [Serializable]
 public class SerializableIntHashSet : SerializableHashSet<int> { }
 
+[Serializable]
+public class SerializableGameObjectHashSet : SerializableHashSet<GameObject> { }
+
 #endif

@@ -7,7 +7,6 @@ namespace EveTravel
 {
     public class Player : NPC
     {
-
         private void Awake()
         {
             fsm = new FSM<NPC>(this, new IdleState());

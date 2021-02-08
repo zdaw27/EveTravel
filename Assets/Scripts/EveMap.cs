@@ -22,7 +22,11 @@ public class EveMap : MonoBehaviour
     public List<TileCell> TileCell { get => tileCell; set => tileCell = value; }
     public int Height { get => height; set => height = value; }
     public int Width { get => width; set => width = value; }
-    
+
+    private void Start()
+    {
+        
+    }
 }
 
 [Serializable]

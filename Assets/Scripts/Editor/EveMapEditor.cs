@@ -46,9 +46,9 @@ namespace EveTravel
             editorData.EveMap = (EveMap)EditorGUILayout.ObjectField(editorData.EveMap, typeof(EveMap), true);
 
             EditorGUILayout.LabelField("Map width");
-            editorData.Width = EditorGUILayout.IntField(editorData.Width);
+            editorData.EveMap.Width = EditorGUILayout.IntField(editorData.EveMap.Width);
             EditorGUILayout.LabelField("Map height");
-            editorData.Height = EditorGUILayout.IntField(editorData.Height);
+            editorData.EveMap.Height = EditorGUILayout.IntField(editorData.EveMap.Height);
             EditorUtility.SetDirty(editorData);
 
             if (GUILayout.Button("Init Map"))

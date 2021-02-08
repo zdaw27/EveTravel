@@ -9,7 +9,7 @@ namespace EveTravel
     {
         [Header("game config")]
         [SerializeField] private float npcSpeed = 3f;
-        [Header("end config")]
+        [Header("runtime datas")]
         [SerializeField] private Item equiped;
         [SerializeField] private List<Item> inventory;
 
@@ -19,13 +19,5 @@ namespace EveTravel
         public Item Inventory { get; set; }
         public float NpcSpeed { get { return npcSpeed; } private set { } }
 
-        private void OnEnable()
-        {
-        }
-
-        private void OnDisable()
-        {
-            
-        }
     }
 }
