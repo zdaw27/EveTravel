@@ -8,9 +8,12 @@ namespace EveTravel
     {
         public void Enter(GameManager owner)
         {
-            owner.Player.NextPos = owner.Player.transform.position + owner.Player.NextPos;
-            owner.Player.Fsm.ChangeState(typeof(MoveState));
-            owner.Enemy.Fsm.ChangeState(typeof(PathState));
+            owner.GameData.Player.NextPos = owner.GameData.Player.transform.position + owner.GameData.Player.NextPos;
+            owner.GameData.Player.Fsm.ChangeState(typeof(MoveState));
+            foreach(Enemy enemy in owner.GameData.Enemys)
+            {
+                enemy.Fsm.ChangeState(typeof(PathState));
+            }
         }
 
         public void Exit(GameManager owner)
@@ -19,7 +22,16 @@ namespace EveTravel
 
         public void Update(GameManager owner)
         {
-            if (owner.Player.Fsm.CheckCurrentState(typeof(IdleState)) && owner.Enemy.Fsm.CheckCurrentState(typeof(IdleState)))
+            bool isAllEnemyIdle = true;
+            foreach (Enemy enemy in owner.GameData.Enemys)
+            {
+                if(!enemy.Fsm.CheckCurrentState(typeof(IdleState)))
+                {
+                    isAllEnemyIdle = false;
+                    break;
+                }
+            }
+            if (owner.GameData.Player.Fsm.CheckCurrentState(typeof(IdleState)) && isAllEnemyIdle)
             {
                 owner.Fsm.ChangeState(typeof(ReadyState));
             }

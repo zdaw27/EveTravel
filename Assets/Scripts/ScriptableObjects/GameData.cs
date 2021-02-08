@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Reflection;
 
 namespace EveTravel
 {
@@ -12,12 +14,18 @@ namespace EveTravel
         [Header("runtime datas")]
         [SerializeField] private Item equiped;
         [SerializeField] private List<Item> inventory;
+        [SerializeField] private Player player = null;
+        [SerializeField] private List<Enemy> enemys;
+        [SerializeField] private EveMap eveMap;
 
-        public Player Player { get; set; }
-        public List<Enemy> Enemys { get; set; } = new List<Enemy>();
-        public Item Equiped { get; set; }
-        public Item Inventory { get; set; }
+
+        public Item Equiped { get => equiped; set => equiped = value; }
+        public List<Item> Inventory { get => inventory; set => inventory = value; }
+        public Player Player { get => player; set => player = value; }
+        public List<Enemy> Enemys { get => enemys; set => enemys = value; }
+        public EveMap EveMap { get => eveMap; set => eveMap = value; }
+
         public float NpcSpeed { get { return npcSpeed; } private set { } }
-
+        
     }
 }

@@ -5,13 +5,13 @@ using Pathfinding;
 
 namespace EveTravel
 {
-    public class NPC : MonoBehaviour
+    public abstract class NPC : MonoBehaviour
     {
-        [SerializeField] private UIObserver UIopserver;
-        [SerializeField] private GameData gameData;
-        [SerializeField] private NPCStat stat;
-        [SerializeField] private Animator animator;
-        [SerializeField] private Seeker seeker;
+        [SerializeField] protected UIObserver UIopserver;
+        [SerializeField] protected GameData gameData;
+        [SerializeField] protected NPCStat stat;
+        [SerializeField] protected Animator animator;
+        [SerializeField] protected Seeker seeker;
 
         protected FSM<NPC> fsm;
 

@@ -10,6 +10,7 @@ namespace EveTravel
 
         public void OnLeftButton()
         {
+            Debug.Log("clicked");
             uiObserver.JoyStickDir = JoyStickDir.Left;
         }
 

@@ -6,14 +6,14 @@ namespace EveTravel
 {
     public class InputState : IState<GameManager>
     {
-        NPC player;
+        GameData gameData;
         bool isJoystickPushed = false;
         Vector3 direction;
 
-        public InputState(NPC player, UIObserver uiObserver)
+        public InputState(GameData gameData, UIObserver uiObserver)
         {
             uiObserver.OnJoyStick += OnJoystickDir;
-            this.player = player;
+            this.gameData = gameData;
         }
 
         private void OnJoystickDir(JoyStickDir dir)
@@ -45,7 +45,7 @@ namespace EveTravel
 
         public void Exit(GameManager owner)
         {
-            player.NextPos = direction;
+            gameData.Player.NextPos = direction;
             isJoystickPushed = false;
         }
 
