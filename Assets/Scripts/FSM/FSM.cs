@@ -35,7 +35,7 @@ namespace EveTravel
             current.Exit(owner);
             current = states[type];
             current.Enter(owner);
-            Debug.Log(owner.name + current.ToString());
+            //Debug.Log(owner.name + current.ToString());
         }
 
         public bool CheckCurrentState(Type type)

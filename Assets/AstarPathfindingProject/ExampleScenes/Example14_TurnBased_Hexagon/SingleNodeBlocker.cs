@@ -1,24 +1,25 @@
 using UnityEngine;
 
 namespace Pathfinding {
-	/// <summary>
-	/// Blocks single nodes in a graph.
-	///
-	/// This is useful in turn based games where you want
-	/// units to avoid all other units while pathfinding
-	/// but not be blocked by itself.
-	///
-	/// Note: This cannot be used together with any movement script
-	/// as the nodes are not blocked in the normal way.
-	/// See: TurnBasedAI for example usage
-	///
-	/// See: BlockManager
-	/// See: turnbased (view in online documentation for working links)
-	/// </summary>
-	[HelpURL("http://arongranberg.com/astar/docs/class_pathfinding_1_1_single_node_blocker.php")]
+    
+    /// <summary>
+    /// Blocks single nodes in a graph.
+    ///
+    /// This is useful in turn based games where you want
+    /// units to avoid all other units while pathfinding
+    /// but not be blocked by itself.
+    ///
+    /// Note: This cannot be used together with any movement script
+    /// as the nodes are not blocked in the normal way.
+    /// See: TurnBasedAI for example usage
+    ///
+    /// See: BlockManager
+    /// See: turnbased (view in online documentation for working links)
+    /// </summary>
+    [HelpURL("http://arongranberg.com/astar/docs/class_pathfinding_1_1_single_node_blocker.php")]
 	public class SingleNodeBlocker : VersionedMonoBehaviour {
 		public GraphNode lastBlocked { get; private set; }
-		public BlockManager manager;
+        public BlockManager manager;
 
 		/// <summary>
 		/// Block node closest to the position of this object.
@@ -65,5 +66,15 @@ namespace Pathfinding {
 			manager.InternalUnblock(lastBlocked, this);
 			lastBlocked = null;
 		}
-	}
+
+        public void OnEnable()
+        {
+            
+        }
+
+        public void OnDisable()
+        {
+
+        }
+    }
 }

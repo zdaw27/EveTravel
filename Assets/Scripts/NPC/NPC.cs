@@ -12,6 +12,7 @@ namespace EveTravel
         [SerializeField] protected NPCStat stat;
         [SerializeField] protected Animator animator;
         [SerializeField] protected Seeker seeker;
+        [SerializeField] protected SingleNodeBlocker blocker;
 
         protected FSM<NPC> fsm;
 

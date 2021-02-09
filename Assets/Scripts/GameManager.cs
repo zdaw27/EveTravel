@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 namespace EveTravel
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] UIObserver uiObserver;
-        [SerializeField] GameData gameData;
+        [SerializeField] private UIObserver uiObserver;
+        [SerializeField] private GameData gameData;
 
         private FSM<GameManager> fsm;
 

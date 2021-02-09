@@ -29,12 +29,12 @@ public class EveMap : MonoBehaviour
         return IsInRange(position) && tileCell[index].Type == TileType.walkable;
     }
 
-    private bool IsInRange(Vector3 position)
+    public bool IsInRange(Vector3 position)
     {
         return position.x >= 0 && position.x < width && position.y >= 0 && position.y < height;
     }
 
-    private int GetIndex(int xPos, int yPos)
+    public int GetIndex(int xPos, int yPos)
     {
         return xPos + yPos * width;
     }
