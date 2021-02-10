@@ -8,10 +8,11 @@ namespace EveTravel
     public class Enemy : NPC
     {
 
+
         private void Awake()
         {
             fsm = new FSM<NPC>(this, new IdleState());
-            fsm.AddState(new PathState());
+            fsm.AddState(new PathState(this));
             fsm.AddState(new MoveState());
         }
 

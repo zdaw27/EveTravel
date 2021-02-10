@@ -23,5 +23,6 @@ namespace EveTravel
         public Vector3 NextPos { get; set; }
         public Seeker Seeker { get { return seeker; } set { seeker = value; } }
         public GameData GameData { get { return gameData; } private set { } }
+        public SingleNodeBlocker Blocker { get => blocker; set => blocker = value; }
     }
 }

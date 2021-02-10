@@ -12,31 +12,50 @@ namespace EveTravel
         private bool isPathComplete;
         private NPC owner;
 
+        BlockManager.TraversalProvider traversalProvider;
+
+        public Path Path { get => path; set => path = value; }
+        public bool IsPathComplete { get => isPathComplete; set => isPathComplete = value; }
+        public BlockManager.TraversalProvider TraversalProvider { get => traversalProvider; set => traversalProvider = value; }
+
+        public PathState(NPC owner)
+        {
+            this.owner = owner;
+            if (TraversalProvider == null)
+            {
+                TraversalProvider = new BlockManager.TraversalProvider(owner.Blocker.manager, BlockManager.BlockMode.AllExceptSelector, new List<SingleNodeBlocker>() { owner.Blocker });
+            }
+        }
+
         void OnPathComplete(Path path)
         {
-            isPathComplete = true;
-            this.path = path;
+            IsPathComplete = true;
+            this.Path = path;
             owner.NextPos = (Vector3)path.path[1].position;
+            owner.Blocker.BlockAt(owner.NextPos);
         }
 
         public void Enter(NPC owner)
         {
-            this.owner = owner;
-            isPathComplete = false;
-            owner.Seeker.StartPath(owner.transform.position, owner.GameData.Player.NextPos, OnPathComplete);
+            //owner.Blocker.Unblock();
+            IsPathComplete = false;
+
+            
+
+            owner.Seeker.StartPath(owner.transform.position, player.NextPos , OnPathComplete);
         }
 
         public void Exit(NPC owner)
         {
-            isPathComplete = false;
+            IsPathComplete = false;
         }
 
         public void Update(NPC owner)
         {
-            if (isPathComplete)
-            {
-                owner.Fsm.ChangeState(typeof(MoveState));
-            }
+            //if (isPathComplete)
+            //{
+            //    owner.Fsm.ChangeState(typeof(MoveState));
+            //}
         }
     }
 }
