@@ -18287,12 +18287,12 @@ PrefabInstance:
     - target: {fileID: 3736797207026969101, guid: 6365441353658d2448d5b9665ed905df,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3736797207026969101, guid: 6365441353658d2448d5b9665ed905df,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3736797207026969101, guid: 6365441353658d2448d5b9665ed905df,
         type: 3}
@@ -24595,7 +24595,7 @@ MonoBehaviour:
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
-  maxFrameTime: 1
+  maxFrameTime: 10
   batchGraphUpdates: 0
   graphUpdateBatchingInterval: 0.2
   euclideanEmbedding:

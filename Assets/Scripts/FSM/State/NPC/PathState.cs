@@ -7,24 +7,17 @@ namespace EveTravel
 {
     public class PathState : IState<NPC>
     {
-        private NPC player;
         private Path path;
         private bool isPathComplete;
         private NPC owner;
 
-        BlockManager.TraversalProvider traversalProvider;
-
         public Path Path { get => path; set => path = value; }
         public bool IsPathComplete { get => isPathComplete; set => isPathComplete = value; }
-        public BlockManager.TraversalProvider TraversalProvider { get => traversalProvider; set => traversalProvider = value; }
+        
 
         public PathState(NPC owner)
         {
             this.owner = owner;
-            if (TraversalProvider == null)
-            {
-                TraversalProvider = new BlockManager.TraversalProvider(owner.Blocker.manager, BlockManager.BlockMode.AllExceptSelector, new List<SingleNodeBlocker>() { owner.Blocker });
-            }
         }
 
         void OnPathComplete(Path path)
@@ -32,17 +25,14 @@ namespace EveTravel
             IsPathComplete = true;
             this.Path = path;
             owner.NextPos = (Vector3)path.path[1].position;
-            owner.Blocker.BlockAt(owner.NextPos);
+            owner.Blocker.BlockAt((Vector3)path.path[1].position);
         }
 
         public void Enter(NPC owner)
         {
-            //owner.Blocker.Unblock();
+            owner.Blocker.Unblock();
             IsPathComplete = false;
-
-            
-
-            owner.Seeker.StartPath(owner.transform.position, player.NextPos , OnPathComplete);
+            owner.Seeker.StartPath(owner.transform.position, owner.GameData.Player.NextPos , OnPathComplete);
         }
 
         public void Exit(NPC owner)
