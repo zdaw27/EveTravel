@@ -15,7 +15,8 @@ public class EffectManager : MonoBehaviour
     }
 
     [SerializeField] private EffectListener effectListener;
-    [SerializeField] private List<BaseEffect> effectList;
+    [SerializeField] private SerializableEffectDictionary effectPrefabs;
+
 
     private void Awake()
     {
