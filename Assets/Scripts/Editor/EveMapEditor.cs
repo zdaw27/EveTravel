@@ -8,6 +8,16 @@ namespace EveTravel
 {
     public class EveMapEditor : EditorWindow
     {
+        public enum EditMode
+        {
+            Tile,
+            PlayerSpawn,
+            EnemySpawn,
+            TreasureSpawn,
+            Store,
+            Exit,
+        }
+
         static private EveMapEditor mapEditor = null;
 
         private EditMode mode;
@@ -293,15 +303,5 @@ namespace EveTravel
                     new Vector3(Mathf.Floor(x / width) * width, 10.0f, 0.0f));
             }
         }
-    }
-
-    public enum EditMode
-    {
-        Tile,
-        PlayerSpawn,
-        EnemySpawn,
-        TreasureSpawn,
-        Store,
-        Exit,
     }
 }

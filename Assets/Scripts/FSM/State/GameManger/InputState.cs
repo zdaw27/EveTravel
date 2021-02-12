@@ -51,16 +51,11 @@ namespace EveTravel
 
         public void Update(GameManager owner)
         {
-            int nodeIndex = AstarPath.active.GetNearest(gameData.Player.transform.position).node.NodeIndex;
-            int nodeWidth = AstarPath.active.data.gridGraph.width;
-            int nodeHeight = AstarPath.active.data.gridGraph.depth;
-            int nextNodeIndex = nodeIndex + (int)direction.x + (int)direction.y * AstarPath.active.data.gridGraph.width;
-
             if (isJoystickPushed && gameData.EveMap.CheckWalkablePosition(gameData.Player.transform.position + direction))
             {
                 Debug.Log("graph index" + AstarPath.active.GetNearest(gameData.Player.NextPos).node.NodeIndex + " tile index" + gameData.EveMap.GetIndex((int)gameData.Player.NextPos.x, (int)gameData.Player.NextPos.y));
                 gameData.Player.NextPos = gameData.Player.transform.position + direction;
-                owner.Fsm.ChangeState(typeof(PlayState));
+                owner.Fsm.ChangeState(typeof(SortState));
             }
         }
     }

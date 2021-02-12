@@ -14,14 +14,4 @@ namespace EveTravel
         [SerializeField] public int armor;
         [SerializeField] public int critical;
     }
-
-    public enum NPCState
-    {
-        Idle,
-        Attack,
-        Move,
-        Hit,
-        Death
-    }
-
 }

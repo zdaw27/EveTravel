@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 namespace EveTravel
 {
     public class PlayState : IState<GameManager>
     {
+
+        bool isAllEnemyPathComplete = true;
         public void Enter(GameManager owner)
         {
-            owner.GameData.Player.Fsm.ChangeState(typeof(MoveState));
+            isAllEnemyPathComplete = false;
+            
             foreach(Enemy enemy in owner.GameData.Enemys)
             {
-                enemy.Fsm.ChangeState(typeof(PathState));
+                enemy.Fsm.ChangeState(typeof(BlockPathState));
             }
         }
 
@@ -21,19 +25,30 @@ namespace EveTravel
 
         public void Update(GameManager owner)
         {
-            bool isAllEnemyIdle = true;
+            isAllEnemyPathComplete = true;
             foreach (Enemy enemy in owner.GameData.Enemys)
             {
-                if(!enemy.Fsm.CheckCurrentState(typeof(IdleState)))
+                if (!enemy.Fsm.GetState<BlockPathState>().IsPathComplete)
                 {
-                    isAllEnemyIdle = false;
+                    isAllEnemyPathComplete = false;
                     break;
                 }
             }
-            if (owner.GameData.Player.Fsm.CheckCurrentState(typeof(IdleState)) && isAllEnemyIdle)
+            if (isAllEnemyPathComplete)
+            {
+                owner.GameData.Player.Fsm.ChangeState(typeof(MoveState));
+                foreach (Enemy enemy in owner.GameData.Enemys)
+                {
+                    enemy.Fsm.ChangeState(typeof(MoveState));
+                }
+            }
+
+            if (owner.GameData.Player.Fsm.CheckCurrentState(typeof(IdleState)))
             {
                 owner.Fsm.ChangeState(typeof(ReadyState));
             }
         }
+
+        
     }
 }

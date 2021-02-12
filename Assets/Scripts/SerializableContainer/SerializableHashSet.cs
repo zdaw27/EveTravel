@@ -192,8 +192,7 @@ public abstract class SerializableHashSet<T> : SerializableHashSetBase, ISet<T>,
     #endregion
 }
 
-[Serializable]
-public class SerializableIntHashSet : SerializableHashSet<int> { }
+
 
 [Serializable]
 public class SerializableGameObjectHashSet : SerializableHashSet<GameObject> { }

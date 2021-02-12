@@ -18,6 +18,7 @@ namespace EveTravel
         private void Awake()
         {
             fsm = new FSM<GameManager>(this, new InputState(GameData, uiObserver));
+            fsm.AddState(new SortState());
             fsm.AddState(new PlayState());
             fsm.AddState(new ReadyState());
 
