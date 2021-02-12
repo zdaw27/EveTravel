@@ -12,8 +12,8 @@ public class ParticleEffect : BaseEffect
         particle.Play(true);
     }
 
-    protected override bool CheckEffectEnd()
+    public override bool CheckEffectEnd()
     {
-        return particle.IsAlive(true);
+        return !particle.IsAlive(true);
     }
 }

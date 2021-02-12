@@ -6,7 +6,7 @@ namespace EveTravel
 {
     public class PlayerFollower : MonoBehaviour
     {
-        [SerializeField] private GameData gameData;
+        [SerializeField] private GameData gameData = null;
         [SerializeField] private Transform follower = null;
 
         private void LateUpdate()
