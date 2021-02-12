@@ -12,7 +12,7 @@ public class ClickEffectRaiser : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            effectListener.RaiseEffect(worldPosition, type);
+            effectListener.RaiseEffect(worldPosition, type, 54);
         }
     }
 }

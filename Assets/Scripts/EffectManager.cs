@@ -12,7 +12,8 @@ public class EffectManager : MonoBehaviour
         EnemyHit,
         PlayerCriticalHit,
         EnemyCriticalHit,
-        ClickEffect
+        ClickEffect,
+        DamageEffect,
     }
 
     [SerializeField] private EffectListener effectListener;
@@ -49,11 +50,11 @@ public class EffectManager : MonoBehaviour
         }
     }
 
-    private void RaiseEffect(Vector3 raisePosition, EffectType type)
+    private void RaiseEffect(Vector3 raisePosition, EffectType type, int damage = 0)
     {
         BaseEffect effect = pools[type].GetObject();
         effect.transform.position = new Vector3(raisePosition.x, raisePosition.y, -10f);
-        effect.StartEffect();
+        effect.StartEffect(damage);
         Debug.Log(effect.transform.position);
         activedEffects[type].Add(effect);
     }

@@ -7,7 +7,7 @@ public class ParticleEffect : BaseEffect
 {
     [SerializeField] private ParticleSystem particle;
 
-    public override void StartEffect()
+    public override void StartEffect(int damage = 0)
     {
         particle.Play(true);
     }
