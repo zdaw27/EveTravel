@@ -7,4 +7,5 @@ public abstract class BaseEffect : MonoBehaviour
 {
     abstract public void StartEffect(int damage = 0);
     abstract public bool CheckEffectEnd();
+    virtual public void EndEffect() { }
 }

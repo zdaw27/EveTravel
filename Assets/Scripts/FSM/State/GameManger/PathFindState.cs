@@ -31,7 +31,7 @@ namespace EveTravel
             {
                 owner.GameData.Enemys[enemyIdx].NextPos = owner.GameData.Enemys[enemyIdx].transform.position;
                 tileCandidate.Clear();
-                owner.EffectListener.RaiseEffect(owner.GameData.Enemys[enemyIdx].transform.position, EffectManager.EffectType.DamageEffect, enemyIdx);
+                //owner.EffectListener.RaiseEffect(owner.GameData.Enemys[enemyIdx].transform.position, EffectManager.EffectType.DamageEffect, enemyIdx);
 
                 for (int i = 0; i < checkList.Count; ++i)
                 {
