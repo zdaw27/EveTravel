@@ -55,7 +55,6 @@ public class EffectManager : MonoBehaviour
         BaseEffect effect = pools[type].GetObject();
         effect.transform.position = new Vector3(raisePosition.x, raisePosition.y, -10f);
         effect.StartEffect(damage);
-        Debug.Log(effect.transform.position);
         activedEffects[type].Add(effect);
     }
 }

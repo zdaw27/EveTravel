@@ -1,22 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
 namespace EveTravel
 {
     public class PlayState : IState<GameManager>
     {
-
-        bool isAllEnemyPathComplete = true;
         public void Enter(GameManager owner)
         {
-            isAllEnemyPathComplete = false;
-            
-            foreach(Enemy enemy in owner.GameData.Enemys)
-            {
-                enemy.Fsm.ChangeState(typeof(BlockPathState));
-            }
+            owner.GameData.Player.Fsm.ChangeState(typeof(MoveState));
+            for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
+                owner.GameData.Enemys[i].Fsm.ChangeState(typeof(MoveState));
         }
 
         public void Exit(GameManager owner)
@@ -25,30 +19,20 @@ namespace EveTravel
 
         public void Update(GameManager owner)
         {
-            isAllEnemyPathComplete = true;
-            foreach (Enemy enemy in owner.GameData.Enemys)
+            bool isAllNPCIdle = true;
+
+            for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
             {
-                if (!enemy.Fsm.GetState<BlockPathState>().IsPathComplete)
+                if (!owner.GameData.Enemys[i].Fsm.CheckCurrentState(typeof(IdleState)))
                 {
-                    isAllEnemyPathComplete = false;
+                    isAllNPCIdle = false;
                     break;
                 }
             }
-            if (isAllEnemyPathComplete)
-            {
-                owner.GameData.Player.Fsm.ChangeState(typeof(MoveState));
-                foreach (Enemy enemy in owner.GameData.Enemys)
-                {
-                    enemy.Fsm.ChangeState(typeof(MoveState));
-                }
-            }
+            
 
-            if (owner.GameData.Player.Fsm.CheckCurrentState(typeof(IdleState)))
-            {
+            if (isAllNPCIdle && owner.GameData.Player.Fsm.CheckCurrentState(typeof(IdleState)))
                 owner.Fsm.ChangeState(typeof(ReadyState));
-            }
         }
-
-        
     }
 }

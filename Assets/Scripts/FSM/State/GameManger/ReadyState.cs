@@ -8,6 +8,7 @@ namespace EveTravel
     {
         public void Enter(GameManager owner)
         {
+            
         }
 
         public void Exit(GameManager owner)
