@@ -2,50 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Pathfinding;
 
 namespace EveTravel
 {
+
     public class FSM<T> where T : MonoBehaviour
     {
         private T owner;
         private IState<T> current;
         private Dictionary<Type, IState<T>> states = new Dictionary<Type, IState<T>>();
+        private bool debug = false;
 
-        public FSM(T owner, IState<T> entryState)
+        public FSM(T owner, IState<T> entry, bool debug = false)
         {
+            this.debug = debug;
             this.owner = owner;
-            current = entryState;
-            states.Add(entryState.GetType(), entryState);
+            current = entry;
+            AddState(entry);
         }
 
-        public FSM<T> AddState<P>(P state) where P : IState<T>
+        public void AddState(IState<T> state)
         {
             states.Add(state.GetType(), state);
-            return this;
-        }
-
-        public P GetState<P>()
-        {
-            return (P)states[typeof(P)];
-        }
-
-        public void ChangeState(Type type)
-        {
-            current.Exit(owner);
-            current = states[type];
-            current.Enter(owner);
-            //Debug.Log(owner.name + current.ToString());
         }
 
         public bool CheckCurrentState(Type type)
         {
+            Type currentType = current.GetType();
             return current.GetType() == type;
+        }
+
+        public P GetState<P>() where P : IState<T>
+        {
+            return (P)states[typeof(P)];
         }
 
         public void StartFSM()
         {
             current.Enter(owner);
+        }
+
+        public void ChangeState(Type type)
+        {
+            if (debug)
+                Debug.Log("ChangedState : " + type);
+
+            current.Exit(owner);
+            current = states[type];
+            current.Enter(owner);
+            current.Update(owner);
         }
 
         public void Update()

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
 namespace EveTravel
 {
@@ -22,10 +21,8 @@ namespace EveTravel
             Vector3 move = Vector3.MoveTowards(owner.transform.position, owner.NextPos, Time.deltaTime * owner.GameData.NpcSpeed);
             owner.transform.position = move;
 
-            if (Vector3.Distance(owner.transform.position, owner.NextPos) <= 0f)
-            {
+            if (owner.transform.position == owner.NextPos)
                 owner.Fsm.ChangeState(typeof(IdleState));
-            }
         }
 
         public void Exit(NPC owner)
