@@ -18,6 +18,15 @@ namespace EveTravel
             effectListener.RaiseEffect(attackTarget.transform.position, EffectManager.EffectType.EnemyHit);
             effectListener.RaiseEffect(attackTarget.transform.position, EffectManager.EffectType.DamageEffect, stat.attack);
         }
+        
+        public void SetAttackTarget(Character attackTarget)
+        {
+            this.attackTarget = attackTarget;
+        }
 
+        public void SetNextPos(Vector3 nexPos)
+        { 
+            NextPos = nexPos;
+        }
     }
 }
