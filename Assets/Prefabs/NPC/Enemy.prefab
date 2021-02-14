@@ -97,13 +97,12 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: 2dddf9b9f8f635048b3177496886594d, type: 2}
   stat:
     lastPosition: {x: 0, y: 0}
-    hp: 10
-    attack: 2
+    hp: 5
+    attack: 5
     armor: 1
     critical: 10
   animator: {fileID: 0}
-  seeker: {fileID: 0}
-  blocker: {fileID: 0}
+  effectListener: {fileID: 11400000, guid: 788714ed809cec34bb93c08585156d14, type: 2}
 --- !u!114 &3736797207026969094
 MonoBehaviour:
   m_ObjectHideFlags: 0

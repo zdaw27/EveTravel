@@ -8,9 +8,20 @@ namespace EveTravel
     {
         public void Enter(GameManager owner)
         {
-            owner.GameData.Player.Fsm.ChangeState(typeof(MoveState));
+            if(owner.GameData.Player.HasTarget())
+                owner.GameData.Player.Fsm.ChangeState<AttackState>();
+            else
+                owner.GameData.Player.Fsm.ChangeState<MoveState>();
+
             for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
-                owner.GameData.Enemys[i].Fsm.ChangeState(typeof(MoveState));
+            {
+                if (owner.GameData.Enemys[i].HasTarget())
+                {
+                    owner.GameData.Enemys[i].Fsm.ChangeState<AttackState>();
+                }
+                else
+                    owner.GameData.Enemys[i].Fsm.ChangeState<MoveState>();
+            }
         }
 
         public void Exit(GameManager owner)
@@ -19,20 +30,20 @@ namespace EveTravel
 
         public void Update(GameManager owner)
         {
-            bool isAllNPCIdle = true;
+            bool isAllCharacterIdle = true;
 
             for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
             {
                 if (!owner.GameData.Enemys[i].Fsm.CheckCurrentState(typeof(IdleState)))
                 {
-                    isAllNPCIdle = false;
+                    isAllCharacterIdle = false;
                     break;
                 }
             }
             
 
-            if (isAllNPCIdle && owner.GameData.Player.Fsm.CheckCurrentState(typeof(IdleState)))
-                owner.Fsm.ChangeState(typeof(ReadyState));
+            if (isAllCharacterIdle && owner.GameData.Player.Fsm.CheckCurrentState(typeof(IdleState)))
+                owner.Fsm.ChangeState<ReadyState>();
         }
     }
 }

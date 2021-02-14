@@ -42,13 +42,13 @@ namespace EveTravel
             current.Enter(owner);
         }
 
-        public void ChangeState(Type type)
+        public void ChangeState<P>() where P : IState<T>
         {
             if (debug)
-                Debug.Log("ChangedState : " + type);
+                Debug.Log("ChangedState : " + typeof(P));
 
             current.Exit(owner);
-            current = states[type];
+            current = states[typeof(P)];
             current.Enter(owner);
             current.Update(owner);
         }

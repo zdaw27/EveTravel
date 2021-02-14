@@ -4,24 +4,24 @@ using UnityEngine;
 
 namespace EveTravel
 {
-    public class AttackState : IState<NPC>
+    public class AttackState : IState<Character>
     {
-        public NPC attackTaget { get; set; }
-
-        public void Enter(NPC owner)
+        public void Enter(Character owner)
         {
             if (owner.Animator)
                 owner.Animator.Play("attack");
-            NPCStat stat = attackTaget.Stat;
-            stat.hp -= owner.Stat.attack - stat.armor;
+
+            owner.Attack();
         }
 
-        public void Update(NPC owner)
+        public void Update(Character owner)
         {
+            owner.Fsm.ChangeState<IdleState>();
         }
 
-        public void Exit(NPC owner)
+        public void Exit(Character owner)
         {
+            
         }
     }
 }

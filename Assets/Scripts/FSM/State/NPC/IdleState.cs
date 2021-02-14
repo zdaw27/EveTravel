@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace EveTravel
 {
-    public class IdleState : IState<NPC>
+    public class IdleState : IState<Character>
     {
-        public void Enter(NPC owner)
+        public void Enter(Character owner)
         {
             if (owner.Animator)
                 owner.Animator.Play("idle");
         }
 
-        public void Update(NPC owner)
+        public void Update(Character owner)
         {
         }
 
-        public void Exit(NPC owner)
+        public void Exit(Character owner)
         {
         }
     }

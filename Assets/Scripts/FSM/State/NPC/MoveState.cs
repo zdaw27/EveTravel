@@ -4,28 +4,28 @@ using UnityEngine;
 
 namespace EveTravel
 {
-    public class MoveState : IState<NPC>
+    public class MoveState : IState<Character>
     {
-        public void Enter(NPC owner)
+        public void Enter(Character owner)
         {
             if (owner.Animator)
                 owner.Animator.Play("walk");
-            if (owner.NextPos.x - owner.transform.position.x > 0)
-                owner.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-            else if (owner.NextPos.x - owner.transform.position.x < 0)
-                owner.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            //if (owner.NextPos.x - owner.transform.position.x > 0)
+            //    owner.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            //else if (owner.NextPos.x - owner.transform.position.x < 0)
+            //    owner.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
 
-        public void Update(NPC owner)
+        public void Update(Character owner)
         {
             Vector3 move = Vector3.MoveTowards(owner.transform.position, owner.NextPos, Time.deltaTime * owner.GameData.NpcSpeed);
             owner.transform.position = move;
 
             if (owner.transform.position == owner.NextPos)
-                owner.Fsm.ChangeState(typeof(IdleState));
+                owner.Fsm.ChangeState<IdleState>();
         }
 
-        public void Exit(NPC owner)
+        public void Exit(Character owner)
         {
         }
     }
