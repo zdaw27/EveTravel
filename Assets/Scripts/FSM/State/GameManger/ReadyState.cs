@@ -8,7 +8,6 @@ namespace EveTravel
     {
         public void Enter(GameManager owner)
         {
-            
         }
 
         public void Exit(GameManager owner)
@@ -17,7 +16,7 @@ namespace EveTravel
 
         public void Update(GameManager owner)
         {
-            owner.Fsm.ChangeState(typeof(InputState));
+            owner.Fsm.ChangeState<InputState>();
         }
     }
 }

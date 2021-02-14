@@ -36,7 +36,7 @@ namespace EveTravel
                 for (int i = 0; i < checkList.Count; ++i)
                 {
                     if (owner.GameData.EveMap.CheckWalkablePosition(owner.GameData.Enemys[enemyIdx].transform.position + checkList[i])
-                        && IsIn180Angle(owner.GameData.Enemys[enemyIdx].transform.position, owner.GameData.Player.NextPos, owner.GameData.Enemys[enemyIdx].transform.position + checkList[i]))
+                        && EveUtil.IsIn180Angle(owner.GameData.Enemys[enemyIdx].transform.position, owner.GameData.Player.NextPos, owner.GameData.Enemys[enemyIdx].transform.position + checkList[i]))
                     {
                          tileCandidate.Add(owner.GameData.Enemys[enemyIdx].transform.position + checkList[i]);
                     }
@@ -48,9 +48,16 @@ namespace EveTravel
                     {
                         owner.GameData.Enemys[enemyIdx].NextPos = tileCandidate[i];
                         walkedIndices.Add(owner.GameData.EveMap.GetIndex(owner.GameData.Enemys[enemyIdx].NextPos));
-                        owner.EffectListener.RaiseEffect(owner.GameData.Enemys[enemyIdx].transform.position, EffectManager.EffectType.DamageEffect, tileCandidate.Count);
+                        //owner.EffectListener.RaiseEffect(owner.GameData.Enemys[enemyIdx].transform.position, EffectManager.EffectType.DamageEffect, tileCandidate.Count);
                         break;
                     }
+                }
+
+                owner.GameData.Enemys[enemyIdx].SetTarget(null);
+                if (Vector3.Distance(owner.GameData.Enemys[enemyIdx].transform.position, owner.GameData.Player.transform.position) <= 1f)
+                {
+                    owner.GameData.Enemys[enemyIdx].NextPos = owner.GameData.Enemys[enemyIdx].transform.position;
+                    owner.GameData.Enemys[enemyIdx].SetTarget(owner.GameData.Player);
                 }
 
                 if (owner.GameData.Enemys[enemyIdx].NextPos == owner.GameData.Enemys[enemyIdx].transform.position)
@@ -59,18 +66,14 @@ namespace EveTravel
                 }
             }
 
-            owner.GameData.Player.Fsm.ChangeState(typeof(MoveState));
+            owner.GameData.Player.Fsm.ChangeState<MoveState>();
             for (int enemyIdx = 0; enemyIdx < owner.GameData.Enemys.Count; ++enemyIdx)
             {
-                owner.GameData.Enemys[enemyIdx].Fsm.ChangeState(typeof(MoveState));
+                owner.GameData.Enemys[enemyIdx].Fsm.ChangeState<MoveState>();
             }
 
-            owner.Fsm.ChangeState(typeof(PlayState));
+            owner.Fsm.ChangeState<PlayState>();
         }
 
-        private bool IsIn180Angle(Vector3 source, Vector3 target, Vector3 compare)
-        {
-            return Vector3.Dot(target - source, compare - source) > 0f;
-        }
     }
 }

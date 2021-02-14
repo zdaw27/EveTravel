@@ -24,7 +24,5 @@ public class GameData : ScriptableObject
     public List<Enemy> Enemys { get => enemys; set => enemys = value; }
     public EveMap EveMap { get => eveMap; set => eveMap = value; }
 
-    public List<Enemy> Attacker { get; set; } = new List<Enemy>();
-    
 
 }

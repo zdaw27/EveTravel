@@ -6,7 +6,7 @@ using System;
 namespace EveTravel
 {
     [Serializable]
-    public struct NPCStat
+    public struct CharacterStat
     {
         [SerializeField] public Vector2 lastPosition; 
         [SerializeField] public int hp;

@@ -6,20 +6,37 @@ namespace EveTravel
 {
     public class InputState : IState<GameManager>
     {
-        GameData gameData;
-        bool isJoystickPushed = false;
-        Vector3 direction;
-        private HashSet<int> enemyIndex = new HashSet<int>();
+        private GameData gameData;
+        private UIObserver uiObserver;
+        private EffectListener effectListener;
+        private bool isJoystickPushed = false;
+        private bool isAttackButtonPushed = false;
+        private Vector3 direction;
+        private Dictionary<int, Enemy> enemyIndex = new Dictionary<int, Enemy>();
+        private BaseEffect effect;
 
-        public InputState(GameData gameData, UIObserver uiObserver)
+        public InputState(GameData gameData, UIObserver uiObserver, EffectListener effectListener)
         {
             uiObserver.OnJoyStick += OnJoystickDir;
+            uiObserver.OnAttakcButton += OnAttackClick;
             this.gameData = gameData;
+            this.uiObserver = uiObserver;
+            this.effectListener = effectListener;
+        }
+
+        ~InputState()
+        {
+            uiObserver.OnJoyStick -= OnJoystickDir;
+            uiObserver.OnAttakcButton -= OnAttackClick;
+        }
+
+        private void OnAttackClick()
+        {
+            isAttackButtonPushed = true;
         }
 
         private void OnJoystickDir(JoyStickDir dir)
         {
-
             switch (dir)
             {
                 case JoyStickDir.Left:
@@ -37,31 +54,54 @@ namespace EveTravel
             }
 
             isJoystickPushed = true;
+            
         }
 
         public void Enter(GameManager owner)
         {
             enemyIndex.Clear();
-            for(int i = 0; i < owner.GameData.Enemys.Count; ++i)
+            direction = Vector3.zero;
+            for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
             {
-                enemyIndex.Add(owner.GameData.EveMap.GetIndex(owner.GameData.Enemys[i].transform.position));
+                enemyIndex.Add(owner.GameData.EveMap.GetIndex(owner.GameData.Enemys[i].transform.position), owner.GameData.Enemys[i]);
             }
             isJoystickPushed = false;
+            isAttackButtonPushed = false;
         }
 
         public void Exit(GameManager owner)
         {
-            isJoystickPushed = false;
+            if (effect != null)
+                effect.EndEffect();
         }
 
         public void Update(GameManager owner)
         {
             if (isJoystickPushed && gameData.EveMap.CheckWalkablePosition(gameData.Player.transform.position + direction) &&
-                !enemyIndex.Contains(gameData.EveMap.GetIndex(gameData.Player.transform.position + direction)))
+                !enemyIndex.ContainsKey(gameData.EveMap.GetIndex(gameData.Player.transform.position + direction)))
             {
                 gameData.Player.NextPos = gameData.Player.transform.position + direction;
-                owner.Fsm.ChangeState(typeof(PathFindState));
+                gameData.Player.SetTarget(null);
+                owner.Fsm.ChangeState<PathFindState>();
+
             }
+            else if(isAttackButtonPushed && enemyIndex.ContainsKey(gameData.EveMap.GetIndex(gameData.Player.transform.position + direction)))
+            {
+                gameData.Player.NextPos = gameData.Player.transform.position;
+                gameData.Player.SetTarget(enemyIndex[gameData.EveMap.GetIndex(gameData.Player.transform.position + direction)]);
+                owner.Fsm.ChangeState<PathFindState>();
+            }
+
+            if (isJoystickPushed && enemyIndex.ContainsKey(gameData.EveMap.GetIndex(gameData.Player.transform.position + direction)))
+            {
+                isJoystickPushed = false;
+                if (effect != null)
+                    effect.EndEffect();
+                effect = effectListener.RaiseEffect(gameData.Player.transform.position + direction, EffectManager.EffectType.PermanentEffect);
+            }
+
+            isAttackButtonPushed = false;
+            isJoystickPushed = false;
         }
     }
 }
