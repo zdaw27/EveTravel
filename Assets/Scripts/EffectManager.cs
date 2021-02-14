@@ -14,6 +14,7 @@ public class EffectManager : MonoBehaviour
         EnemyCriticalHit,
         ClickEffect,
         DamageEffect,
+        PermanentEffect
     }
 
     [SerializeField] private EffectListener effectListener;
@@ -50,11 +51,16 @@ public class EffectManager : MonoBehaviour
         }
     }
 
-    private void RaiseEffect(Vector3 raisePosition, EffectType type, int damage = 0)
+    private BaseEffect RaiseEffect(Vector3 raisePosition, EffectType type, int damage = 0)
     {
         BaseEffect effect = pools[type].GetObject();
         effect.transform.position = new Vector3(raisePosition.x, raisePosition.y, -10f);
         effect.StartEffect(damage);
         activedEffects[type].Add(effect);
+
+        if (effect is PermanentEffect)
+            return effect;
+        else
+            return null;
     }
 }

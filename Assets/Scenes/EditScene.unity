@@ -896,12 +896,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectListener: {fileID: 11400000, guid: 788714ed809cec34bb93c08585156d14, type: 2}
   effectPrefabs:
-    m_keys: 00000000010000000400000005000000
+    m_keys: 0000000001000000040000000500000006000000
     m_values:
     - {fileID: -5437320707508219127, guid: 4889039938a567444827eafcfbc2b267, type: 3}
     - {fileID: -6723487678845074870, guid: 5d476fdbb7a864646aa6a217aa4e6166, type: 3}
     - {fileID: -3442055870374320266, guid: c05e92eaee7a00844867e5edc8e0dde1, type: 3}
     - {fileID: 1874413202258911263, guid: 4efa6f99b50277d48aa9735ba13e0a1a, type: 3}
+    - {fileID: 6059781488386376986, guid: 29a8da886821ab940ba4ae784d16d187, type: 3}
 --- !u!4 &62040310
 Transform:
   m_ObjectHideFlags: 0
@@ -929,7 +930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectListener: {fileID: 11400000, guid: 788714ed809cec34bb93c08585156d14, type: 2}
-  type: 4
+  type: 6
 --- !u!1 &64678901
 GameObject:
   m_ObjectHideFlags: 0
@@ -8335,7 +8336,7 @@ Transform:
   - {fileID: 1193009228}
   - {fileID: 1152370014}
   m_Father: {fileID: 1426666875}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &587009063
 MonoBehaviour:
@@ -16811,8 +16812,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 62040310}
-  - {fileID: 622979531}
   - {fileID: 587009062}
+  - {fileID: 622979531}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
