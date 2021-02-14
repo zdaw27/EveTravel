@@ -40,8 +40,6 @@ namespace EveTravel
                     break;
                 }
             }
-            
-
             if (isAllCharacterIdle && owner.GameData.Player.Fsm.CheckCurrentState(typeof(IdleState)))
                 owner.Fsm.ChangeState<ReadyState>();
         }

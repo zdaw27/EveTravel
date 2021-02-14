@@ -80,21 +80,20 @@ namespace EveTravel
             if (isJoystickPushed && gameData.EveMap.CheckWalkablePosition(gameData.Player.transform.position + direction) &&
                 !enemyIndex.ContainsKey(gameData.EveMap.GetIndex(gameData.Player.transform.position + direction)))
             {
-                gameData.Player.NextPos = gameData.Player.transform.position + direction;
-                gameData.Player.SetTarget(null);
-                owner.Fsm.ChangeState<PathFindState>();
+                gameData.Player.SetNextPos(gameData.Player.transform.position + direction);
+                gameData.Player.SetAttackTarget(null);
+                owner.Fsm.ChangeState<NextStepState>();
 
             }
             else if(isAttackButtonPushed && enemyIndex.ContainsKey(gameData.EveMap.GetIndex(gameData.Player.transform.position + direction)))
             {
-                gameData.Player.NextPos = gameData.Player.transform.position;
-                gameData.Player.SetTarget(enemyIndex[gameData.EveMap.GetIndex(gameData.Player.transform.position + direction)]);
-                owner.Fsm.ChangeState<PathFindState>();
+                gameData.Player.SetNextPos(gameData.Player.transform.position);
+                gameData.Player.SetAttackTarget(enemyIndex[gameData.EveMap.GetIndex(gameData.Player.transform.position + direction)]);
+                owner.Fsm.ChangeState<NextStepState>();
             }
 
             if (isJoystickPushed && enemyIndex.ContainsKey(gameData.EveMap.GetIndex(gameData.Player.transform.position + direction)))
             {
-                isJoystickPushed = false;
                 if (effect != null)
                     effect.EndEffect();
                 effect = effectListener.RaiseEffect(gameData.Player.transform.position + direction, EffectManager.EffectType.PermanentEffect);

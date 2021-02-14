@@ -18,5 +18,18 @@ namespace EveTravel
             effectListener.RaiseEffect(attackTarget.transform.position, EffectManager.EffectType.PlayerHit);
             effectListener.RaiseEffect(attackTarget.transform.position, EffectManager.EffectType.DamageEffect, stat.attack);
         }
+
+        public void GetNextPos()
+        {
+            gameData.EveMap.GetNextPos(this);
+        }
+
+        public void GetAttackTarget()
+        {
+            if (Vector3.Distance(GameData.Player.transform.position, transform.position) <= 1f)
+                attackTarget = GameData.Player;
+            else
+                attackTarget = null;
+        }
     }
 }

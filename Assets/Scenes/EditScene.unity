@@ -7905,6 +7905,7 @@ MonoBehaviour:
   - type: 0
   - type: 0
   - type: 0
+  gameData: {fileID: 11400000, guid: 2dddf9b9f8f635048b3177496886594d, type: 2}
 --- !u!4 &587009062
 Transform:
   m_ObjectHideFlags: 0

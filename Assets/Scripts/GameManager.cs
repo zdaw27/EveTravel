@@ -20,7 +20,7 @@ namespace EveTravel
         {
             fsm = new FSM<GameManager>(this, new ReadyState(), true);
             fsm.AddState(new InputState(gameData, uiObserver, effectListener));
-            fsm.AddState(new PathFindState());
+            fsm.AddState(new NextStepState());
             fsm.AddState(new PlayState());
         }
         // Start is called before the first frame update

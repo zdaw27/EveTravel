@@ -6,11 +6,11 @@ namespace EveTravel
 {
     public abstract class Character : MonoBehaviour
     {
-        [SerializeField] protected UIObserver UIopserver;
         [SerializeField] protected GameData gameData;
         [SerializeField] protected CharacterStat stat;
         [SerializeField] protected Animator animator;
         [SerializeField] protected EffectListener effectListener;
+        [SerializeField] protected EveMap evemap;
 
         protected FSM<Character> fsm;
         protected Character attackTarget;
@@ -34,10 +34,6 @@ namespace EveTravel
         }
 
         abstract public void Attack();
-        virtual public void SetTarget(Character character)
-        {
-            attackTarget = character;
-        }
 
         virtual public bool HasTarget()
         {
