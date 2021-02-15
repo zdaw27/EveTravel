@@ -6,21 +6,6 @@ using System;
 namespace EveTravel
 {
     [Serializable]
-    public class TileCell
-    {
-        [SerializeField] private TileType type;
-
-        public TileType Type { get => type; set => type = value; }
-
-        static public TileCell Create(TileType type)
-        {
-            TileCell newTile = new TileCell();
-            newTile.Type = type;
-            return newTile;
-        }
-    }
-
-    [Serializable]
     public enum TileType
     {
         walkable,
@@ -91,6 +76,18 @@ namespace EveTravel
                 }
             }
 
+            tileCandidate.Sort((Vector3 a, Vector3 b) =>
+            {
+                if (Vector3.Distance(a, gameData.Player.NextPos) < Vector3.Distance(b, gameData.Player.NextPos))
+                {
+                    return -1;
+                }
+                else if (Vector3.Distance(a, gameData.Player.NextPos) > Vector3.Distance(b, gameData.Player.NextPos))
+                    return 1;
+                else
+                    return 0;
+            });
+
             for (int i = 0; i < tileCandidate.Count; ++i)
             {
                 if (!walkedIndices.Contains(GetIndex(tileCandidate[i])))
@@ -98,7 +95,6 @@ namespace EveTravel
                     character.NextPos = tileCandidate[i];
                     walkedIndices.Add(GetIndex(character.NextPos));
                     return;
-                    //owner.EffectListener.RaiseEffect(owner.GameData.Enemys[enemyIdx].transform.position, EffectManager.EffectType.DamageEffect, tileCandidate.Count);
                 }
             }
 
@@ -115,9 +111,5 @@ namespace EveTravel
         {
             walkedIndices.Clear();
         }
-
     }
-
-    
-
 }

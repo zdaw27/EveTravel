@@ -37,7 +37,6 @@ namespace EveTravel
         {
             for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
             {
-                //owner.EffectListener.RaiseEffect(owner.GameData.Enemys[i].transform.position,EffectManager.EffectType.DamageEffect , i);
                 owner.GameData.Enemys[i].GetNextPos();
                 owner.GameData.Enemys[i].GetAttackTarget();
             }

@@ -15,21 +15,21 @@ namespace EveTravel
         public FSM<GameManager> Fsm { get { return fsm; } private set { } }
         public GameData GameData { get => gameData; set => gameData = value; }
         public EffectListener EffectListener { get => effectListener; private set => effectListener = value; }
+        public UIObserver UiObserver { get => uiObserver; set => uiObserver = value; }
 
         private void Awake()
         {
             fsm = new FSM<GameManager>(this, new ReadyState(), true);
-            fsm.AddState(new InputState(gameData, uiObserver, effectListener));
+            fsm.AddState(new InputState(this));
             fsm.AddState(new NextStepState());
             fsm.AddState(new PlayState());
         }
-        // Start is called before the first frame update
+
         void Start()
         {
             fsm.StartFSM();
         }
 
-        // Update is called once per frame
         void Update()
         {
             fsm.Update();
