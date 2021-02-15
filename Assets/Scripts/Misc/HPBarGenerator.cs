@@ -5,15 +5,9 @@ using UnityEngine;
 public class HPBarGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject hPBarPrefab;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        GameObject gameObject = GameObject.Instantiate(hPBarPrefab, transform);
     }
 }
