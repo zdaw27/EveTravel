@@ -10,6 +10,7 @@ namespace EveTravel
     {
         [SerializeField] public Vector2 lastPosition; 
         [SerializeField] public int hp;
+        [SerializeField] public int maxHp;
         [SerializeField] public int attack;
         [SerializeField] public int armor;
         [SerializeField] public int critical;

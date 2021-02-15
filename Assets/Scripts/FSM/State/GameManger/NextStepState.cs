@@ -25,6 +25,7 @@ namespace EveTravel
                 else if (Vector3.Distance(a.transform.position, owner.GameData.Player.NextPos) > Vector3.Distance(b.transform.position, owner.GameData.Player.NextPos))
                     return 1;
                 else
+
                     return 0;
             });
         }

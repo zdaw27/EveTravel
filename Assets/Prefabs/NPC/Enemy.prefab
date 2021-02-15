@@ -98,6 +98,7 @@ MonoBehaviour:
   stat:
     lastPosition: {x: 0, y: 0}
     hp: 5
+    maxHp: 10
     attack: 5
     armor: 1
     critical: 10
@@ -131,4 +132,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hPBarPrefab: {fileID: 8259251901245478119, guid: e2892ca9e3622144ca83b626a52cc0c6,
     type: 3}
-  offset: {x: 0, y: 0, z: 0}
+  character: {fileID: 0}

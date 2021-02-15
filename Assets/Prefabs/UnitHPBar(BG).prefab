@@ -204,6 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8259251901245478117}
   - component: {fileID: 8259251901245478118}
+  - component: {fileID: -6937223678996389882}
   m_Layer: 0
   m_Name: UnitHPBar(BG)
   m_TagString: Untagged
@@ -276,3 +277,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6937223678996389882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8259251901245478119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683b2560a6f9fef468e0c563bbc5d222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 8259251900464667890}
