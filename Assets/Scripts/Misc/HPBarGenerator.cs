@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HPBarGenerator : MonoBehaviour
+namespace EveTravel
 {
-    [SerializeField] private GameObject hPBarPrefab;
-
-    private void Awake()
+    public class HPBarGenerator : MonoBehaviour
     {
-        GameObject gameObject = GameObject.Instantiate(hPBarPrefab, transform);
+        [SerializeField] private GameObject hPBarPrefab;
+        [SerializeField] private Character character;
+
+        private void Awake()
+        {
+            GameObject gameObject = GameObject.Instantiate(hPBarPrefab, transform);
+            gameObject.GetComponent<HPBar>().character = character;
+        }
     }
 }
