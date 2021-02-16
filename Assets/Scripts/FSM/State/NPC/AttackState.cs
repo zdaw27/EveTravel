@@ -8,15 +8,11 @@ namespace EveTravel
     {
         public void Enter(Character owner)
         {
-            if (owner.Animator)
-                owner.Animator.Play("attack");
-
             owner.Attack();
         }
 
         public void Update(Character owner)
         {
-            owner.Fsm.ChangeState<IdleState>();
         }
 
         public void Exit(Character owner)

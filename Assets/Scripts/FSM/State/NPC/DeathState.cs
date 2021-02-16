@@ -4,15 +4,17 @@ using UnityEngine;
 
 namespace EveTravel
 {
-    public class IdleState : IState<Character>
+    public class DeathState : IState<Character>
     {
         public void Enter(Character owner)
         {
-            
+            if (owner.Animator)
+                owner.Animator.Play("Death");
         }
 
         public void Update(Character owner)
         {
+            
         }
 
         public void Exit(Character owner)

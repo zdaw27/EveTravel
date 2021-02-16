@@ -132,4 +132,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hPBarPrefab: {fileID: 8259251901245478119, guid: e2892ca9e3622144ca83b626a52cc0c6,
     type: 3}
-  character: {fileID: 0}
+  character: {fileID: 3736797207026969096}

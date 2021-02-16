@@ -76,15 +76,14 @@ namespace EveTravel
             {
                 owner.GameData.Player.SetNextPos(owner.GameData.Player.transform.position + direction);
                 owner.GameData.Player.SetAttackTarget(null);
-                owner.Fsm.ChangeState<NextStepState>();
+                owner.Fsm.ChangeState<BattleState>();
                 return;
-
             }
             else if(isAttackButtonPushed && enemyIndex.ContainsKey(owner.GameData.EveMap.GetIndex(owner.GameData.Player.transform.position + direction)))
             {
                 owner.GameData.Player.SetNextPos(owner.GameData.Player.transform.position);
                 owner.GameData.Player.SetAttackTarget(enemyIndex[owner.GameData.EveMap.GetIndex(owner.GameData.Player.transform.position + direction)]);
-                owner.Fsm.ChangeState<NextStepState>();
+                owner.Fsm.ChangeState<BattleState>();
                 return;
             }
 

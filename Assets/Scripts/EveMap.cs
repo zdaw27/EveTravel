@@ -23,21 +23,72 @@ namespace EveTravel
         [SerializeField] private int height;
         [SerializeField] private List<TileCell> tileCell;
         [SerializeField] private GameData gameData;
+        [Header("Prefabs")]
+        [SerializeField] private GameObject playerPrefab;
+        [SerializeField] private GameObject enemyPrefab;
+        [SerializeField] private GameObject treasurePrefab;
+        [SerializeField] private GameObject exitPrefab;
+        [Header("Config")]
+        [SerializeField] private bool createPlayer = false;
+        [SerializeField] private bool createEnemies = false;
+        [SerializeField] private bool createTreasures = false;
+        [SerializeField] private bool createExit = false;
 
+        #region PathFinding
         private readonly List<Vector3> checkList = new List<Vector3>() { Vector3.left, Vector3.up, Vector3.right, Vector3.down };
         //패스 계산중에 완료된 목록 저장용도.
         private HashSet<int> walkedIndices = new HashSet<int>();
         private List<Vector3> tileCandidate = new List<Vector3>();
+        #endregion
 
+        private Dictionary<int, Treasure> treasures = new Dictionary<int, Treasure>();
+        
+        public List<TileCell> TileCell { get => tileCell; set => tileCell = value; }
+        public int Height { get => height; set => height = value; }
+        public int Width { get => width; set => width = value; }
         public SerializableIntHashSet PlayerSpawnIndex { get => playerSpawnIndex; set => playerSpawnIndex = value; }
         public SerializableIntHashSet EnemySpawnIndex { get => enemySpawnIndex; set => enemySpawnIndex = value; }
         public SerializableIntHashSet TreasureIndex { get => treasureIndex; set => treasureIndex = value; }
         public SerializableIntHashSet ExitIndex { get => exitIndex; set => exitIndex = value; }
         public SerializableIntHashSet StoreIndex { get => storeIndex; set => storeIndex = value; }
-        public List<TileCell> TileCell { get => tileCell; set => tileCell = value; }
-        public int Height { get => height; set => height = value; }
-        public int Width { get => width; set => width = value; }
 
+        private void Awake()
+        {
+            int maxIndex = width * Height;
+            for (int i = 0; i < maxIndex; ++i)
+            {
+                if(createEnemies && EnemySpawnIndex.Contains(i))
+                    CreateEnemy(i);
+                if(createTreasures && TreasureIndex.Contains(i))
+                    CreateTreasures(i);
+                if (createExit && ExitIndex.Contains(i))
+                    CreateExit(i);
+            }
+        }
+
+        private void CreateTreasures(int i)
+        {
+            GameObject treasureObj = GameObject.Instantiate(treasurePrefab);
+            treasureObj.transform.position = IndexToPosition(i);
+            treasures.Add(i, treasureObj.GetComponent<Treasure>());
+        }
+
+        private void CreateEnemy(int i)
+        { 
+            GameObject enemyObj = GameObject.Instantiate(enemyPrefab);
+            enemyObj.transform.position = IndexToPosition(i);
+        }
+
+        private void CreateExit(int i)
+        {
+            GameObject exitObj = GameObject.Instantiate(exitPrefab);
+            exitObj.transform.position = IndexToPosition(i);
+        }
+
+        private Vector3 IndexToPosition(int index)
+        {
+            return new Vector3(index % width, index / width);
+        }
 
         public bool CheckWalkablePosition(Vector3 position)
         {

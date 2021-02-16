@@ -21,8 +21,8 @@ namespace EveTravel
         {
             fsm = new FSM<GameManager>(this, new ReadyState(), true);
             fsm.AddState(new InputState(this));
-            fsm.AddState(new NextStepState());
-            fsm.AddState(new PlayState());
+            fsm.AddState(new PathFindState());
+            fsm.AddState(new MoveNPCState());
         }
 
         void Start()
