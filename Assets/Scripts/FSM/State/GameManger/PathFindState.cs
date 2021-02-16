@@ -5,9 +5,9 @@ using UnityEngine;
 namespace EveTravel
 {
     /// <summary>
-    /// 몬스터의 길찾기, character 들의 어택 상대 결정 state.
+    /// 어택하지 않는 몬스터 길찾기 State.
     /// </summary>
-    public class NextStepState : IState<GameManager>
+    public class PathFindState : IState<GameManager>
     {
         private GameManager owner;
         
@@ -39,24 +39,13 @@ namespace EveTravel
             for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
             {
                 owner.GameData.Enemys[i].GetNextPos();
-                owner.GameData.Enemys[i].GetAttackTarget();
+                owner.GameData.Enemys[i].Fsm.ChangeState<MoveState>();
             }
 
-            if(owner.GameData.Player.HasTarget())
-                owner.GameData.Player.Fsm.ChangeState<AttackState>();
-            else
+            if(!owner.GameData.Player.HasTarget())
                 owner.GameData.Player.Fsm.ChangeState<MoveState>();
 
-            for (int enemyIdx = 0; enemyIdx < owner.GameData.Enemys.Count; ++enemyIdx)
-            {
-                if (owner.GameData.Enemys[enemyIdx].HasTarget())
-                    owner.GameData.Enemys[enemyIdx].Fsm.ChangeState<AttackState>();
-                else
-                    owner.GameData.Enemys[enemyIdx].Fsm.ChangeState<MoveState>();
-            }
-
-            owner.Fsm.ChangeState<PlayState>();
+            owner.Fsm.ChangeState<MoveNPCState>();
         }
-
     }
 }

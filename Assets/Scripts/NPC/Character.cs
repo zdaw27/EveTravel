@@ -11,35 +11,92 @@ namespace EveTravel
         [SerializeField] protected Animator animator;
         [SerializeField] protected EffectListener effectListener;
         [SerializeField] protected EveMap evemap;
-
-        protected FSM<Character> fsm;
+        
         protected Character attackTarget;
 
         public Animator Animator { get { return animator; } }
         public CharacterStat Stat { get { return stat; } set { stat = value; } }
-        public FSM<Character> Fsm { get { return fsm; } set { fsm = value; } }
         public Vector3 NextPos { get; set; }
         public GameData GameData { get { return gameData; } private set { } }
 
-        // Start is called before the first frame update
-        void Start()
+        virtual public void Attack()
         {
-            fsm.StartFSM();
+            if (animator)
+                animator.Play("attack");
+
+            int finalDamage = (stat.attack - attackTarget.stat.armor) <= 0 ? 0 : stat.attack - attackTarget.stat.armor;
+
+            effectListener.RaiseEffect(attackTarget.transform.position, EffectManager.EffectType.DamageEffect, finalDamage);
+            attackTarget.stat.hp -= finalDamage;
+
+            if (attackTarget.stat.hp <= 0)
+                attackTarget.stat.hp = 0;
         }
 
-        // Update is called once per frame
-        void Update()
+        public void Move()
         {
-            fsm.Update();
+            if (animator)
+                animator.Play("walk");
+
+            //if (owner.NextPos.x - owner.transform.position.x > 0)
+            //    owner.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            //else if (owner.NextPos.x - owner.transform.position.x < 0)
+            //    owner.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
 
-        abstract public void Attack();
+        private IEnumerator MoveToNextPos()
+        {
+            while(true)
+            {
+                Vector3 move = Vector3.MoveTowards(transform.position, NextPos, Time.deltaTime * GameData.NpcSpeed);
+                transform.position = move;
+
+                if (transform.position == NextPos)
+                    Idle();
+
+                yield return null;
+            }
+        }
+
+        public void Death()
+        {
+            if (animator)
+            {
+                animator.Play("death");
+                StartCoroutine(WaitForAnimationEnd());
+            }
+            else
+                Destroy(gameObject);
+        }
+
+        private void Idle()
+        {
+            if (animator)
+                animator.Play("idle");
+        }
+
+        private IEnumerator WaitForAnimationEnd()
+        {
+            while(true)
+            {
+                if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+                    break;
+                yield return null;
+            }
+
+            Destroy(gameObject);
+        }
 
         virtual public bool HasTarget()
         {
             return !(attackTarget is null);
         }
 
-        
+        public bool CheckCurrentAnimStateName(string animationName)
+        {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName(animationName))
+                return true;
+            return false;
+        }
     }
 }

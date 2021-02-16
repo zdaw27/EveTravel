@@ -7918,6 +7918,16 @@ MonoBehaviour:
   - type: 0
   - type: 0
   gameData: {fileID: 11400000, guid: 2dddf9b9f8f635048b3177496886594d, type: 2}
+  playerPrefab: {fileID: 204144755880922899, guid: 7373c685e7641914b92bd570e614e9a7,
+    type: 3}
+  enemyPrefab: {fileID: 3736797207026969095, guid: 6365441353658d2448d5b9665ed905df,
+    type: 3}
+  treasurePrefab: {fileID: 0}
+  exitPrefab: {fileID: 0}
+  createPlayer: 0
+  createEnemies: 1
+  createTreasures: 0
+  createExit: 0
 --- !u!4 &587009062
 Transform:
   m_ObjectHideFlags: 0
