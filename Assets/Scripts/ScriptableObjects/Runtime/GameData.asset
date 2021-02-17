@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcSpeed: 3
   equiped:
-    itemID: 0
-    grade: 1
     attack: 10
     itemSprite: {fileID: 0}
   inventory: []
   player: {fileID: 0}
   enemys: []
   eveMap: {fileID: 0}
+  isPlay: 0
