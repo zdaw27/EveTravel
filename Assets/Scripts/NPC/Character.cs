@@ -18,6 +18,7 @@ namespace EveTravel
         public CharacterStat Stat { get { return stat; } set { stat = value; } }
         public Vector3 NextPos { get; set; }
         public GameData GameData { get { return gameData; } private set { } }
+        public bool IsIdle { get; private set; }
 
         virtual public void Attack()
         {
@@ -38,6 +39,7 @@ namespace EveTravel
             if (animator)
                 animator.Play("walk");
 
+            StartCoroutine(MoveToNextPos());
             //if (owner.NextPos.x - owner.transform.position.x > 0)
             //    owner.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             //else if (owner.NextPos.x - owner.transform.position.x < 0)
@@ -52,8 +54,10 @@ namespace EveTravel
                 transform.position = move;
 
                 if (transform.position == NextPos)
+                {
                     Idle();
-
+                    break;
+                }
                 yield return null;
             }
         }
@@ -73,6 +77,7 @@ namespace EveTravel
         {
             if (animator)
                 animator.Play("idle");
+            IsIdle = true;
         }
 
         private IEnumerator WaitForAnimationEnd()

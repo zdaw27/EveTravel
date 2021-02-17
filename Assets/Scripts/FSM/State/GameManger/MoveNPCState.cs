@@ -20,13 +20,13 @@ namespace EveTravel
 
             for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
             {
-                if (!owner.GameData.Enemys[i].Fsm.CheckCurrentState(typeof(IdleState)))
+                if (!owner.GameData.Enemys[i].IsIdle)
                 {
                     isAllCharacterIdle = false;
                     break;
                 }
             }
-            if (isAllCharacterIdle && owner.GameData.Player.Fsm.CheckCurrentState(typeof(IdleState)))
+            if (isAllCharacterIdle && owner.GameData.Player.IsIdle)
                 owner.Fsm.ChangeState<ReadyState>();
         }
     }
