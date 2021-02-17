@@ -97,9 +97,9 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: 2dddf9b9f8f635048b3177496886594d, type: 2}
   stat:
     lastPosition: {x: 0, y: 0}
-    hp: 5
-    maxHp: 10
-    attack: 5
+    hp: 20
+    maxHp: 20
+    attack: 10
     armor: 1
     critical: 10
   animator: {fileID: 0}

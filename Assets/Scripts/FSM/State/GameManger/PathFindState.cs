@@ -39,11 +39,11 @@ namespace EveTravel
             for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
             {
                 owner.GameData.Enemys[i].GetNextPos();
-                owner.GameData.Enemys[i].Fsm.ChangeState<MoveState>();
+                owner.GameData.Enemys[i].Move();
             }
 
             if(!owner.GameData.Player.HasTarget())
-                owner.GameData.Player.Fsm.ChangeState<MoveState>();
+                owner.GameData.Player.Move();
 
             owner.Fsm.ChangeState<MoveNPCState>();
         }
