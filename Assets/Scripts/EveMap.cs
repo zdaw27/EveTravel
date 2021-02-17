@@ -54,16 +54,36 @@ namespace EveTravel
 
         private void Awake()
         {
+            CreateMapObjects();
+        }
+
+        private void CreateMapObjects()
+        {
             int maxIndex = width * Height;
             for (int i = 0; i < maxIndex; ++i)
             {
-                if(createEnemies && EnemySpawnIndex.Contains(i))
+                if (createEnemies && EnemySpawnIndex.Contains(i))
                     CreateEnemy(i);
-                if(createTreasures && TreasureIndex.Contains(i))
+                if (createTreasures && TreasureIndex.Contains(i))
                     CreateTreasures(i);
                 if (createExit && ExitIndex.Contains(i))
                     CreateExit(i);
             }
+        }
+
+        /// <summary>
+        /// Player가 맵과 상호작용 로직.
+        /// <para> example : Exit 입구 도착, 보물상자와 상호작용, 상점과 상호작용. </para>
+        /// </summary>
+        /// <param name="playerPos"></param>
+        /// <returns> Exit에 도착했는가? </returns>
+        public bool PlayerInteraction(Vector3 playerPos)
+        {
+            int index = GetIndex(playerPos);
+
+            if (exitIndex.Contains(index))
+                return true;
+            return false;
         }
 
         private void CreateTreasures(int i)
@@ -74,7 +94,7 @@ namespace EveTravel
         }
 
         private void CreateEnemy(int i)
-        { 
+        {
             GameObject enemyObj = GameObject.Instantiate(enemyPrefab);
             enemyObj.transform.position = IndexToPosition(i);
         }

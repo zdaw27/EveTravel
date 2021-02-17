@@ -9,6 +9,7 @@ namespace EveTravel
         [SerializeField] private UIObserver uiObserver;
         [SerializeField] private GameData gameData;
         [SerializeField] private EffectListener effectListener;
+        [SerializeField] private MapTable mapTable;
 
         private FSM<GameManager> fsm;
 
@@ -16,6 +17,7 @@ namespace EveTravel
         public GameData GameData { get => gameData; set => gameData = value; }
         public EffectListener EffectListener { get => effectListener; private set => effectListener = value; }
         public UIObserver UiObserver { get => uiObserver; set => uiObserver = value; }
+        public MapTable MapTable { get => mapTable; set => mapTable = value; }
 
         private void Awake()
         {

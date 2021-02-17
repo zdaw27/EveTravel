@@ -11,7 +11,7 @@ namespace EveTravel
         [SerializeField] protected Animator animator;
         [SerializeField] protected EffectListener effectListener;
         [SerializeField] protected EveMap evemap;
-        
+
         protected Character attackTarget;
 
         public Animator Animator { get { return animator; } }
@@ -32,6 +32,8 @@ namespace EveTravel
 
             if (attackTarget.stat.hp <= 0)
                 attackTarget.stat.hp = 0;
+
+            Idle();
         }
 
         public void Move()
@@ -78,6 +80,11 @@ namespace EveTravel
             if (animator)
                 animator.Play("idle");
             IsIdle = true;
+        }
+
+        public void ResetIdleState()
+        {
+            IsIdle = false;
         }
 
         private IEnumerator WaitForAnimationEnd()

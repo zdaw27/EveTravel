@@ -11,4 +11,5 @@ public class Treasure : MonoBehaviour
     {
         inventory.AddItem(itemTable.GetRandomItem());
     }
+
 }

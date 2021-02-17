@@ -8,6 +8,18 @@ namespace EveTravel
     {
         public void Enter(GameManager owner)
         {
+            owner.GameData.Player.ResetIdleState();
+            for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
+            {
+                owner.GameData.Enemys[i].ResetIdleState();
+            }
+
+            if(owner.GameData.EveMap.PlayerInteraction(owner.GameData.Player.transform.position))
+            {
+                GameObject.Destroy(owner.GameData.EveMap.gameObject);
+                owner.GameData.StageLevel ++;
+                GameObject.Instantiate(owner.MapTable.Maps[owner.GameData.StageLevel]);
+            }
         }
 
         public void Exit(GameManager owner)
@@ -16,7 +28,8 @@ namespace EveTravel
 
         public void Update(GameManager owner)
         {
-            owner.Fsm.ChangeState<InputState>();
+            //if(owner.GameData.IsPlay)
+                owner.Fsm.ChangeState<InputState>();
         }
     }
 }
