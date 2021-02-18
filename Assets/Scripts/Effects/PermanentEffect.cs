@@ -31,11 +31,11 @@ public class PermanentEffect : BaseEffect
     public override void EndEffect()
     {
         transform.DOScale(0f, 0.3f);
-        sprtieRenderer.DOFade(0f, 0.3f).onComplete += () => 
+        sprtieRenderer.DOFade(0f, 0.3f).OnComplete(() => 
         {
             sprtieRenderer.DORewind();
             isEffectEnd = true;
-        };
+        });
     }
 
     private void Awake()

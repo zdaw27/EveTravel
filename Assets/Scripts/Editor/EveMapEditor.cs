@@ -47,9 +47,9 @@ namespace EveTravel
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.LabelField("TILE1");
-            editorData.Tile1 = (GameObject)EditorGUILayout.ObjectField( editorData.Tile1, typeof(GameObject), false);
+            editorData.Tile1 = (GameObject)EditorGUILayout.ObjectField(editorData.Tile1, typeof(GameObject), false);
             EditorGUILayout.LabelField("TILE2");
-            editorData.Tile2 = (GameObject)EditorGUILayout.ObjectField( editorData.Tile2, typeof(GameObject), false);
+            editorData.Tile2 = (GameObject)EditorGUILayout.ObjectField(editorData.Tile2, typeof(GameObject), false);
             EditorGUILayout.LabelField("WALL TILE");
             editorData.WallTile = (GameObject)EditorGUILayout.ObjectField(editorData.WallTile, typeof(GameObject), false);
             EditorGUILayout.LabelField("Target MAP");
@@ -64,6 +64,11 @@ namespace EveTravel
             if (GUILayout.Button("Init Map"))
             {
                 InitMap(editorData.Width, editorData.Height);
+            }
+
+            if (GUILayout.Button("Update Tile Prefabs"))
+            {
+                UpdateTilesPrefab();
             }
         }
 
@@ -108,6 +113,21 @@ namespace EveTravel
                     int index = x  + y * width;
                     CreateTile(new Vector3(x, y, 0f));
                 }
+        }
+
+        private void UpdateTilesPrefab()
+        {
+            for(int i = 0; i < editorData.EveMap.TileCell.Count; ++i)
+            { 
+                if(editorData.EveMap.TileCell[i].Type == TileType.walkable)
+                {
+                    Transform childTr = editorData.EveMap.transform.GetChild(i);
+                    GameObject newTileObj = GameObject.Instantiate(GetTilePrefab(childTr.position), editorData.EveMap.transform);
+                    newTileObj.transform.position = childTr.position;
+                    GameObject.DestroyImmediate(childTr.gameObject);
+                    newTileObj.transform.SetSiblingIndex(i);
+                }
+            }
         }
 
         private void CreateTile(Vector3 tilePos)

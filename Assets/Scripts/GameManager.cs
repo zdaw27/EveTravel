@@ -26,6 +26,7 @@ namespace EveTravel
             fsm.AddState(new PathFindState());
             fsm.AddState(new MoveNPCState());
             fsm.AddState(new BattleState());
+            fsm.AddState(new GameOverState());
         }
 
         void Start()

@@ -126,24 +126,33 @@ namespace EveTravel
             return (int)pos.x + (int)pos.y * width;
         }
 
-        public void GetNextPos(Character character)
+        public void GetNextPos(Enemy enemy)
         {
             tileCandidate.Clear();
-            character.NextPos = character.transform.position;
+            enemy.NextPos = enemy.transform.position;
 
-            if(Vector3.Distance(character.transform.position, gameData.Player.NextPos) <= 1f || Vector3.Distance(character.transform.position, gameData.Player.transform.position) <= 1f)
+            //어그로 범위 밖이면 제자리 멈춤.
+            if(Vector3.Distance(enemy.transform.position, gameData.Player.transform.position) >= enemy.AggroRange)
             {
-                character.NextPos = character.transform.position;
-                walkedIndices.Add(GetIndex(character.NextPos));
+                enemy.NextPos = enemy.transform.position;
+                walkedIndices.Add(GetIndex(enemy.NextPos));
+                return;
+            }
+
+            if(Vector3.Distance(enemy.transform.position, gameData.Player.NextPos) <= 1f 
+                || Vector3.Distance(enemy.transform.position, gameData.Player.transform.position) <= 1f)
+            {
+                enemy.NextPos = enemy.transform.position;
+                walkedIndices.Add(GetIndex(enemy.NextPos));
                 return;
             }
 
             for (int i = 0; i < checkList.Count; ++i)
             {
-                if (CheckWalkablePosition(character.transform.position + checkList[i])
-                    && EveUtil.IsIn180Angle(character.transform.position, gameData.Player.NextPos, character.transform.position + checkList[i]))
+                if (CheckWalkablePosition(enemy.transform.position + checkList[i])
+                    && EveUtil.IsIn180Angle(enemy.transform.position, gameData.Player.NextPos, enemy.transform.position + checkList[i]))
                 {
-                    tileCandidate.Add(character.transform.position + checkList[i]);
+                    tileCandidate.Add(enemy.transform.position + checkList[i]);
                 }
             }
 
@@ -163,15 +172,15 @@ namespace EveTravel
             {
                 if (!walkedIndices.Contains(GetIndex(tileCandidate[i])))
                 {
-                    character.NextPos = tileCandidate[i];
-                    walkedIndices.Add(GetIndex(character.NextPos));
+                    enemy.NextPos = tileCandidate[i];
+                    walkedIndices.Add(GetIndex(enemy.NextPos));
                     return;
                 }
             }
 
-            if (character.NextPos == character.transform.position)
+            if (enemy.NextPos == enemy.transform.position)
             {
-                walkedIndices.Add(GetIndex(character.NextPos));
+                walkedIndices.Add(GetIndex(enemy.NextPos));
             }
         }
 

@@ -105,6 +105,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   effectListener: {fileID: 11400000, guid: 788714ed809cec34bb93c08585156d14, type: 2}
   evemap: {fileID: 0}
+  aggroRange: 7
 --- !u!114 &3736797207026969094
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace EveTravel
 {
@@ -19,10 +20,18 @@ namespace EveTravel
                 owner.GameData.Enemys[i].GetAttackTarget();
             }
 
+            bool isShake = false;
             for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
             {
                 if (owner.GameData.Enemys[i].HasTarget())
+                {
                     owner.GameData.Enemys[i].Attack();
+                    if(!isShake)
+                    {
+                        isShake = true;
+                        Camera.main.DOShakePosition(0.5f, 1f, 20, 90, true);
+                    }
+                }
             }
 
             if(owner.GameData.Player.HasTarget())

@@ -17,6 +17,7 @@ public class GameData : ScriptableObject
     [SerializeField] private List<Enemy> enemys;
     [SerializeField] private EveMap eveMap;
     [SerializeField] private bool isPlay = false;
+    [SerializeField] private int stageLevel = 0;
 
     public float NpcSpeed { get { return npcSpeed; } private set { } }
     public Item Equiped { get => equiped; set => equiped = value; }
@@ -25,5 +26,10 @@ public class GameData : ScriptableObject
     public List<Enemy> Enemys { get => enemys; set => enemys = value; }
     public EveMap EveMap { get => eveMap; set => eveMap = value; }
     public bool IsPlay { get => isPlay; set => isPlay = value; }
-    public int StageLevel { get; set; }
+    public int StageLevel { get => stageLevel; set => stageLevel = value; }
+
+    private void OnEnable()
+    {
+        stageLevel = 0;
+    }
 }

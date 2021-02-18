@@ -14,7 +14,9 @@ public class EffectManager : MonoBehaviour
         EnemyCriticalHit,
         ClickEffect,
         DamageEffect,
-        PermanentEffect
+        PermanentEffect,
+        CoinEffect,
+        LootingEffect
     }
 
     [SerializeField] private EffectListener effectListener;

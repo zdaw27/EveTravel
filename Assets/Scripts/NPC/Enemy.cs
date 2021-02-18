@@ -1,15 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace EveTravel
 {
     public class Enemy : Character
     {
+        [SerializeField] private float aggroRange = 5f;
+
+        public float AggroRange { get => aggroRange; private set => aggroRange = value; }
+
         public override void Attack()
         {
             base.Attack();
             effectListener.RaiseEffect(attackTarget.transform.position, EffectManager.EffectType.PlayerHit);
+            
         }
 
         public void GetNextPos()
