@@ -12,6 +12,7 @@ public class GameData : ScriptableObject
     [SerializeField] private float npcSpeed = 3f;
     [Header("runtime datas")]
     [SerializeField] private Item equiped;
+    [SerializeField] private int gold = 0;
     [SerializeField] private List<Item> inventory;
     [SerializeField] private Player player = null;
     [SerializeField] private List<Enemy> enemys;
@@ -27,9 +28,11 @@ public class GameData : ScriptableObject
     public EveMap EveMap { get => eveMap; set => eveMap = value; }
     public bool IsPlay { get => isPlay; set => isPlay = value; }
     public int StageLevel { get => stageLevel; set => stageLevel = value; }
+    public int Gold { get => gold; set => gold = value; }
 
     private void OnEnable()
     {
         stageLevel = 0;
+        gold = 0;
     }
 }
