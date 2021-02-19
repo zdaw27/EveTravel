@@ -14,7 +14,7 @@ public class ProfileUI : MonoBehaviour
     public void Update()
     {
         if(lastGold != gameData.Gold)
-            gold.text = gold.ToString();
+            gold.text = gameData.Gold.ToString();
         image.fillAmount = (float)gameData.Player.Stat.hp / (float)gameData.Player.Stat.maxHp;
     }
 }

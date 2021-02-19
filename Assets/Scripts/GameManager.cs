@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace EveTravel
 {
     public class GameManager : MonoBehaviour
@@ -37,6 +38,13 @@ namespace EveTravel
         void Update()
         {
             fsm.Update();
+        }
+
+        public void AddGold(Vector3 effectPos)
+        {
+            int goldAmount = Random.Range(10, 20);
+            GameData.Gold += goldAmount;
+            effectListener.RaiseEffect(effectPos, EffectManager.EffectType.CoinEffect);
         }
     }
 }

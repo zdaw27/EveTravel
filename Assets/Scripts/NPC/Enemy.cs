@@ -15,7 +15,6 @@ namespace EveTravel
         {
             base.Attack();
             effectListener.RaiseEffect(attackTarget.transform.position, EffectManager.EffectType.PlayerHit);
-            
         }
 
         public void GetNextPos()

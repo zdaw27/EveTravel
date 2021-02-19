@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EveTravel
 {
-    static class EventManager : MonoBehaviour
+    public class EventManager : MonoBehaviour
     {
         // Start is called before the first frame update
         void Start()

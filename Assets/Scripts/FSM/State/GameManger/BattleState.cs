@@ -26,7 +26,8 @@ namespace EveTravel
                 if (owner.GameData.Enemys[i].HasTarget())
                 {
                     owner.GameData.Enemys[i].Attack();
-                    if(!isShake)
+                    
+                    if (!isShake)
                     {
                         isShake = true;
                         Camera.main.DOShakePosition(0.5f, 1f, 20, 90, true);
@@ -47,7 +48,9 @@ namespace EveTravel
                     Enemy enemy = owner.GameData.Enemys[i];
                     owner.GameData.Enemys.Remove(enemy);
                     --i;
+                    owner.AddGold(enemy.transform.position);
                     enemy.Death();
+                    
                 }
             }
         }

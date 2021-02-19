@@ -18,7 +18,7 @@ namespace EveTravel
         public CharacterStat Stat { get { return stat; } set { stat = value; } }
         public Vector3 NextPos { get; set; }
         public GameData GameData { get { return gameData; } private set { } }
-        public bool IsIdle { get; private set; }
+        public bool IsIdle { get;  set; }
 
         virtual public void Attack()
         {
@@ -26,7 +26,7 @@ namespace EveTravel
                 animator.CrossFadeInFixedTime("attack", 0.1f);
 
             int finalDamage = (stat.attack - attackTarget.stat.armor) <= 0 ? 0 : stat.attack - attackTarget.stat.armor;
-
+            StartCoroutine(RotationSmoothly(attackTarget.transform.position - transform.position));
             effectListener.RaiseEffect(attackTarget.transform.position, EffectManager.EffectType.DamageEffect, finalDamage);
             attackTarget.stat.hp -= finalDamage;
 
@@ -56,7 +56,6 @@ namespace EveTravel
         {
             if (animator)
                 animator.CrossFadeInFixedTime("move", 0.1f);
-
             StartCoroutine(RotationSmoothly(NextPos - transform.position));
             StartCoroutine(MoveToNextPos());
             //if (owner.NextPos.x - owner.transform.position.x > 0)
@@ -114,7 +113,7 @@ namespace EveTravel
                 Destroy(gameObject);
         }
 
-        private void Idle()
+        public void Idle()
         {
             if (animator)
                 animator.CrossFadeInFixedTime("idle", 0.1f);
