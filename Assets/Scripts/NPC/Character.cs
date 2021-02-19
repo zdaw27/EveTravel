@@ -18,34 +18,72 @@ namespace EveTravel
         public CharacterStat Stat { get { return stat; } set { stat = value; } }
         public Vector3 NextPos { get; set; }
         public GameData GameData { get { return gameData; } private set { } }
-        public bool IsIdle { get; private set; }
+        public bool IsIdle { get;  set; }
 
         virtual public void Attack()
         {
             if (animator)
-                animator.Play("attack");
+                animator.CrossFadeInFixedTime("attack", 0.1f);
 
             int finalDamage = (stat.attack - attackTarget.stat.armor) <= 0 ? 0 : stat.attack - attackTarget.stat.armor;
-
+            StartCoroutine(RotationSmoothly(attackTarget.transform.position - transform.position));
             effectListener.RaiseEffect(attackTarget.transform.position, EffectManager.EffectType.DamageEffect, finalDamage);
             attackTarget.stat.hp -= finalDamage;
 
             if (attackTarget.stat.hp <= 0)
                 attackTarget.stat.hp = 0;
 
+            if (animator)
+                StartCoroutine(WaitForAttackAnim());
+            else
+                Idle();
+        }
+
+        private IEnumerator WaitForAttackAnim()
+        {
+            while (true)
+            {
+                if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f && animator.GetCurrentAnimatorStateInfo(0).IsName("attack"))
+                {
+                    break;
+                }
+                yield return null;
+            }
             Idle();
         }
 
         public void Move()
         {
             if (animator)
-                animator.Play("walk");
-
+                animator.CrossFadeInFixedTime("move", 0.1f);
+            StartCoroutine(RotationSmoothly(NextPos - transform.position));
             StartCoroutine(MoveToNextPos());
             //if (owner.NextPos.x - owner.transform.position.x > 0)
             //    owner.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             //else if (owner.NextPos.x - owner.transform.position.x < 0)
             //    owner.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        }
+
+        public void Rotation(Vector3 dir)
+        {
+            StopCoroutine(RotationSmoothly(dir));
+            StartCoroutine(RotationSmoothly(dir));
+        }
+
+        private IEnumerator RotationSmoothly(Vector3 dir)
+        {
+            float angle = Vector3.Angle(Vector3.up, dir.normalized);
+            if (dir.x >= 0)
+                angle *= -1f;
+            while (true)
+            {
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), 500f * Time.deltaTime);
+                if(transform.rotation == Quaternion.Euler(0, 0, angle))
+                {
+                    break;
+                }
+                yield return null;
+            }
         }
 
         private IEnumerator MoveToNextPos()
@@ -68,17 +106,17 @@ namespace EveTravel
         {
             if (animator)
             {
-                animator.Play("death");
+                animator.CrossFadeInFixedTime("death", 0.1f);
                 StartCoroutine(WaitForAnimationEnd());
             }
             else
                 Destroy(gameObject);
         }
 
-        private void Idle()
+        public void Idle()
         {
             if (animator)
-                animator.Play("idle");
+                animator.CrossFadeInFixedTime("idle", 0.1f);
             IsIdle = true;
         }
 
@@ -91,7 +129,7 @@ namespace EveTravel
         {
             while(true)
             {
-                if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+                if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
                     break;
                 yield return null;
             }

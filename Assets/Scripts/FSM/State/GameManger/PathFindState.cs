@@ -38,8 +38,12 @@ namespace EveTravel
         {
             for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
             {
+                //owner.GameData.Enemys[i].Rotation(owner.GameData.Player.transform.position - owner.GameData.Enemys[i].transform.position);
                 owner.GameData.Enemys[i].GetNextPos();
-                owner.GameData.Enemys[i].Move();
+                if(owner.GameData.Enemys[i].transform.position != owner.GameData.Enemys[i].NextPos)
+                    owner.GameData.Enemys[i].Move();
+                else
+                    owner.GameData.Enemys[i].IsIdle = true;
             }
 
             if(!owner.GameData.Player.HasTarget())
