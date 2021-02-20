@@ -7,14 +7,21 @@ public class ProfileUI : MonoBehaviour
 {
     [SerializeField] private GameData gameData;
     [SerializeField] private Image image;
-    [SerializeField] private Text gold;
-
-    private int lastGold = 0;
+    [SerializeField] private Text goldText;
+    [SerializeField] private Text levelText;
 
     public void Update()
     {
-        if(lastGold != gameData.Gold)
-            gold.text = gameData.Gold.ToString();
         image.fillAmount = (float)gameData.Player.Stat.hp / (float)gameData.Player.Stat.maxHp;
+    }
+
+    public void UpdateGoldText()
+    {
+        goldText.text = gameData.Gold.ToString();
+    }
+
+    public void UpdateLevelText()
+    {
+        levelText.text = gameData.PlayerLevel.ToString();
     }
 }

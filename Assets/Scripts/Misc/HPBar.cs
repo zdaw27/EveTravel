@@ -10,6 +10,7 @@ namespace EveTravel
     public class HPBar : MonoBehaviour
     {
         [SerializeField] private Transform bar;
+        [SerializeField] private Transform barRoot;
         public Character character { get; set; }
 
         private void Update()

@@ -26,10 +26,9 @@ namespace EveTravel
             states.Add(state.GetType(), state);
         }
 
-        public bool CheckCurrentState(Type type)
+        public bool CheckCurrentState<P>() where P : IState<T>
         {
-            Type currentType = current.GetType();
-            return current.GetType() == type;
+            return current.GetType() == typeof(P);
         }
 
         public P GetState<P>() where P : IState<T>
