@@ -13,13 +13,14 @@ public class Treasure : MonoBehaviour
 
     [SerializeField] private Inventory inventory;
     [SerializeField] private ItemTable itemTable;
+    [SerializeField] private EffectListener effectEvent;
 
     private LootType lootType;
 
     public void Looting()
     {
         lootType = (LootType)Random.Range(0, 3);
-        inventory.AddItem(itemTable.GetRandomItem());
+        //inventory.AddItem(itemTable.GetRandomItem());
 
         switch (lootType)
         {
@@ -32,6 +33,11 @@ public class Treasure : MonoBehaviour
             default:
                 break;
         }
+
+        effectEvent.RaiseEffect(transform.position, EffectManager.EffectType.LootingEffect);
+        effectEvent.RaiseEffect(transform.position, EffectManager.EffectType.LootingEffect_dust);
+
+
     }
 
 }

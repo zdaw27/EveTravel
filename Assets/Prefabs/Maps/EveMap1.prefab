@@ -9623,7 +9623,7 @@ MonoBehaviour:
   enemySpawnIndex:
     m_keys: ec000000940000002a01000012010000f7000000d7000000450000003e00000005000000350000003800000056000000180000005b000000
   treasureIndex:
-    m_keys: 3b000000d0000000f200000021000000
+    m_keys: 3b000000d0000000f200000021000000200100001d010000
   exitIndex:
     m_keys: f0000000
   storeIndex:
@@ -9932,16 +9932,18 @@ MonoBehaviour:
   - type: 0
   - type: 0
   gameData: {fileID: 11400000, guid: 2dddf9b9f8f635048b3177496886594d, type: 2}
-  playerPrefab: {fileID: 204144755880922899, guid: 7373c685e7641914b92bd570e614e9a7,
+  playerPrefab: {fileID: 3242542788324896415, guid: 7373c685e7641914b92bd570e614e9a7,
     type: 3}
   enemyPrefab: {fileID: 3736797207026969095, guid: 6365441353658d2448d5b9665ed905df,
     type: 3}
-  treasurePrefab: {fileID: 0}
-  exitPrefab: {fileID: 0}
-  createPlayer: 0
+  treasurePrefab: {fileID: 1703357371229082356, guid: ad828f09e3b43df4f9c4a7d141c22017,
+    type: 3}
+  exitPrefab: {fileID: 7752696498718920832, guid: 60ba96bafc0ea6b4eb4b3fdfaa950dad,
+    type: 3}
+  createPlayer: 1
   createEnemies: 1
-  createTreasures: 0
-  createExit: 0
+  createTreasures: 1
+  createExit: 1
 --- !u!114 &4551204924517835893
 MonoBehaviour:
   m_ObjectHideFlags: 0

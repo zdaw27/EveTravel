@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1706357372299790074}
   - component: {fileID: 1717342978094118140}
   - component: {fileID: 1725355171925257708}
+  - component: {fileID: 5473134215501776098}
   m_Layer: 0
   m_Name: treasure_chest_closed
   m_TagString: Untagged
@@ -79,3 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5473134215501776098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703357371229082356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ff859f5d1e7414b93fda50d289e442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+  itemTable: {fileID: 11400000, guid: 4607575031c7ec544ab4e4a99da7da5c, type: 2}
+  effectEvent: {fileID: 11400000, guid: 788714ed809cec34bb93c08585156d14, type: 2}

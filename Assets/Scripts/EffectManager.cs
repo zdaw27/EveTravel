@@ -17,7 +17,9 @@ public class EffectManager : MonoBehaviour
         PermanentEffect,
         CoinEffect,
         LootingEffect,
-        HealingEffect
+        LootingEffect_dust,
+        HealingEffect,
+        
     }
 
     [SerializeField] private EffectListener effectListener;

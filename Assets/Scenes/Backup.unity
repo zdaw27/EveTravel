@@ -231,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectListener: {fileID: 11400000, guid: 788714ed809cec34bb93c08585156d14, type: 2}
   effectPrefabs:
-    m_keys: 0000000001000000040000000500000006000000070000000800000009000000
+    m_keys: 00000000010000000400000005000000060000000700000008000000090000000a000000
     m_values:
     - {fileID: -5437320707508219127, guid: 4889039938a567444827eafcfbc2b267, type: 3}
     - {fileID: -6723487678845074870, guid: 5d476fdbb7a864646aa6a217aa4e6166, type: 3}
@@ -240,6 +240,7 @@ MonoBehaviour:
     - {fileID: 6059781488386376986, guid: 29a8da886821ab940ba4ae784d16d187, type: 3}
     - {fileID: 8493123856879601315, guid: c44dff400310f5f4f87e45a398ea3b12, type: 3}
     - {fileID: 7018054685489042134, guid: 5c8c923c536e20e4180670555ea8fb83, type: 3}
+    - {fileID: 881754548426703544, guid: 3c2fb72925d7f3c4a8c2b92cc3a81390, type: 3}
     - {fileID: -7711552048692673658, guid: 0e4a7fa9fd28f154b91c98ee6fe8ebea, type: 3}
 --- !u!4 &62040310
 Transform:
@@ -2819,33 +2820,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EveMap1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4551204924517835895, guid: 019e14575b39209419f3942e439910cc,
-        type: 3}
-      propertyPath: createExit
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4551204924517835895, guid: 019e14575b39209419f3942e439910cc,
-        type: 3}
-      propertyPath: exitPrefab
-      value: 
-      objectReference: {fileID: 7752696498718920832, guid: 60ba96bafc0ea6b4eb4b3fdfaa950dad,
-        type: 3}
-    - target: {fileID: 4551204924517835895, guid: 019e14575b39209419f3942e439910cc,
-        type: 3}
-      propertyPath: createPlayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4551204924517835895, guid: 019e14575b39209419f3942e439910cc,
-        type: 3}
-      propertyPath: treasurePrefab
-      value: 
-      objectReference: {fileID: 1703357371229082356, guid: ad828f09e3b43df4f9c4a7d141c22017,
-        type: 3}
-    - target: {fileID: 4551204924517835895, guid: 019e14575b39209419f3942e439910cc,
-        type: 3}
-      propertyPath: createTreasures
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 019e14575b39209419f3942e439910cc, type: 3}
