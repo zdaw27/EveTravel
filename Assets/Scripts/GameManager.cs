@@ -8,16 +8,25 @@ namespace EveTravel
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private UIObserver uiObserver;
-        [SerializeField] private GameData gameData;
-        [SerializeField] private EffectListener effectListener;
-        [SerializeField] private MapTable mapTable;
+        [SerializeField]
+        private UIObserver uiObserver;
+        [SerializeField]
+        private GameData gameData;
+        [SerializeField]
+        private EffectListener effectListener;
+        [SerializeField]
+        private MapTable mapTable;
         [Header("Events")]
-        [SerializeField] private GameEvent goldChangeEvent;
-        [SerializeField] private GameEvent potionCountChangeEvent;
-        [SerializeField] private GameEvent gameOverEvent;
-        [SerializeField] private GameEvent gameStartEvent;
-        [SerializeField] private GameEvent playerLevelUpEvent;
+        [SerializeField]
+        private GameEvent goldChangeEvent;
+        [SerializeField]
+        private GameEvent potionCountChangeEvent;
+        [SerializeField]
+        private GameEvent gameOverEvent;
+        [SerializeField]
+        private GameEvent gameStartEvent;
+        [SerializeField]
+        private GameEvent playerLevelUpEvent;
 
         private FSM<GameManager> fsm;
 

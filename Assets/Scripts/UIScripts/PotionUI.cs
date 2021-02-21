@@ -7,9 +7,12 @@ namespace EveTravel
 {
     public class PotionUI : MonoBehaviour
     {
-        [SerializeField] private GameData gameData;
-        [SerializeField] private Text potionNumberText;
-        [SerializeField] private GameEvent usePotionEvent;
+        [SerializeField]
+        private GameData gameData;
+        [SerializeField]
+        private Text potionNumberText;
+        [SerializeField]
+        private GameEvent usePotionEvent;
 
         private void Awake()
         {

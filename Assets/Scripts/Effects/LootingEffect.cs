@@ -6,7 +6,8 @@ using DG.Tweening;
 
 public class LootingEffect : BaseEffect
 {
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
     private bool isEffectEnd = false;
 
     public override void StartEffect(int damage = 0)

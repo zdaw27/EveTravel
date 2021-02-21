@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ClickEffectRaiser : MonoBehaviour
 {
-    [SerializeField] private EffectListener effectListener;
-    [SerializeField] private EffectManager.EffectType type = EffectManager.EffectType.ClickEffect;
+    [SerializeField]
+    private EffectListener effectListener;
+    [SerializeField]
+    private EffectManager.EffectType type = EffectManager.EffectType.ClickEffect;
 
     private BaseEffect effect;
 

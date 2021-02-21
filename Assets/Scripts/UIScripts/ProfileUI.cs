@@ -5,10 +5,14 @@ using UnityEngine.UI;
 
 public class ProfileUI : MonoBehaviour
 {
-    [SerializeField] private GameData gameData;
-    [SerializeField] private Image image;
-    [SerializeField] private Text goldText;
-    [SerializeField] private Text levelText;
+    [SerializeField]
+    private GameData gameData;
+    [SerializeField]
+    private Image image;
+    [SerializeField]
+    private Text goldText;
+    [SerializeField]
+    private Text levelText;
 
     public void Update()
     {

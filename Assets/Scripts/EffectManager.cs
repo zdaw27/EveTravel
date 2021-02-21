@@ -22,8 +22,10 @@ public class EffectManager : MonoBehaviour
         
     }
 
-    [SerializeField] private EffectListener effectListener;
-    [SerializeField] private SerializableEffectDictionary effectPrefabs;
+    [SerializeField]
+    private EffectListener effectListener;
+    [SerializeField]
+    private SerializableEffectDictionary effectPrefabs;
 
     private Dictionary<EffectType, ObjectPool<BaseEffect>> pools = new Dictionary<EffectType, ObjectPool<BaseEffect>>();
     private Dictionary<EffectType, List<BaseEffect>> activedEffects = new Dictionary<EffectType, List<BaseEffect>>();

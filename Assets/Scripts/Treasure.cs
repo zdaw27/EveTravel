@@ -11,9 +11,12 @@ public class Treasure : MonoBehaviour
         Potion
     }
 
-    [SerializeField] private Inventory inventory;
-    [SerializeField] private ItemTable itemTable;
-    [SerializeField] private EffectListener effectEvent;
+    [SerializeField]
+    private Inventory inventory;
+    [SerializeField]
+    private ItemTable itemTable;
+    [SerializeField]
+    private EffectListener effectEvent;
 
     private LootType lootType;
 

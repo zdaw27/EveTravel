@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class ParticleEffect : BaseEffect
 {
-    [SerializeField] private ParticleSystem particle;
+    [SerializeField]
+    private ParticleSystem particle;
 
     public override void StartEffect(int damage = 0)
     {

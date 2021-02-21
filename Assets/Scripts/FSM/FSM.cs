@@ -5,7 +5,6 @@ using System;
 
 namespace EveTravel
 {
-
     public class FSM<T> where T : MonoBehaviour
     {
         private T owner;

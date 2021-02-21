@@ -9,8 +9,10 @@ namespace EveTravel
     /// </summary>
     public class HPBar : MonoBehaviour
     {
-        [SerializeField] private Transform bar;
-        [SerializeField] private Transform barRoot;
+        [SerializeField]
+        private Transform bar;
+        [SerializeField]
+        private Transform barRoot;
         public Character character { get; set; }
 
         private void Update()

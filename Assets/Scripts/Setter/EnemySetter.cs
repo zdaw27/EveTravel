@@ -7,7 +7,8 @@ namespace EveTravel
     [RequireComponent(typeof(Enemy))]
     public class EnemySetter : MonoBehaviour
     {
-        [SerializeField] private GameData gameData;
+        [SerializeField]
+        private GameData gameData;
 
         protected void OnEnable()
         {

@@ -8,10 +8,12 @@ namespace EveTravel
     public class EventListenerComponent : MonoBehaviour
     {
         [Tooltip("Event to register with.")]
-        [SerializeField] private GameEvent gameEvent;
+        [SerializeField]
+        private GameEvent gameEvent;
 
         [Tooltip("Response to invoke when Event is raised.")]
-        [SerializeField] private UnityEvent response;
+        [SerializeField]
+        private UnityEvent response;
 
         private void OnEnable()
         {

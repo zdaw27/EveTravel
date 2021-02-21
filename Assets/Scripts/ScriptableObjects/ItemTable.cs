@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ItemTable", menuName = "ScriptableObjects/ItemTable", order = 1)]
 public class ItemTable : ScriptableObject
 {
-    [SerializeField] private List<Item> itemTables = null;
+    [SerializeField]
+    private List<Item> itemTables = null;
 
     public Item GetRandomItem()
     {

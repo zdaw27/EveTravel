@@ -9,20 +9,32 @@ using EveTravel;
 public class GameData : ScriptableObject
 {
     [Header("game config")]
-    [SerializeField] private float npcSpeed = 3f;
+    [SerializeField]
+    private float npcSpeed = 3f;
     [Header("runtime datas")]
-    [SerializeField] private Item equiped;
-    [SerializeField] private List<Item> inventory;
-    [SerializeField] private Player player = null;
-    [SerializeField] private List<Enemy> enemys;
-    [SerializeField] private EveMap eveMap;
-    [SerializeField] private bool isPlay = false;
+    [SerializeField]
+    private Item equiped;
+    [SerializeField]
+    private List<Item> inventory;
+    [SerializeField]
+    private Player player = null;
+    [SerializeField]
+    private List<Enemy> enemys;
+    [SerializeField]
+    private EveMap eveMap;
+    [SerializeField]
+    private bool isPlay = false;
     [Header("player datas")]
-    [SerializeField] private int gold = 0;
-    [SerializeField] private int potion = 0;
-    [SerializeField] private int stageLevel = 0;
-    [SerializeField] private int exp = 0;
-    [SerializeField] private int playerLevel = 1;
+    [SerializeField]
+    private int gold = 0;
+    [SerializeField]
+    private int potion = 0;
+    [SerializeField]
+    private int stageLevel = 0;
+    [SerializeField]
+    private int exp = 0;
+    [SerializeField]
+    private int playerLevel = 1;
 
     public float NpcSpeed { get { return npcSpeed; } private set { } }
     public Item Equiped { get => equiped; set => equiped = value; }

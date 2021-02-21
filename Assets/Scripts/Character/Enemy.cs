@@ -7,7 +7,8 @@ namespace EveTravel
 {
     public class Enemy : Character
     {
-        [SerializeField] private float aggroRange = 5f;
+        [SerializeField]
+        private float aggroRange = 5f;
 
         public float AggroRange { get => aggroRange; private set => aggroRange = value; }
 

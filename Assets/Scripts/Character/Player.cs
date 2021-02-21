@@ -6,7 +6,8 @@ namespace EveTravel
 {
     public class Player : Character
     {
-        [SerializeField] private GameEvent levelUpEvent;
+        [SerializeField]
+        private GameEvent levelUpEvent;
 
         public override void Attack()
         {
@@ -38,6 +39,25 @@ namespace EveTravel
             {
                 LevelUP();
             }
+        }
+
+        /// <summary>
+        /// Player가 맵과 상호작용 로직.
+        /// <para> example : Exit 입구 도착, 보물상자와 상호작용, 상점과 상호작용. </para>
+        /// </summary>
+        /// <param name="playerPos"></param>
+        /// <returns> Exit에 도착했는가? </returns>
+        public bool PlayerInteraction(EveMap eveMap)
+        {
+            int index = eveMap.GetIndex(transform.position);
+
+            if (eveMap.TreasureIndex.Contains(index))
+                eveMap.Treasures[index].Looting();
+
+            if (eveMap.ExitIndex.Contains(index))
+                return true;
+            else
+                return false;
         }
 
     }

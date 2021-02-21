@@ -6,11 +6,16 @@ namespace EveTravel
 {
     public abstract class Character : MonoBehaviour
     {
-        [SerializeField] protected GameData gameData;
-        [SerializeField] protected CharacterStat stat;
-        [SerializeField] protected Animator animator;
-        [SerializeField] protected EffectListener effectListener;
-        [SerializeField] protected EveMap evemap;
+        [SerializeField]
+        protected GameData gameData;
+        [SerializeField]
+        protected CharacterStat stat;
+        [SerializeField]
+        protected Animator animator;
+        [SerializeField]
+        protected EffectListener effectListener;
+        [SerializeField]
+        protected EveMap evemap;
 
         protected Character attackTarget;
 
