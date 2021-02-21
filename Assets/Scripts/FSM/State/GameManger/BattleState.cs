@@ -15,44 +15,7 @@ namespace EveTravel
     {
         public void Enter(GameManager owner)
         {
-            for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
-            {
-                owner.GameData.Enemys[i].GetAttackTarget();
-            }
-
-            bool isShake = false;
-            for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
-            {
-                if (owner.GameData.Enemys[i].HasTarget())
-                {
-                    owner.GameData.Enemys[i].Attack();
-                    
-                    if (!isShake)
-                    {
-                        isShake = true;
-                        Camera.main.DOShakePosition(0.5f, 1f, 20, 90, true);
-                    }
-                }
-            }
-
-            if(owner.GameData.Player.HasTarget())
-            {
-                owner.GameData.Player.Attack();
-            }
-
-            //전투 후, 죽은 Enemy들 Container에서 제외 및 DeathState로 처리.
-            for(int i = 0; i < owner.GameData.Enemys.Count; ++i)
-            {
-                if(owner.GameData.Enemys[i].Stat.hp <= 0)
-                {
-                    Enemy enemy = owner.GameData.Enemys[i];
-                    owner.GameData.Enemys.Remove(enemy);
-                    --i;
-                    owner.AddGold(enemy.transform.position);
-                    enemy.Death();
-                    
-                }
-            }
+            owner.Battle();
         }
 
         public void Exit(GameManager owner)

@@ -68,12 +68,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: 2dddf9b9f8f635048b3177496886594d, type: 2}
   stat:
-    lastPosition: {x: 0, y: 0}
-    hp: 120
+    hp: 20
     maxHp: 120
-    attack: 10
+    attack: 15
     armor: 3
-    critical: 10
   animator: {fileID: 3242542788324896400}
   effectListener: {fileID: 11400000, guid: 788714ed809cec34bb93c08585156d14, type: 2}
   evemap: {fileID: 0}

@@ -62,6 +62,8 @@ namespace EveTravel
             int maxIndex = width * Height;
             for (int i = 0; i < maxIndex; ++i)
             {
+                if (createPlayer && PlayerSpawnIndex.Contains(i))
+                    CreatePlayer(i);
                 if (createEnemies && EnemySpawnIndex.Contains(i))
                     CreateEnemy(i);
                 if (createTreasures && TreasureIndex.Contains(i))
@@ -81,9 +83,19 @@ namespace EveTravel
         {
             int index = GetIndex(playerPos);
 
+            if (treasureIndex.Contains(index))
+                treasures[index].Looting();
+
             if (exitIndex.Contains(index))
                 return true;
-            return false;
+            else 
+                return false;
+        }
+
+        private void CreatePlayer(int i)
+        {
+            GameObject playerObj = GameObject.Instantiate(playerPrefab);
+            playerObj.transform.position = IndexToPosition(i);
         }
 
         private void CreateTreasures(int i)

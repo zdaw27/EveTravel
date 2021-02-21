@@ -16,7 +16,10 @@ public class EffectManager : MonoBehaviour
         DamageEffect,
         PermanentEffect,
         CoinEffect,
-        LootingEffect
+        LootingEffect,
+        LootingEffect_dust,
+        HealingEffect,
+        
     }
 
     [SerializeField] private EffectListener effectListener;

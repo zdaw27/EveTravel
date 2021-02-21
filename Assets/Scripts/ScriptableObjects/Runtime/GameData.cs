@@ -12,13 +12,17 @@ public class GameData : ScriptableObject
     [SerializeField] private float npcSpeed = 3f;
     [Header("runtime datas")]
     [SerializeField] private Item equiped;
-    [SerializeField] private int gold = 0;
     [SerializeField] private List<Item> inventory;
     [SerializeField] private Player player = null;
     [SerializeField] private List<Enemy> enemys;
     [SerializeField] private EveMap eveMap;
     [SerializeField] private bool isPlay = false;
+    [Header("player datas")]
+    [SerializeField] private int gold = 0;
+    [SerializeField] private int potion = 0;
     [SerializeField] private int stageLevel = 0;
+    [SerializeField] private int exp = 0;
+    [SerializeField] private int playerLevel = 1;
 
     public float NpcSpeed { get { return npcSpeed; } private set { } }
     public Item Equiped { get => equiped; set => equiped = value; }
@@ -29,10 +33,16 @@ public class GameData : ScriptableObject
     public bool IsPlay { get => isPlay; set => isPlay = value; }
     public int StageLevel { get => stageLevel; set => stageLevel = value; }
     public int Gold { get => gold; set => gold = value; }
+    public int Potion { get => potion; set => potion = value; }
+    public int Exp { get => exp; set => exp = value; }
+    public int PlayerLevel { get => playerLevel; set => playerLevel = value; }
 
     private void OnEnable()
     {
+        PlayerLevel = 1;
         stageLevel = 0;
         gold = 0;
+        potion = 0;
+        exp = 0;
     }
 }
