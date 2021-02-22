@@ -5,7 +5,7 @@ using UnityEngine;
 public class ClickEffectRaiser : MonoBehaviour
 {
     [SerializeField]
-    private EffectListener effectListener;
+    private EffectRaiser effectRaiser;
     [SerializeField]
     private EffectManager.EffectType type = EffectManager.EffectType.ClickEffect;
 
@@ -18,7 +18,7 @@ public class ClickEffectRaiser : MonoBehaviour
             if (effect != null)
                 effect.EndEffect();
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            effect = effectListener.RaiseEffect(worldPosition, type, 54);
+            effect = effectRaiser.RaiseEffect(worldPosition, type, 54);
 
         }
     }

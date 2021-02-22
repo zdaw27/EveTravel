@@ -8,6 +8,10 @@ namespace EveTravel
     public class Enemy : Character
     {
         [SerializeField]
+        private EffectRaiser effectRaiser;
+        [SerializeField]
+        private Inventory inventory;
+        [SerializeField]
         private float aggroRange = 5f;
 
         public float AggroRange { get => aggroRange; private set => aggroRange = value; }
@@ -35,6 +39,8 @@ namespace EveTravel
         {
             base.Death();
             gameData.Player.EarnExp();
+            inventory.AddGoldRandom();
+            effectRaiser.RaiseEffect(transform.position, EffectManager.EffectType.CoinEffect);
         }
     }
 }

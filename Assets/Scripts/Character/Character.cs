@@ -13,7 +13,7 @@ namespace EveTravel
         [SerializeField]
         protected Animator animator;
         [SerializeField]
-        protected EffectListener effectListener;
+        protected EffectRaiser effectListener;
         [SerializeField]
         protected EveMap evemap;
 

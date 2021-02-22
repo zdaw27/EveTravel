@@ -92,7 +92,7 @@ namespace EveTravel
                 if (effect != null)
                     effect.EndEffect();
                 owner.GameData.Player.Rotation(direction);
-                effect = owner.EffectListener.RaiseEffect(owner.GameData.Player.transform.position + direction, EffectManager.EffectType.PermanentEffect);
+                effect = owner.EffectRaiser.RaiseEffect(owner.GameData.Player.transform.position + direction, EffectManager.EffectType.PermanentEffect);
             }
 
             isAttackButtonPushed = false;

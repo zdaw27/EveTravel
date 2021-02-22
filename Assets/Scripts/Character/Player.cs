@@ -52,7 +52,10 @@ namespace EveTravel
             int index = eveMap.GetIndex(transform.position);
 
             if (eveMap.TreasureIndex.Contains(index))
-                eveMap.Treasures[index].Looting();
+            {
+                eveMap.Treasures[index].OpenTreasure(this);
+                eveMap.TreasureIndex.Remove(index);
+            }
 
             if (eveMap.ExitIndex.Contains(index))
                 return true;
@@ -60,5 +63,6 @@ namespace EveTravel
                 return false;
         }
 
+        
     }
 }

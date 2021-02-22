@@ -16,14 +16,15 @@ public class EffectManager : MonoBehaviour
         DamageEffect,
         PermanentEffect,
         CoinEffect,
-        LootingEffect,
-        LootingEffect_dust,
+        LootingEffect_Weapon,
+        LootingEffect_Dust,
         HealingEffect,
+        LootingEffect_Potion
         
     }
 
     [SerializeField]
-    private EffectListener effectListener;
+    private EffectRaiser effectRaiser;
     [SerializeField]
     private SerializableEffectDictionary effectPrefabs;
 
@@ -32,7 +33,7 @@ public class EffectManager : MonoBehaviour
 
     private void Awake()
     {
-        effectListener.OnRaiseEffect += RaiseEffect;
+        effectRaiser.OnRaiseEffect += RaiseEffect;
 
         foreach(KeyValuePair<EffectType, BaseEffect> element in effectPrefabs)
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [CreateAssetMenu(fileName = "EffectListener", menuName = "ScriptableObjects/EffectListener", order = 1)]
-public class EffectListener : ScriptableObject
+public class EffectRaiser : ScriptableObject
 {
     public Func<Vector3, EffectManager.EffectType, int, BaseEffect> OnRaiseEffect { get; set; }
 
