@@ -1015,6 +1015,8 @@ GameObject:
   - component: {fileID: 1143398054026475817}
   - component: {fileID: 223584155}
   - component: {fileID: 223584156}
+  - component: {fileID: 998061102}
+  - component: {fileID: 998061104}
   m_Layer: 5
   m_Name: CharacterProfile
   m_TagString: Untagged
@@ -1071,8 +1073,8 @@ MonoBehaviour:
   expBarImage: {fileID: 1143398054078855722}
   goldText: {fileID: 1143398053672075321}
   levelText: {fileID: 1143398053686061912}
-  attackValueText: {fileID: 0}
-  armorValueText: {fileID: 0}
+  attackValueText: {fileID: 131304039}
+  armorValueText: {fileID: 932597938}
 --- !u!114 &223584156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1091,6 +1093,60 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 223584155}
         m_MethodName: UpdateGoldText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &998061102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143398054026475818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02816c56a6d135a40898d74686fb59aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1e1debcf5b44f27428a3fbb0112333bd, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 223584155}
+        m_MethodName: UpdateStat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &998061104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143398054026475818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02816c56a6d135a40898d74686fb59aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 7b80f615668bf284196f0d7f7d2250af, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 223584155}
+        m_MethodName: PlayerLevelChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

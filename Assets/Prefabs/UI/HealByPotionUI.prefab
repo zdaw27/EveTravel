@@ -164,6 +164,8 @@ GameObject:
   - component: {fileID: 7092047771323811850}
   - component: {fileID: 7092047771323811851}
   - component: {fileID: 7092047771323811852}
+  - component: {fileID: 1376569662}
+  - component: {fileID: 1376569663}
   m_Layer: 5
   m_Name: HealByPotionUI
   m_TagString: Untagged
@@ -271,4 +273,57 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7092047771323811851}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1376569663}
+        m_MethodName: UsePotionButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1376569662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7092047771323811854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02816c56a6d135a40898d74686fb59aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6c7886c55754dbf45a11ff74a7d04f8c, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1376569663}
+        m_MethodName: UpdatePotionNumberText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1376569663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7092047771323811854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28cb2acda0c0a0849950ffee606afeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: 6ed87a77330fa064786b710a5a7c0ecb, type: 2}
+  potionNumberText: {fileID: 7092047771203958127}
+  usePotionEvent: {fileID: 11400000, guid: e79eb7ba7c954404b89bac6791a6ac1d, type: 2}
