@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ClickEffectRaiser : MonoBehaviour
 {
@@ -17,9 +18,12 @@ public class ClickEffectRaiser : MonoBehaviour
         {
             if (effect != null)
                 effect.EndEffect();
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            effect = effectRaiser.RaiseEffect(worldPosition, type, 54);
 
+            if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            {
+                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                effect = effectRaiser.RaiseEffect(worldPosition, type, 54);
+            }
         }
     }
 }

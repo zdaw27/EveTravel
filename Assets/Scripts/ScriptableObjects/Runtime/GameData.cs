@@ -47,6 +47,6 @@ public class GameData : ScriptableObject
     {
         PlayerLevel = 1;
         stageLevel = 0;
-        exp = 0;
+        exp = 90;
     }
 }

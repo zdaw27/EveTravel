@@ -4,8 +4,10 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public struct Item
+public class Item
 {
-    public int attack;
-    public Sprite itemSprite;
+    [SerializeField]
+    private int attack;
+    [SerializeField]
+    private Sprite itemSprite;
 }

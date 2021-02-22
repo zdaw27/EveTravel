@@ -28,7 +28,9 @@ namespace EveTravel
         [SerializeField]
         private GameEvent gameStartEvent;
         [SerializeField]
-        private GameEvent playerLevelUpEvent;
+        private GameEvent playerLevelChangedEvent;
+        [SerializeField]
+        private GameEvent playerStatChangedEvent;
 
         private FSM<GameManager> fsm;
 
@@ -53,6 +55,8 @@ namespace EveTravel
         {
             GameStart();
             fsm.StartFSM();
+            playerStatChangedEvent.Raise();
+            playerLevelChangedEvent.Raise();
         }
 
         private void Update()
@@ -72,7 +76,7 @@ namespace EveTravel
 
         public void PlayerLevelUP()
         {
-
+            playerStatChangedEvent.Raise();
         }
 
         public void UsePotion()

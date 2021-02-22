@@ -683,6 +683,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 73980761}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &131304039 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 131304039, guid: 7d4eced5428c4b04c95973a86dc67ec3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1672424970}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &277348658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -981,6 +993,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4217491148762207900}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &932597938 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 932597938, guid: 7d4eced5428c4b04c95973a86dc67ec3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1672424970}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &965143266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,6 +1071,78 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &998061101 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1143398054026475818, guid: 7d4eced5428c4b04c95973a86dc67ec3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1672424970}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &998061102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998061101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02816c56a6d135a40898d74686fb59aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1e1debcf5b44f27428a3fbb0112333bd, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 998061103}
+        m_MethodName: UpdateStat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &998061103 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 223584155, guid: 7d4eced5428c4b04c95973a86dc67ec3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1672424970}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998061101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e669c56a33b101b43883edbb49ccb0b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &998061104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998061101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02816c56a6d135a40898d74686fb59aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 7b80f615668bf284196f0d7f7d2250af, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 998061103}
+        m_MethodName: PlayerLevelUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1076557109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1165,9 +1261,21 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 63953318702613261, guid: c8e1a1b9941a37043bd8f52ce2e052cd,
         type: 3}
+      propertyPath: playerStatChangedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e1debcf5b44f27428a3fbb0112333bd,
+        type: 2}
+    - target: {fileID: 63953318702613261, guid: c8e1a1b9941a37043bd8f52ce2e052cd,
+        type: 3}
       propertyPath: potionCountChangeEvent
       value: 
       objectReference: {fileID: 11400000, guid: 6c7886c55754dbf45a11ff74a7d04f8c,
+        type: 2}
+    - target: {fileID: 63953318702613261, guid: c8e1a1b9941a37043bd8f52ce2e052cd,
+        type: 3}
+      propertyPath: playerLevelChangedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 7b80f615668bf284196f0d7f7d2250af,
         type: 2}
     - target: {fileID: 63953318702613262, guid: c8e1a1b9941a37043bd8f52ce2e052cd,
         type: 3}
@@ -2051,6 +2159,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1424481060}
     m_Modifications:
+    - target: {fileID: 223584155, guid: 7d4eced5428c4b04c95973a86dc67ec3, type: 3}
+      propertyPath: armorValueText
+      value: 
+      objectReference: {fileID: 932597938}
+    - target: {fileID: 223584155, guid: 7d4eced5428c4b04c95973a86dc67ec3, type: 3}
+      propertyPath: attackValueText
+      value: 
+      objectReference: {fileID: 131304039}
     - target: {fileID: 1143398054026475817, guid: 7d4eced5428c4b04c95973a86dc67ec3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2139,7 +2255,7 @@ PrefabInstance:
     - target: {fileID: 1143398054026475817, guid: 7d4eced5428c4b04c95973a86dc67ec3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -116
+      value: -102
       objectReference: {fileID: 0}
     - target: {fileID: 1143398054026475817, guid: 7d4eced5428c4b04c95973a86dc67ec3,
         type: 3}

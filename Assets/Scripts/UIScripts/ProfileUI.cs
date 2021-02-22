@@ -19,6 +19,11 @@ namespace EveTravel
         private Text goldText;
         [SerializeField]
         private Text levelText;
+        [SerializeField]
+        private Text attackValueText;
+        [SerializeField]
+        private Text armorValueText;
+
 
         public void Update()
         {
@@ -31,7 +36,13 @@ namespace EveTravel
             goldText.text = inventory.Gold.ToString();
         }
 
-        public void UpdateLevelText()
+        public void UpdateStat()
+        {
+            attackValueText.text = gameData.Player.Stat.attack.ToString();
+            armorValueText.text = gameData.Player.Stat.armor.ToString();
+        }
+
+        public void PlayerLevelChanged()
         {
             levelText.text = gameData.PlayerLevel.ToString();
         }

@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 027dc32c1baaca34086e3e9738731b82, type: 3}
-  m_Name: PlayerLevelUpEvent
+  m_Name: PlayerStatChanged
   m_EditorClassIdentifier: 

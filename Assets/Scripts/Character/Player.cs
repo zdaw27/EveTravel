@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace EveTravel
 {
     public class Player : Character
     {
         [SerializeField]
         private GameEvent levelUpEvent;
+        [SerializeField]
+        private GameEvent playerLevelChangedEvent;
+        [SerializeField]
+        private EffectRaiser effectRaiser;
+        //cache 
+        private WaitForSeconds waitSecond = new WaitForSeconds(2f);
 
         public override void Attack()
         {
@@ -25,10 +32,19 @@ namespace EveTravel
             NextPos = nexPos;
         }
 
-        public void LevelUP()
+        private void LevelUP()
         {
+            effectRaiser.RaiseEffect(transform.position, EffectManager.EffectType.LevelUpParticle);
+            effectRaiser.RaiseEffect(transform.position, EffectManager.EffectType.LevelUpText);
             gameData.Exp = 0;
             gameData.PlayerLevel++;
+            playerLevelChangedEvent.Raise();
+            StartCoroutine(DelayRaise());
+        }
+
+        private IEnumerator DelayRaise()
+        {
+            yield return waitSecond;
             levelUpEvent.Raise();
         }
 

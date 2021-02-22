@@ -19,7 +19,9 @@ public class EffectManager : MonoBehaviour
         LootingEffect_Weapon,
         LootingEffect_Dust,
         HealingEffect,
-        LootingEffect_Potion
+        LootingEffect_Potion,
+        LevelUpParticle,
+        LevelUpText
         
     }
 

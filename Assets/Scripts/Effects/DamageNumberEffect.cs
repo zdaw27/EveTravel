@@ -7,8 +7,10 @@ using System.Text;
 
 public class DamageNumberEffect : BaseEffect
 {
-    [SerializeField] TMPro.TextMeshPro text;
-    [SerializeField] DOTweenAnimation[] tweenAnim;
+    [SerializeField]
+    TMPro.TextMeshPro text;
+    [SerializeField]
+    DOTweenAnimation[] tweenAnim;
 
     static StringBuilder stringBuilder = new StringBuilder();
     private bool isComplete = false;

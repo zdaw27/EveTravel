@@ -18,6 +18,11 @@ namespace EveTravel
         public int Potion { get; set; }
         public int Gold { get; set; }
 
+        private void OnEnable()
+        {
+            ResetData();
+        }
+
         public void ResetData()
         {
             itemContainer.Clear();
