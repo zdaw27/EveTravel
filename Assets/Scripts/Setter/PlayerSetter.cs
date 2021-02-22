@@ -7,7 +7,8 @@ namespace EveTravel
     [RequireComponent(typeof(Player))]
     public class PlayerSetter : MonoBehaviour
     {
-        [SerializeField] private GameData gameData;
+        [SerializeField]
+        private GameData gameData;
 
         protected void OnEnable()
         {

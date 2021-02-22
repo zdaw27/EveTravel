@@ -2,10 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOverUI : MonoBehaviour
+namespace EveTravel
 {
-    public void ActiveUI(bool isActive)
+    public class GameOverUI : MonoBehaviour
     {
-        gameObject.SetActive(isActive);
+        [SerializeField]
+        private GameEvent gameStartEvent;
+
+        public void RestartGame()
+        {
+            gameStartEvent.Raise();
+        }
+
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
     }
 }

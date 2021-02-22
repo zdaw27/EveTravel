@@ -16,21 +16,26 @@ public class EffectManager : MonoBehaviour
         DamageEffect,
         PermanentEffect,
         CoinEffect,
-        LootingEffect,
-        LootingEffect_dust,
+        LootingEffect_Weapon,
+        LootingEffect_Dust,
         HealingEffect,
+        LootingEffect_Potion,
+        LevelUpParticle,
+        LevelUpText
         
     }
 
-    [SerializeField] private EffectListener effectListener;
-    [SerializeField] private SerializableEffectDictionary effectPrefabs;
+    [SerializeField]
+    private EffectRaiser effectRaiser;
+    [SerializeField]
+    private SerializableEffectDictionary effectPrefabs;
 
     private Dictionary<EffectType, ObjectPool<BaseEffect>> pools = new Dictionary<EffectType, ObjectPool<BaseEffect>>();
     private Dictionary<EffectType, List<BaseEffect>> activedEffects = new Dictionary<EffectType, List<BaseEffect>>();
 
     private void Awake()
     {
-        effectListener.OnRaiseEffect += RaiseEffect;
+        effectRaiser.OnRaiseEffect += RaiseEffect;
 
         foreach(KeyValuePair<EffectType, BaseEffect> element in effectPrefabs)
         {

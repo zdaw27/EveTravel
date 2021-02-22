@@ -8,7 +8,8 @@ namespace EveTravel
     [Serializable]
     public class TileCell
     {
-        [SerializeField] private TileType type;
+        [SerializeField]
+        private TileType type;
 
         public TileType Type { get => type; set => type = value; }
 

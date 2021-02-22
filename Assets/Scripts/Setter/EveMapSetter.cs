@@ -7,7 +7,8 @@ namespace EveTravel
     [RequireComponent(typeof(EveMap))]
     public class EveMapSetter : MonoBehaviour
     {
-        [SerializeField] private GameData gameData;
+        [SerializeField]
+        private GameData gameData;
 
         protected void OnEnable()
         {

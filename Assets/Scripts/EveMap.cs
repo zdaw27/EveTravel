@@ -14,25 +14,42 @@ namespace EveTravel
 
     public class EveMap : MonoBehaviour
     {
-        [SerializeField] private SerializableIntHashSet playerSpawnIndex;
-        [SerializeField] private SerializableIntHashSet enemySpawnIndex;
-        [SerializeField] private SerializableIntHashSet treasureIndex;
-        [SerializeField] private SerializableIntHashSet exitIndex;
-        [SerializeField] private SerializableIntHashSet storeIndex;
-        [SerializeField] private int width;
-        [SerializeField] private int height;
-        [SerializeField] private List<TileCell> tileCell;
-        [SerializeField] private GameData gameData;
+        [SerializeField]
+        private SerializableIntHashSet playerSpawnIndex;
+        [SerializeField]
+        private SerializableIntHashSet enemySpawnIndex;
+        [SerializeField]
+        private SerializableIntHashSet treasureIndex;
+        [SerializeField]
+        private SerializableIntHashSet exitIndex;
+        [SerializeField]
+        private SerializableIntHashSet storeIndex;
+        [SerializeField]
+        private int width;
+        [SerializeField]
+        private int height;
+        [SerializeField]
+        private List<TileCell> tileCell;
+        [SerializeField]
+        private GameData gameData;
         [Header("Prefabs")]
-        [SerializeField] private GameObject playerPrefab;
-        [SerializeField] private GameObject enemyPrefab;
-        [SerializeField] private GameObject treasurePrefab;
-        [SerializeField] private GameObject exitPrefab;
+        [SerializeField]
+        private GameObject playerPrefab;
+        [SerializeField]
+        private GameObject enemyPrefab;
+        [SerializeField]
+        private GameObject treasurePrefab;
+        [SerializeField]
+        private GameObject exitPrefab;
         [Header("Config")]
-        [SerializeField] private bool createPlayer = false;
-        [SerializeField] private bool createEnemies = false;
-        [SerializeField] private bool createTreasures = false;
-        [SerializeField] private bool createExit = false;
+        [SerializeField]
+        private bool createPlayer = false;
+        [SerializeField]
+        private bool createEnemies = false;
+        [SerializeField]
+        private bool createTreasures = false;
+        [SerializeField]
+        private bool createExit = false;
 
         #region PathFinding
         private readonly List<Vector3> checkList = new List<Vector3>() { Vector3.left, Vector3.up, Vector3.right, Vector3.down };
@@ -51,6 +68,7 @@ namespace EveTravel
         public SerializableIntHashSet TreasureIndex { get => treasureIndex; set => treasureIndex = value; }
         public SerializableIntHashSet ExitIndex { get => exitIndex; set => exitIndex = value; }
         public SerializableIntHashSet StoreIndex { get => storeIndex; set => storeIndex = value; }
+        public Dictionary<int, Treasure> Treasures { get => treasures; set => treasures = value; }
 
         private void Awake()
         {
@@ -72,26 +90,7 @@ namespace EveTravel
                     CreateExit(i);
             }
         }
-
-        /// <summary>
-        /// Player가 맵과 상호작용 로직.
-        /// <para> example : Exit 입구 도착, 보물상자와 상호작용, 상점과 상호작용. </para>
-        /// </summary>
-        /// <param name="playerPos"></param>
-        /// <returns> Exit에 도착했는가? </returns>
-        public bool PlayerInteraction(Vector3 playerPos)
-        {
-            int index = GetIndex(playerPos);
-
-            if (treasureIndex.Contains(index))
-                treasures[index].Looting();
-
-            if (exitIndex.Contains(index))
-                return true;
-            else 
-                return false;
-        }
-
+        
         private void CreatePlayer(int i)
         {
             GameObject playerObj = GameObject.Instantiate(playerPrefab);
@@ -102,7 +101,7 @@ namespace EveTravel
         {
             GameObject treasureObj = GameObject.Instantiate(treasurePrefab);
             treasureObj.transform.position = IndexToPosition(i);
-            treasures.Add(i, treasureObj.GetComponent<Treasure>());
+            Treasures.Add(i, treasureObj.GetComponent<Treasure>());
         }
 
         private void CreateEnemy(int i)

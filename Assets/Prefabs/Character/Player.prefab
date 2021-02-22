@@ -75,6 +75,10 @@ MonoBehaviour:
   animator: {fileID: 3242542788324896400}
   effectListener: {fileID: 11400000, guid: 788714ed809cec34bb93c08585156d14, type: 2}
   evemap: {fileID: 0}
+  levelUpEvent: {fileID: 11400000, guid: 99d07bda6b033b846b315fe821a9c220, type: 2}
+  playerLevelChangedEvent: {fileID: 11400000, guid: 7b80f615668bf284196f0d7f7d2250af,
+    type: 2}
+  effectRaiser: {fileID: 11400000, guid: 788714ed809cec34bb93c08585156d14, type: 2}
 --- !u!114 &3242542788324896405
 MonoBehaviour:
   m_ObjectHideFlags: 0

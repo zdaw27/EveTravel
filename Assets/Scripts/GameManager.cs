@@ -8,24 +8,38 @@ namespace EveTravel
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private UIObserver uiObserver;
-        [SerializeField] private GameData gameData;
-        [SerializeField] private EffectListener effectListener;
-        [SerializeField] private MapTable mapTable;
+        [SerializeField]
+        private UIObserver uiObserver;
+        [SerializeField]
+        private GameData gameData;
+        [SerializeField]
+        private EffectRaiser effectRaiser;
+        [SerializeField]
+        private MapTable mapTable;
+        [SerializeField]
+        private Inventory inventory;
         [Header("Events")]
-        [SerializeField] private GameEvent goldChangeEvent;
-        [SerializeField] private GameEvent potionCountChangeEvent;
-        [SerializeField] private GameEvent gameOverEvent;
-        [SerializeField] private GameEvent gameStartEvent;
-        [SerializeField] private GameEvent playerLevelUpEvent;
+        [SerializeField]
+        private GameEvent goldChangeEvent;
+        [SerializeField]
+        private GameEvent potionCountChangeEvent;
+        [SerializeField]
+        private GameEvent gameOverEvent;
+        [SerializeField]
+        private GameEvent gameStartEvent;
+        [SerializeField]
+        private GameEvent playerLevelChangedEvent;
+        [SerializeField]
+        private GameEvent playerStatChangedEvent;
 
         private FSM<GameManager> fsm;
 
         public FSM<GameManager> Fsm { get { return fsm; } private set { } }
         public GameData GameData { get => gameData; set => gameData = value; }
-        public EffectListener EffectListener { get => effectListener; private set => effectListener = value; }
+        public EffectRaiser EffectRaiser { get => effectRaiser; private set => effectRaiser = value; }
         public UIObserver UiObserver { get => uiObserver; set => uiObserver = value; }
         public MapTable MapTable { get => mapTable; set => mapTable = value; }
+        public Inventory Inventory { get => inventory; set => inventory = value; }
 
         private void Awake()
         {
@@ -40,27 +54,14 @@ namespace EveTravel
         private void Start()
         {
             GameStart();
-            ChangePotionCount(5);
             fsm.StartFSM();
+            playerStatChangedEvent.Raise();
+            playerLevelChangedEvent.Raise();
         }
 
         private void Update()
         {
             fsm.Update();
-        }
-
-        public void AddGold(Vector3 effectPos)
-        {
-            int goldAmount = Random.Range(10, 20);
-            GameData.Gold += goldAmount;
-            effectListener.RaiseEffect(effectPos, EffectManager.EffectType.CoinEffect);
-            goldChangeEvent.Raise();
-        }
-
-        public void ChangePotionCount(int addCount)
-        {
-            gameData.Potion += addCount;
-            potionCountChangeEvent.Raise();
         }
 
         public void GameOver()
@@ -75,23 +76,22 @@ namespace EveTravel
 
         public void PlayerLevelUP()
         {
-
+            playerStatChangedEvent.Raise();
         }
 
         public void UsePotion()
         {
-            if (fsm.CheckCurrentState<InputState>() && gameData.Potion > 0 && gameData.Player.Stat.hp < gameData.Player.Stat.maxHp)
+            if (fsm.CheckCurrentState<InputState>() && Inventory.Potion > 0 && gameData.Player.Stat.hp < gameData.Player.Stat.maxHp)
             {
-                gameData.Potion--;
+                Inventory.Potion--;
                 potionCountChangeEvent.Raise();
                 CharacterStat playerStat = gameData.Player.Stat;
                 playerStat.hp += 50;
                 if (playerStat.hp > playerStat.maxHp)
                     playerStat.hp = playerStat.maxHp;
                 gameData.Player.Stat = playerStat;
-                effectListener.RaiseEffect(gameData.Player.transform.position, EffectManager.EffectType.HealingEffect);
+                effectRaiser.RaiseEffect(gameData.Player.transform.position, EffectManager.EffectType.HealingEffect);
             }
-            
         }
 
         public void Battle()
@@ -129,9 +129,7 @@ namespace EveTravel
                     Enemy enemy = GameData.Enemys[i];
                     GameData.Enemys.Remove(enemy);
                     --i;
-                    AddGold(enemy.transform.position);
                     enemy.Death();
-
                 }
             }
         }

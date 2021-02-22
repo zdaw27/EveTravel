@@ -6,7 +6,8 @@ namespace EveTravel
 {
     public class AttackUI : MonoBehaviour
     {
-        [SerializeField] private UIObserver uiObserver;
+        [SerializeField]
+        private UIObserver uiObserver;
 
         public void OnAttackButton()
         {

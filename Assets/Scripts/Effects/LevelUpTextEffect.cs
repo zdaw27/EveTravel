@@ -3,20 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Text;
 
-public class LootingEffect : BaseEffect
+public class LevelUpTextEffect : BaseEffect
 {
     [SerializeField]
-    private SpriteRenderer spriteRenderer;
+    TMPro.TextMeshPro text;
     private bool isEffectEnd = false;
 
     public override void StartEffect(int damage = 0)
     {
-        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
+        text.color = new Color(text.color.r, text.color.g, text.color.b, 1f);
         isEffectEnd = false;
-        transform.DORotate(new Vector3(0, 0, 720), 2f, RotateMode.FastBeyond360).SetEase(Ease.OutQuint);
+        transform.DORotate(new Vector3(0, 0, 1440), 2f, RotateMode.FastBeyond360).SetEase(Ease.OutQuint);
         transform.DOMoveY(transform.position.y + 1f, 2f).SetEase(Ease.OutQuint);
-        spriteRenderer.DOFade(0f, 1f).SetDelay(1f).OnComplete(Complete);
+        text.DOFade(0f, 1f).SetDelay(1f).OnComplete(Complete);
     }
 
     private void Complete()

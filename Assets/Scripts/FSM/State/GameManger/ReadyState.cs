@@ -14,7 +14,7 @@ namespace EveTravel
                 owner.GameData.Enemys[i].ResetIdleState();
             }
 
-            if (owner.GameData.EveMap.PlayerInteraction(owner.GameData.Player.transform.position))
+            if (owner.GameData.Player.PlayerInteraction(owner.GameData.EveMap))
             {
                 for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
                 {

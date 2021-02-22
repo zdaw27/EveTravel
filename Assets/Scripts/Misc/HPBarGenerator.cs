@@ -6,8 +6,10 @@ namespace EveTravel
 {
     public class HPBarGenerator : MonoBehaviour
     {
-        [SerializeField] private GameObject hPBarPrefab;
-        [SerializeField] private Character character;
+        [SerializeField]
+        private GameObject hPBarPrefab;
+        [SerializeField]
+        private Character character;
 
         private void Awake()
         {

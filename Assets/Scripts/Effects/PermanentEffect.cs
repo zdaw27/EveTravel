@@ -5,9 +5,12 @@ using DG.Tweening;
 
 public class PermanentEffect : BaseEffect
 {
-    [SerializeField] private AnimationCurve curve;
-    [SerializeField] private float effectSpeed = 1f;
-    [SerializeField] private SpriteRenderer sprtieRenderer;
+    [SerializeField]
+    private AnimationCurve curve;
+    [SerializeField]
+    private float effectSpeed = 1f;
+    [SerializeField]
+    private SpriteRenderer sprtieRenderer;
 
     private float effectTime = 0f;
     private Vector3 originalScale;

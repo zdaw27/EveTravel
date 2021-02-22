@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ClickEffectRaiser : MonoBehaviour
 {
-    [SerializeField] private EffectListener effectListener;
-    [SerializeField] private EffectManager.EffectType type = EffectManager.EffectType.ClickEffect;
+    [SerializeField]
+    private EffectRaiser effectRaiser;
+    [SerializeField]
+    private EffectManager.EffectType type = EffectManager.EffectType.ClickEffect;
 
     private BaseEffect effect;
 
@@ -15,9 +18,12 @@ public class ClickEffectRaiser : MonoBehaviour
         {
             if (effect != null)
                 effect.EndEffect();
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            effect = effectListener.RaiseEffect(worldPosition, type, 54);
 
+            if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            {
+                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                effect = effectRaiser.RaiseEffect(worldPosition, type, 54);
+            }
         }
     }
 }

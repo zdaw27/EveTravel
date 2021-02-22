@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Inventory
   m_EditorClassIdentifier: 
   itemContainer: []
+  goldChangeEvent: {fileID: 11400000, guid: 30f1e15fc1bd67b449da2103c39d1077, type: 2}
+  potionCountChangeEvent: {fileID: 11400000, guid: 6c7886c55754dbf45a11ff74a7d04f8c,
+    type: 2}

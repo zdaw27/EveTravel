@@ -6,7 +6,8 @@ namespace EveTravel
 {
     public abstract class Setter<T> : MonoBehaviour
     {
-        [SerializeField] private GameData gameData;
+        [SerializeField]
+        private GameData gameData;
 
         private void OnEnable()
         {

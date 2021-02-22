@@ -6,6 +6,8 @@ using System;
 [Serializable]
 public class Item
 {
-    public int attack = 10;
-    public Sprite itemSprite;
+    [SerializeField]
+    private int attack;
+    [SerializeField]
+    private Sprite itemSprite;
 }
