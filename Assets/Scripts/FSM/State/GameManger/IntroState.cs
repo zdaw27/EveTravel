@@ -4,22 +4,21 @@ using UnityEngine;
 
 namespace EveTravel
 {
-    public class ReadyState : IState<GameManager>
+    public class IntroState : IState<GameManager>
     {
         public void Enter(GameManager owner)
         {
-            owner.CheckPlayerInteraction();
+            owner.Intro();
         }
 
         public void Exit(GameManager owner)
         {
-
         }
 
         public void Update(GameManager owner)
         {
-            //if(owner.GameData.IsPlay)
-                owner.Fsm.ChangeState<InputState>();
+            if(owner.GameData.IsPlay)
+                owner.Fsm.ChangeState<ReadyState>();
         }
     }
 }

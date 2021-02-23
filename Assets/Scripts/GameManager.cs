@@ -31,15 +31,17 @@ namespace EveTravel
         private GameEvent playerLevelChangedEvent;
         [SerializeField]
         private GameEvent playerStatChangedEvent;
+        [SerializeField]
+        private GameEvent introEvent;
 
         private FSM<GameManager> fsm;
 
         public FSM<GameManager> Fsm { get { return fsm; } private set { } }
-        public GameData GameData { get => gameData; set => gameData = value; }
+        public GameData GameData { get => gameData; private set => gameData = value; }
         public EffectRaiser EffectRaiser { get => effectRaiser; private set => effectRaiser = value; }
-        public UIObserver UiObserver { get => uiObserver; set => uiObserver = value; }
-        public MapTable MapTable { get => mapTable; set => mapTable = value; }
-        public Inventory Inventory { get => inventory; set => inventory = value; }
+        public UIObserver UiObserver { get => uiObserver; private set => uiObserver = value; }
+        public MapTable MapTable { get => mapTable; private set => mapTable = value; }
+        public Inventory Inventory { get => inventory; private set => inventory = value; }
 
         private void Awake()
         {
@@ -132,6 +134,79 @@ namespace EveTravel
                     enemy.Death();
                 }
             }
+        }
+
+        public void Intro()
+        {
+            introEvent.Raise();
+        }
+
+        public void CheckPlayerInteraction()
+        {
+            if (gameData.Player.PlayerInteraction(gameData.EveMap))
+            {
+                ChangeMap();
+            }
+        }
+
+        private void ChangeMap()
+        {
+            for (int i = 0; i < gameData.Enemys.Count; ++i)
+            {
+                GameObject.Destroy(gameData.Enemys[i].gameObject);
+            }
+            gameData.StageLevel++;
+            GameObject.Destroy(gameData.EveMap.gameObject);
+            GameObject.Instantiate(mapTable.Maps[gameData.StageLevel]);
+        }
+
+        public void PathFinding()
+        {
+            gameData.EveMap.ClearWalkedIndices();
+            //가까운 몬스터 먼저 패스파인딩 완료 하기위해 정렬.
+            gameData.Enemys.Sort((Enemy a, Enemy b) =>
+            {
+                if (Vector3.Distance(a.transform.position, gameData.Player.NextPos) < Vector3.Distance(b.transform.position, gameData.Player.NextPos))
+                {
+                    return -1;
+                }
+                else if (Vector3.Distance(a.transform.position, gameData.Player.NextPos) > Vector3.Distance(b.transform.position, gameData.Player.NextPos))
+                    return 1;
+                else
+
+                    return 0;
+            });
+
+            for (int i = 0; i < gameData.Enemys.Count; ++i)
+                gameData.Enemys[i].GetNextPos();
+        }
+
+        public bool CheckAllCharacterMoveComplete()
+        {
+            for (int i = 0; i < gameData.Enemys.Count; ++i)
+            {
+                if (gameData.Enemys[i].transform.position != gameData.Enemys[i].NextPos)
+                {
+                    return false;
+                }
+            }
+
+            if (gameData.Player.transform.position != gameData.Player.NextPos)
+                return false;
+
+            return true;
+        }
+
+        public void StartCharactersMove()
+        {
+            for (int i = 0; i < gameData.Enemys.Count; ++i)
+            {
+                if (gameData.Enemys[i].transform.position != gameData.Enemys[i].NextPos)
+                    gameData.Enemys[i].Move();
+            }
+
+            if (!gameData.Player.HasTarget())
+                gameData.Player.Move();
         }
     }
 }

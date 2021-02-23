@@ -10,6 +10,6 @@ public class ItemTable : ScriptableObject
 
     public Item GetRandomItem()
     {
-        return itemTables[Random.Range(0, itemTables.Count)];
+        return itemTables[UnityEngine.Random.Range(0, itemTables.Count)].ShallowCopy();
     }
 }

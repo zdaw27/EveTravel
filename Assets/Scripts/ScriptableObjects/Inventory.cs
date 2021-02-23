@@ -5,7 +5,7 @@ using UnityEngine;
 namespace EveTravel
 {
     [CreateAssetMenu(fileName = "Inventory", menuName = "ScriptableObjects/Inventory", order = 1)]
-    public class Inventory : ScriptableObject
+    public class Inventory : ScriptableObject, IEnumerable
     {
         [SerializeField]
         private List<Item> itemContainer = new List<Item>();
@@ -26,9 +26,14 @@ namespace EveTravel
         public void ResetData()
         {
             itemContainer.Clear();
-            Equiped = new Item();
+            Equiped = null;
             Potion = 5;
             Gold = 0;
+        }
+
+        public Item GetItem(int index)
+        {
+            return itemContainer[index];
         }
 
         public void AddItem(Item item)
@@ -52,6 +57,11 @@ namespace EveTravel
             int goldAmount = Random.Range(10, 20);
             Gold += goldAmount;
             goldChangeEvent.Raise();
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return itemContainer.GetEnumerator();
         }
     }
 }

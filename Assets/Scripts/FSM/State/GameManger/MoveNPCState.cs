@@ -16,17 +16,7 @@ namespace EveTravel
 
         public void Update(GameManager owner)
         {
-            bool isAllCharacterIdle = true;
-
-            for (int i = 0; i < owner.GameData.Enemys.Count; ++i)
-            {
-                if (!owner.GameData.Enemys[i].IsIdle)
-                {
-                    isAllCharacterIdle = false;
-                    break;
-                }
-            }
-            if (isAllCharacterIdle && owner.GameData.Player.IsIdle)
+            if(owner.CheckAllCharacterMoveComplete())
                 owner.Fsm.ChangeState<ReadyState>();
         }
     }

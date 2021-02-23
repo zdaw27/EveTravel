@@ -23,7 +23,6 @@ namespace EveTravel
         public CharacterStat Stat { get { return stat; } set { stat = value; } }
         public Vector3 NextPos { get; set; }
         public GameData GameData { get { return gameData; } private set { } }
-        public bool IsIdle { get;  set; }
 
         public virtual void Attack()
         {
@@ -122,12 +121,6 @@ namespace EveTravel
         {
             if (animator)
                 animator.CrossFadeInFixedTime("idle", 0.1f);
-            IsIdle = true;
-        }
-
-        public void ResetIdleState()
-        {
-            IsIdle = false;
         }
 
         private IEnumerator WaitForAnimationEnd()
