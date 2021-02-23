@@ -13,10 +13,19 @@ namespace EveTravel
         private GameEvent goldChangeEvent;
         [SerializeField]
         private GameEvent potionCountChangeEvent;
+        [SerializeField]
+        private ItemTable itemTable;
 
         public Item Equiped { get; set; }
         public int Potion { get; set; }
         public int Gold { get; set; }
+        public bool IsFull {
+            get {
+                if (itemContainer.Count > 12)
+                    return true;
+                return false ;
+            }
+        }
 
         private void OnEnable()
         {
@@ -29,6 +38,8 @@ namespace EveTravel
             Equiped = null;
             Potion = 5;
             Gold = 0;
+            //debug
+            itemContainer.Add(itemTable.GetRandomItem());
         }
 
         public Item GetItem(int index)

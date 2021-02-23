@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138f96f89f020f64e92d87c6f51b21b6, type: 3}
   m_Name: Inventory
   m_EditorClassIdentifier: 
-  itemContainer: []
+  itemContainer:
+  - attack: 10
+    itemSprite: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
   goldChangeEvent: {fileID: 11400000, guid: 30f1e15fc1bd67b449da2103c39d1077, type: 2}
   potionCountChangeEvent: {fileID: 11400000, guid: 6c7886c55754dbf45a11ff74a7d04f8c,
     type: 2}
+  itemTable: {fileID: 11400000, guid: 4607575031c7ec544ab4e4a99da7da5c, type: 2}

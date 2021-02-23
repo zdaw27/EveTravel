@@ -27,7 +27,8 @@ namespace EveTravel
             switch (lootType)
             {
                 case LootType.Item:
-                    //inventory.AddItem(itemTable.GetRandomItem());
+                    if(!inventory.IsFull)
+                        inventory.AddItem(itemTable.GetRandomItem());
                     effectRaiser.RaiseEffect(player.transform.position, EffectManager.EffectType.LootingEffect_Weapon);
                     effectRaiser.RaiseEffect(player.transform.position, EffectManager.EffectType.LootingEffect_Dust);
                     break;

@@ -12,34 +12,61 @@ namespace EveTravel
         [SerializeField]
         private GameObject equipUI;
         [SerializeField]
-        private GameObject unequipUI;
+        private Text equipUIAttackValue;
         [SerializeField]
         private Image equipUIItemIamge;
         [SerializeField]
-        private List<ItemCellUI> itemCellUIs;
+        private GameObject unequipUI;
+        [SerializeField]
+        private List<ItemCellUI> itemCellUIs = new List<ItemCellUI>();
         [SerializeField]
         private GameData gameData;
+        [SerializeField]
+        private Transform itemCellParent;
+        [SerializeField]
+        private Image equipedImage;
+        [SerializeField]
+        private GameEvent statChangedEvent;
 
         private int itemIndex = 0;
 
         private void Awake()
         {
+            itemCellUIs.Clear();
+            foreach (Transform child in itemCellParent)
+            {
+                itemCellUIs.Add(child.GetComponent<ItemCellUI>());
+            }
+            
+
             for (int i = 0; i < itemCellUIs.Count; ++i)
             {
                 int closerIndex = i;
-                itemCellUIs[i].AddButtonListener(delegate { OpenEquipUI(i); });
+                itemCellUIs[i].AddButtonListener(delegate { OpenEquipUI(closerIndex); });
             }
         }
 
-        public void UpdateInventory()
+        private void OnEnable()
         {
+            UpdateInventoryUI();
+        }
+
+        public void UpdateInventoryUI()
+        {
+            if (gameData.Equiped is null)
+                equipedImage.enabled = false;
+            else
+                equipedImage.enabled = true;
+
             for (int i = 0; i < itemCellUIs.Count; ++i)
-                itemCellUIs[i].RemoveSprite();
+            {
+                itemCellUIs[i].DisableCell();
+            }
 
             int itemIndex = 0;
             foreach (Item item in inventory)
             {
-                itemCellUIs[itemIndex].SetSprite(item.ItemSprite);
+                itemCellUIs[itemIndex].EnableCell(item.ItemSprite);
                 itemIndex++;
             }
         }
@@ -53,13 +80,21 @@ namespace EveTravel
         {
             this.itemIndex = itemIndex;
             equipUIItemIamge.sprite = inventory.GetItem(itemIndex).ItemSprite;
+            equipUIAttackValue.text = inventory.GetItem(itemIndex).Attack.ToString();
             equipUI.SetActive(true);
         }
 
         public void EquipUIConfirm()
         {
             gameData.Equiped = inventory.GetItem(itemIndex);
+            inventory.DeleteItem(itemIndex);
+
+            equipedImage.enabled = true;
+            equipedImage.sprite = gameData.Equiped.ItemSprite;
+            
             equipUI.SetActive(false);
+            UpdateInventoryUI();
+            statChangedEvent.Raise();
         }
 
         public void EquipUICancel()
@@ -69,13 +104,20 @@ namespace EveTravel
 
         public void OpenUnEquipUI()
         {
-            unequipUI.SetActive(true);
+            if(gameData.Equiped != null)
+                unequipUI.SetActive(true);
         }
 
         public void UnEquipConfirm()
         {
+            equipedImage.sprite = null;
+            equipedImage.enabled = false;
+
+            inventory.AddItem(gameData.Equiped);
             gameData.Equiped = null;
             unequipUI.SetActive(false);
+            UpdateInventoryUI();
+            statChangedEvent.Raise();
         }
 
         public void UnEquipCancel()

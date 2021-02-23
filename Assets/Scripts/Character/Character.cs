@@ -43,7 +43,7 @@ namespace EveTravel
                 Idle();
         }
 
-        private IEnumerator WaitForAttackAnim()
+        protected IEnumerator WaitForAttackAnim()
         {
             while (true)
             {
@@ -74,7 +74,7 @@ namespace EveTravel
             StartCoroutine(RotationSmoothly(dir));
         }
 
-        private IEnumerator RotationSmoothly(Vector3 dir)
+        protected IEnumerator RotationSmoothly(Vector3 dir)
         {
             float angle = Vector3.Angle(Vector3.up, dir.normalized);
             if (dir.x >= 0)

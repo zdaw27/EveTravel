@@ -38,7 +38,6 @@ namespace EveTravel
         public override void Death()
         {
             base.Death();
-            gameData.Player.EarnExp();
             inventory.AddGoldRandom();
             effectRaiser.RaiseEffect(transform.position, EffectManager.EffectType.CoinEffect);
         }

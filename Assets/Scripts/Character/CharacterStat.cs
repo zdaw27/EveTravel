@@ -8,10 +8,14 @@ namespace EveTravel
     [Serializable]
     public struct CharacterStat
     {
-        [SerializeField] public int hp;
-        [SerializeField] public int maxHp;
-        [SerializeField] public int attack;
-        [SerializeField] public int armor;
+        [SerializeField]
+        public int hp;
+        [SerializeField]
+        public int maxHp;
+        [SerializeField]
+        public int attack;
+        [SerializeField]
+        public int armor;
 
     }
 }

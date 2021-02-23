@@ -428,6 +428,7 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: 2dddf9b9f8f635048b3177496886594d, type: 2}
   activer: {fileID: 8468550759769785419}
   statChangedEvent: {fileID: 11400000, guid: 1e1debcf5b44f27428a3fbb0112333bd, type: 2}
+  levelUpEndEvent: {fileID: 11400000, guid: a96a8e7a0efe4a1498f8c0bd9daa61b3, type: 2}
   uiSmoothInOut: {fileID: 1651664210}
 --- !u!114 &1651664210
 MonoBehaviour:

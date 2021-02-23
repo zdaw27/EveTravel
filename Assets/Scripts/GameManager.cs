@@ -46,9 +46,9 @@ namespace EveTravel
         private void Awake()
         {
             fsm = new FSM<GameManager>(this, new ReadyState(), true);
+            fsm.AddState(new IntroState());
             fsm.AddState(new InputState(this));
             fsm.AddState(new PathFindState());
-            fsm.AddState(new MoveNPCState());
             fsm.AddState(new BattleState());
             fsm.AddState(new GameOverState());
         }
@@ -59,6 +59,7 @@ namespace EveTravel
             fsm.StartFSM();
             playerStatChangedEvent.Raise();
             playerLevelChangedEvent.Raise();
+            //debug
         }
 
         private void Update()
@@ -93,6 +94,7 @@ namespace EveTravel
                     playerStat.hp = playerStat.maxHp;
                 gameData.Player.Stat = playerStat;
                 effectRaiser.RaiseEffect(gameData.Player.transform.position, EffectManager.EffectType.HealingEffect);
+                playerStatChangedEvent.Raise();
             }
         }
 
@@ -132,13 +134,26 @@ namespace EveTravel
                     GameData.Enemys.Remove(enemy);
                     --i;
                     enemy.Death();
+                    gameData.Player.EarnExp();
                 }
             }
+
+            if (gameData.Exp >= 100)
+            {
+                gameData.Player.LevelUP();
+                gameData.IsPlay = false;
+            }
+            playerStatChangedEvent.Raise();
         }
 
         public void Intro()
         {
             introEvent.Raise();
+        }
+
+        public void LevelUpEnd()
+        {
+            gameData.IsPlay = true;
         }
 
         public void CheckPlayerInteraction()

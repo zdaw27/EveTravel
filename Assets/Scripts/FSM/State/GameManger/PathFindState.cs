@@ -23,9 +23,8 @@ namespace EveTravel
 
         public void Update(GameManager owner)
         {
-            
-
-            owner.Fsm.ChangeState<MoveNPCState>();
+            if (owner.CheckAllCharacterMoveComplete() && owner.GameData.IsPlay)
+                owner.Fsm.ChangeState<ReadyState>();
         }
     }
 }

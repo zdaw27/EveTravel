@@ -11,19 +11,24 @@ namespace EveTravel
     {
         [SerializeField]
         private Image itemImage;
+        [SerializeField]
+        private Button cellButton;
 
         public void AddButtonListener(UnityAction listenerCallBack)
         {
             GetComponent<Button>().onClick.AddListener(listenerCallBack);
         }
 
-        public void RemoveSprite()
+        public void DisableCell()
         {
-            itemImage.sprite = null;
+            itemImage.enabled = false;
+            cellButton.enabled = false;
         }
 
-        public void SetSprite(Sprite sprite)
+        public void EnableCell(Sprite sprite)
         {
+            itemImage.enabled = true;
+            cellButton.enabled = true;
             itemImage.sprite = sprite;
         }
     }
