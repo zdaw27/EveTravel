@@ -23,6 +23,7 @@ namespace EveTravel
         public CharacterStat Stat { get { return stat; } set { stat = value; } }
         public Vector3 NextPos { get; set; }
         public GameData GameData { get { return gameData; } private set { } }
+        public Character AttackTarget { get { return attackTarget; } }
 
         public virtual void Attack()
         {

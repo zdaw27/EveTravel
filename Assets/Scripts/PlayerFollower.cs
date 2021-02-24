@@ -13,7 +13,8 @@ namespace EveTravel
 
         private void LateUpdate()
         {
-            follower.position = new Vector3(gameData.Player.transform.position.x, gameData.Player.transform.position.y, follower.position.z);
+            if(gameData.Player)
+                follower.position = new Vector3(gameData.Player.transform.position.x, gameData.Player.transform.position.y, follower.position.z);
         }
     }
 }

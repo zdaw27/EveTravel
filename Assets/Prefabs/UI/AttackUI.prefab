@@ -217,4 +217,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d10b5f7a4ebae45867bd3a905daf43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiObserver: {fileID: 11400000, guid: 6312c00e47a106e4da37a2c3534d6b57, type: 2}
+  AttackButtonEvent: {fileID: 11400000, guid: 3425b74d60e19f34696943d4aafa695f, type: 2}

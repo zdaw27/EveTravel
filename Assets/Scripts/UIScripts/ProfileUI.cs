@@ -33,11 +33,14 @@ namespace EveTravel
 
         private void OnEnable()
         {
-            UpdateExp();
-            UpdateHp();
-            UpdateGoldText();
-            UpdateStat();
-            PlayerLevelChanged();
+            if (gameData.Player)
+            {
+                UpdateExp();
+                UpdateHp();
+                UpdateGoldText();
+                UpdateStat();
+                PlayerLevelChanged();
+            }
         }
 
         public void UpdateExp()

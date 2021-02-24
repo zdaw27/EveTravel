@@ -8,7 +8,13 @@ namespace EveTravel
     {
         public void Enter(GameManager owner)
         {
-            owner.CheckPlayerInteraction();
+            if (owner.CheckNextLevel())
+            {
+                owner.GameData.IsPlay = false;
+                owner.Fsm.ChangeState<MapChangeState>();
+            }
+            else
+                owner.CheckPlayerInteraction();
         }
 
         public void Exit(GameManager owner)

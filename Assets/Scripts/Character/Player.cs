@@ -78,7 +78,7 @@ namespace EveTravel
         /// </summary>
         /// <param name="playerPos"></param>
         /// <returns> Exit에 도착했는가? </returns>
-        public bool PlayerInteraction(EveMap eveMap)
+        public void PlayerInteraction(EveMap eveMap)
         {
             int index = eveMap.GetIndex(transform.position);
 
@@ -87,13 +87,16 @@ namespace EveTravel
                 eveMap.Treasures[index].OpenTreasure(this);
                 eveMap.TreasureIndex.Remove(index);
             }
+        }
+
+        public bool CheckNextLevel(EveMap eveMap)
+        {
+            int index = eveMap.GetIndex(transform.position);
 
             if (eveMap.ExitIndex.Contains(index))
                 return true;
-            else
-                return false;
+            return false;
         }
 
-        
     }
 }

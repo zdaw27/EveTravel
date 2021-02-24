@@ -7,27 +7,27 @@ namespace EveTravel
     public class Joystick : MonoBehaviour
     {
         [SerializeField]
-        private UIObserver uiObserver;
+        private JoystickObserver joystickObserver;
 
         public void OnLeftButton()
         {
             Debug.Log("clicked");
-            uiObserver.JoyStickDir = JoyStickDir.Left;
+            joystickObserver.JoyStickDir = JoyStickDir.Left;
         }
 
         public void OnRightButton()
         {
-            uiObserver.JoyStickDir = JoyStickDir.Right;
+            joystickObserver.JoyStickDir = JoyStickDir.Right;
         }
 
         public void OnUpButton()
         {
-            uiObserver.JoyStickDir = JoyStickDir.Up;
+            joystickObserver.JoyStickDir = JoyStickDir.Up;
         }
 
         public void OnDownButton()
         {
-            uiObserver.JoyStickDir = JoyStickDir.Down;
+            joystickObserver.JoyStickDir = JoyStickDir.Down;
         }
     }
 
@@ -36,6 +36,7 @@ namespace EveTravel
         Left,
         Right,
         Up,
-        Down
+        Down,
+        None
     }
 }
