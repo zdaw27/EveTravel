@@ -10,11 +10,12 @@ public class UISmoothInOut : MonoBehaviour
     private RectTransform target;
     [SerializeField]
     private UnityEvent OnEndOut;
-    private const int height = 1080;
+    private int height = Screen.height;
     private Vector3 originalPosition;
 
     private void Awake()
     {
+        height = Screen.height;
         originalPosition = target.transform.position;
     }
 

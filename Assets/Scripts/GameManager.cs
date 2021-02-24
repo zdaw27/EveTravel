@@ -9,7 +9,7 @@ namespace EveTravel
     public class GameManager : MonoBehaviour
     {
         [SerializeField]
-        private UIObserver uiObserver;
+        private JoystickObserver joystickObserver;
         [SerializeField]
         private GameData gameData;
         [SerializeField]
@@ -18,6 +18,8 @@ namespace EveTravel
         private MapTable mapTable;
         [SerializeField]
         private Inventory inventory;
+        [SerializeField]
+        private bool debugFSM = true;
         [Header("Events")]
         [SerializeField]
         private GameEvent goldChangeEvent;
@@ -35,19 +37,23 @@ namespace EveTravel
         private GameEvent introEvent;
 
         private FSM<GameManager> fsm;
+        private BaseEffect aimEffect;
+        private bool isAttackButtonPushed = false;
 
         public FSM<GameManager> Fsm { get { return fsm; } private set { } }
         public GameData GameData { get => gameData; private set => gameData = value; }
         public EffectRaiser EffectRaiser { get => effectRaiser; private set => effectRaiser = value; }
-        public UIObserver UiObserver { get => uiObserver; private set => uiObserver = value; }
+        public JoystickObserver JoystickObserver { get => joystickObserver; private set => joystickObserver = value; }
         public MapTable MapTable { get => mapTable; private set => mapTable = value; }
         public Inventory Inventory { get => inventory; private set => inventory = value; }
+        public bool IsAttackButtonPushed { get => isAttackButtonPushed; private set => isAttackButtonPushed = value; }
 
         private void Awake()
         {
-            fsm = new FSM<GameManager>(this, new ReadyState(), true);
-            fsm.AddState(new IntroState());
-            fsm.AddState(new InputState(this));
+            fsm = new FSM<GameManager>(this, new IntroState(), debugFSM);
+            fsm.AddState(new ReadyState());
+            fsm.AddState(new MapChangeState());
+            fsm.AddState(new InputState());
             fsm.AddState(new PathFindState());
             fsm.AddState(new BattleState());
             fsm.AddState(new GameOverState());
@@ -59,12 +65,19 @@ namespace EveTravel
             fsm.StartFSM();
             playerStatChangedEvent.Raise();
             playerLevelChangedEvent.Raise();
-            //debug
         }
 
         private void Update()
         {
             fsm.Update();
+        }
+
+        private void LateUpdate()
+        {
+            //UI JoysickDir , Attack flag 해제.
+            //추후에 UI InputContoller 추가예정.
+            IsAttackButtonPushed = false;
+            joystickObserver.JoyStickDir = JoyStickDir.None;
         }
 
         public void GameOver()
@@ -75,6 +88,7 @@ namespace EveTravel
 
         public void GameStart()
         {
+            gameData.IsPlay = true;
         }
 
         public void PlayerLevelUP()
@@ -123,6 +137,8 @@ namespace EveTravel
             if (GameData.Player.HasTarget())
             {
                 GameData.Player.Attack();
+                if (GameData.Player.AttackTarget.Stat.hp <= 0)
+                    RemoveAim();
             }
 
             //전투 후, 죽은 Enemy들 Container에서 제외 및 DeathState로 처리.
@@ -148,6 +164,9 @@ namespace EveTravel
 
         public void Intro()
         {
+            gameData.StageLevel = 0;
+            gameData.IsPlay = false;
+            CreateNewMap();
             introEvent.Raise();
         }
 
@@ -158,20 +177,28 @@ namespace EveTravel
 
         public void CheckPlayerInteraction()
         {
-            if (gameData.Player.PlayerInteraction(gameData.EveMap))
-            {
-                ChangeMap();
-            }
+            gameData.Player.PlayerInteraction(gameData.EveMap);
         }
 
-        private void ChangeMap()
+        public bool CheckNextLevel()
         {
-            for (int i = 0; i < gameData.Enemys.Count; ++i)
+            return gameData.Player.CheckNextLevel(gameData.EveMap);
+        }
+
+        public void ChangeMap()
+        {
+            for (int i = 0; gameData.Enemys.Count != 0;)
             {
                 GameObject.Destroy(gameData.Enemys[i].gameObject);
             }
-            gameData.StageLevel++;
+            gameData.Enemys.Clear();
+            gameData.EveMap.ClearStuff();
             GameObject.Destroy(gameData.EveMap.gameObject);
+            GameObject.Instantiate(mapTable.Maps[gameData.StageLevel]);
+        }
+
+        public void CreateNewMap()
+        {
             GameObject.Instantiate(mapTable.Maps[gameData.StageLevel]);
         }
 
@@ -222,6 +249,48 @@ namespace EveTravel
 
             if (!gameData.Player.HasTarget())
                 gameData.Player.Move();
+        }
+
+        public Vector3 GetAimPos()
+        {
+            if (aimEffect)
+                return aimEffect.transform.position;
+            else
+                return Vector3.left * 1000f;
+        }
+
+        public void SetAim(Vector3 aimPos)
+        {
+            Debug.Log("SetAim");
+            if (!aimEffect)
+            {
+                aimEffect = effectRaiser.RaiseEffect(aimPos, EffectManager.EffectType.PermanentEffect);
+            }
+            else
+            {
+                aimEffect.EndEffect();
+                aimEffect = effectRaiser.RaiseEffect(aimPos, EffectManager.EffectType.PermanentEffect);
+            }
+        }
+        
+        public void RemoveAim()
+        {
+            if(aimEffect)
+                aimEffect.EndEffect();
+            aimEffect = null;
+        }
+
+        public void OnAttackButtonClick()
+        {
+            IsAttackButtonPushed = true;
+        }
+
+        public bool CheckJoystickPushed()
+        {
+            if (joystickObserver.JoyStickDir == JoyStickDir.None)
+                return false;
+            else
+                return true;
         }
     }
 }

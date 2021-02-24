@@ -22,7 +22,6 @@ public class EffectManager : MonoBehaviour
         LootingEffect_Potion,
         LevelUpParticle,
         LevelUpText
-        
     }
 
     [SerializeField]

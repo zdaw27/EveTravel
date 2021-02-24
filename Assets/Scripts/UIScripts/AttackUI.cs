@@ -7,11 +7,11 @@ namespace EveTravel
     public class AttackUI : MonoBehaviour
     {
         [SerializeField]
-        private UIObserver uiObserver;
+        private GameEvent AttackButtonEvent;
 
         public void OnAttackButton()
         {
-            uiObserver.OnAttakcButton();
+            AttackButtonEvent.Raise();
         }
     }
 }

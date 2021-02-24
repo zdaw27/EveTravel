@@ -59,6 +59,7 @@ namespace EveTravel
         #endregion
 
         private Dictionary<int, Treasure> treasures = new Dictionary<int, Treasure>();
+        private List<GameObject> exits = new List<GameObject>();
         
         public List<TileCell> TileCell { get => tileCell; set => tileCell = value; }
         public int Height { get => height; set => height = value; }
@@ -68,11 +69,19 @@ namespace EveTravel
         public SerializableIntHashSet TreasureIndex { get => treasureIndex; set => treasureIndex = value; }
         public SerializableIntHashSet ExitIndex { get => exitIndex; set => exitIndex = value; }
         public SerializableIntHashSet StoreIndex { get => storeIndex; set => storeIndex = value; }
-        public Dictionary<int, Treasure> Treasures { get => treasures; set => treasures = value; }
+        public Dictionary<int, Treasure> Treasures { get => treasures; private set => treasures = value; }
 
         private void Awake()
         {
             CreateMapObjects();
+        }
+
+        public void ClearStuff()
+        {
+            foreach (KeyValuePair<int, Treasure> element in treasures)
+                GameObject.Destroy(element.Value.gameObject);
+            for (int i = 0; i < exits.Count; ++i)
+                GameObject.Destroy(exits[i]);
         }
 
         private void CreateMapObjects()
@@ -80,7 +89,7 @@ namespace EveTravel
             int maxIndex = width * Height;
             for (int i = 0; i < maxIndex; ++i)
             {
-                if (createPlayer && PlayerSpawnIndex.Contains(i))
+                if (!gameData.Player && createPlayer && PlayerSpawnIndex.Contains(i))
                     CreatePlayer(i);
                 if (createEnemies && EnemySpawnIndex.Contains(i))
                     CreateEnemy(i);
@@ -114,6 +123,7 @@ namespace EveTravel
         {
             GameObject exitObj = GameObject.Instantiate(exitPrefab);
             exitObj.transform.position = IndexToPosition(i);
+            exits.Add(exitObj);
         }
 
         private Vector3 IndexToPosition(int index)
