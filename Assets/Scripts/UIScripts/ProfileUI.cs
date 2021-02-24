@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Text;
 
 namespace EveTravel
 {
@@ -23,12 +24,36 @@ namespace EveTravel
         private Text attackValueText;
         [SerializeField]
         private Text armorValueText;
+        [SerializeField]
+        private Text hpText;
+        [SerializeField]
+        private Text expText;
 
+        private StringBuilder sb = new StringBuilder();
 
-        public void Update()
+        private void OnEnable()
+        {
+            UpdateExp();
+            UpdateHp();
+            UpdateGoldText();
+            UpdateStat();
+            PlayerLevelChanged();
+        }
+
+        public void UpdateExp()
+        {
+            expBarImage.fillAmount = (float)gameData.Exp / 100f;
+            sb.Clear();
+            sb.Append(gameData.Exp.ToString()).Append(" / ").Append("100");
+            expText.text = sb.ToString();
+        }
+
+        public void UpdateHp()
         {
             hpBarImage.fillAmount = (float)gameData.Player.Stat.hp / (float)gameData.Player.Stat.maxHp;
-            expBarImage.fillAmount = (float)gameData.Exp / 100f;
+            sb.Clear();
+            sb.Append(gameData.Player.Stat.hp.ToString()).Append(" / ").Append(gameData.Player.Stat.maxHp.ToString());
+            hpText.text = sb.ToString();
         }
 
         public void UpdateGoldText()
@@ -38,7 +63,11 @@ namespace EveTravel
 
         public void UpdateStat()
         {
-            attackValueText.text = gameData.Player.Stat.attack.ToString();
+            if (gameData.Equiped is null)
+                attackValueText.text = gameData.Player.Stat.attack.ToString();
+            else
+                attackValueText.text = (gameData.Player.Stat.attack + gameData.Equiped.Attack).ToString();
+
             armorValueText.text = gameData.Player.Stat.armor.ToString();
         }
 

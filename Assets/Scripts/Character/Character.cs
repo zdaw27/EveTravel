@@ -23,7 +23,6 @@ namespace EveTravel
         public CharacterStat Stat { get { return stat; } set { stat = value; } }
         public Vector3 NextPos { get; set; }
         public GameData GameData { get { return gameData; } private set { } }
-        public bool IsIdle { get;  set; }
 
         public virtual void Attack()
         {
@@ -44,7 +43,7 @@ namespace EveTravel
                 Idle();
         }
 
-        private IEnumerator WaitForAttackAnim()
+        protected IEnumerator WaitForAttackAnim()
         {
             while (true)
             {
@@ -75,7 +74,7 @@ namespace EveTravel
             StartCoroutine(RotationSmoothly(dir));
         }
 
-        private IEnumerator RotationSmoothly(Vector3 dir)
+        protected IEnumerator RotationSmoothly(Vector3 dir)
         {
             float angle = Vector3.Angle(Vector3.up, dir.normalized);
             if (dir.x >= 0)
@@ -122,12 +121,6 @@ namespace EveTravel
         {
             if (animator)
                 animator.CrossFadeInFixedTime("idle", 0.1f);
-            IsIdle = true;
-        }
-
-        public void ResetIdleState()
-        {
-            IsIdle = false;
         }
 
         private IEnumerator WaitForAnimationEnd()

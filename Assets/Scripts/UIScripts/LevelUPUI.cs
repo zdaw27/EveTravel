@@ -13,6 +13,8 @@ namespace EveTravel
         [SerializeField]
         private GameEvent statChangedEvent;
         [SerializeField]
+        private GameEvent levelUpEndEvent;
+        [SerializeField]
         private UISmoothInOut uiSmoothInOut;
 
         public void AddHPStat()
@@ -22,6 +24,7 @@ namespace EveTravel
             stat.hp = stat.maxHp;
             gameData.Player.Stat = stat;
             uiSmoothInOut.OutSmooth();
+            levelUpEndEvent.Raise();
         }
 
         public void AddAttackStat()
@@ -31,6 +34,7 @@ namespace EveTravel
             stat.hp = stat.maxHp;
             gameData.Player.Stat = stat;
             uiSmoothInOut.OutSmooth();
+            levelUpEndEvent.Raise();
         }
 
         public void AddArmorStat()
@@ -40,6 +44,7 @@ namespace EveTravel
             stat.hp = stat.maxHp;
             gameData.Player.Stat = stat;
             uiSmoothInOut.OutSmooth();
+            levelUpEndEvent.Raise();
         }
     }
 }

@@ -334,6 +334,7 @@ GameObject:
   - component: {fileID: 8468550759769785419}
   - component: {fileID: 8468550759769785428}
   - component: {fileID: 1651664208}
+  - component: {fileID: 1651664210}
   m_Layer: 5
   m_Name: LevelUpUI
   m_TagString: Untagged
@@ -401,6 +402,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1651664210}
+        m_MethodName: InSmooth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1651664208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,6 +428,46 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: 2dddf9b9f8f635048b3177496886594d, type: 2}
   activer: {fileID: 8468550759769785419}
   statChangedEvent: {fileID: 11400000, guid: 1e1debcf5b44f27428a3fbb0112333bd, type: 2}
+  levelUpEndEvent: {fileID: 11400000, guid: a96a8e7a0efe4a1498f8c0bd9daa61b3, type: 2}
+  uiSmoothInOut: {fileID: 1651664210}
+--- !u!114 &1651664210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8468550759769785417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a217d09e33e7347ab47deec285d664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 8468550759245044182}
+  OnEndOut:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 1e1debcf5b44f27428a3fbb0112333bd, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8468550759769785419}
+        m_MethodName: OnDeActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8468550759771337491
 GameObject:
   m_ObjectHideFlags: 0

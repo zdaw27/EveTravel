@@ -14,11 +14,30 @@ namespace EveTravel
         [SerializeField]
         private EffectRaiser effectRaiser;
         //cache 
-        private WaitForSeconds waitSecond = new WaitForSeconds(2f);
+        private WaitForSeconds waitSecond = new WaitForSeconds(1.5f);
 
         public override void Attack()
         {
-            base.Attack();
+            if (animator)
+                animator.CrossFadeInFixedTime("attack", 0.1f);
+
+            int attack = gameData.Equiped is null ? stat.attack : stat.attack + gameData.Equiped.Attack;
+
+            int finalDamage = (attack - attackTarget.Stat.armor) <= 0 ? 0 : attack - attackTarget.Stat.armor;
+            StartCoroutine(RotationSmoothly(attackTarget.transform.position - transform.position));
+            effectListener.RaiseEffect(attackTarget.transform.position, EffectManager.EffectType.DamageEffect, finalDamage);
+            CharacterStat modifiedStat = attackTarget.Stat;
+            modifiedStat.hp -= finalDamage;
+
+            if (modifiedStat.hp <= 0)
+                modifiedStat.hp = 0;
+
+            attackTarget.Stat = modifiedStat;
+
+            if (animator)
+                StartCoroutine(WaitForAttackAnim());
+            else
+                Idle();
             effectListener.RaiseEffect(attackTarget.transform.position, EffectManager.EffectType.EnemyHit);
         }
         
@@ -32,7 +51,7 @@ namespace EveTravel
             NextPos = nexPos;
         }
 
-        private void LevelUP()
+        public void LevelUP()
         {
             effectRaiser.RaiseEffect(transform.position, EffectManager.EffectType.LevelUpParticle);
             effectRaiser.RaiseEffect(transform.position, EffectManager.EffectType.LevelUpText);
@@ -51,10 +70,6 @@ namespace EveTravel
         public void EarnExp()
         {
             gameData.Exp += 10;
-            if(gameData.Exp >= 100)
-            {
-                LevelUP();
-            }
         }
 
         /// <summary>

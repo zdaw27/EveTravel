@@ -14,6 +14,11 @@ namespace EveTravel
         [SerializeField]
         private GameEvent usePotionEvent;
 
+        private void OnEnable()
+        {
+            potionNumberText.text = inventory.Potion.ToString();
+        }
+
         private void Awake()
         {
             potionNumberText.text = inventory.Potion.ToString();

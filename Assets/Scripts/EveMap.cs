@@ -198,7 +198,7 @@ namespace EveTravel
         /// <summary>
         /// Character 가 어느지점에 도착할지 기억해 놓는 인덱스 초기화.
         /// </summary>
-        public void ClearWakedIndices()
+        public void ClearWalkedIndices()
         {
             walkedIndices.Clear();
         }

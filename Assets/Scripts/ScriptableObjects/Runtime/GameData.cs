@@ -45,6 +45,8 @@ public class GameData : ScriptableObject
 
     private void OnEnable()
     {
+        isPlay = true;
+        equiped = null;
         PlayerLevel = 1;
         stageLevel = 0;
         exp = 90;
