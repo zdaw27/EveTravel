@@ -162,6 +162,13 @@ namespace EveTravel
             playerStatChangedEvent.Raise();
         }
 
+        public void GameRestart()
+        {
+            gameData.StageLevel = 0;
+            ChangeMap();
+            fsm.ChangeState<ReadyState>();
+        }
+
         public void Intro()
         {
             gameData.StageLevel = 0;

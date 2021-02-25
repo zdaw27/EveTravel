@@ -6,13 +6,6 @@ namespace EveTravel
 {
     public class GameOverUI : MonoBehaviour
     {
-        [SerializeField]
-        private GameEvent gameStartEvent;
-
-        public void RestartGame()
-        {
-            gameStartEvent.Raise();
-        }
 
         public void QuitGame()
         {
