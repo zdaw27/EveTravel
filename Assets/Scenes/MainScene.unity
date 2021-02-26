@@ -1087,15 +1087,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1132770650}
-        m_MethodName: GameStart
-        m_Mode: 1
+        m_MethodName: SetPlayFlag
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1132770655
 MonoBehaviour:
@@ -1690,6 +1690,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1424481060}
     m_Modifications:
+    - target: {fileID: 4720678270520808451, guid: 298565127230faa42af807ea3617c25f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720678270520808451, guid: 298565127230faa42af807ea3617c25f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720678270520808451, guid: 298565127230faa42af807ea3617c25f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4720678271608342449, guid: 298565127230faa42af807ea3617c25f,
         type: 3}
       propertyPath: m_Pivot.x

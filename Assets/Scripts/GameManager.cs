@@ -51,17 +51,21 @@ namespace EveTravel
         private void Awake()
         {
             fsm = new FSM<GameManager>(this, new IntroState(), debugFSM);
+
             fsm.AddState(new ReadyState());
             fsm.AddState(new MapChangeState());
             fsm.AddState(new InputState());
-            fsm.AddState(new PathFindState());
+            
             fsm.AddState(new BattleState());
+            fsm.AddState(new PathFindState());
+            fsm.AddState(new LevelUpState());
+
             fsm.AddState(new GameOverState());
         }
 
         private void Start()
         {
-            GameStart();
+            SetPlayFlag(true);
             fsm.StartFSM();
             playerStatChangedEvent.Raise();
             playerLevelChangedEvent.Raise();
@@ -86,9 +90,9 @@ namespace EveTravel
             gameOverEvent.Raise();
         }
 
-        public void GameStart()
+        public void SetPlayFlag(bool flag)
         {
-            gameData.IsPlay = true;
+            gameData.IsPlay = flag;
         }
 
         public void PlayerLevelUP()
@@ -153,18 +157,20 @@ namespace EveTravel
                     gameData.Player.EarnExp();
                 }
             }
-
-            if (gameData.Exp >= 100)
-            {
-                gameData.Player.LevelUP();
-                gameData.IsPlay = false;
-            }
+            
             playerStatChangedEvent.Raise();
+        }
+
+        public void LevelUp()
+        {
+            gameData.Player.LevelUP();
         }
 
         public void GameRestart()
         {
             gameData.StageLevel = 0;
+            GameObject.Destroy(gameData.Player.gameObject);
+            gameData.Player = null;
             ChangeMap();
             fsm.ChangeState<ReadyState>();
         }
@@ -200,6 +206,7 @@ namespace EveTravel
             }
             gameData.Enemys.Clear();
             gameData.EveMap.ClearStuff();
+
             GameObject.Destroy(gameData.EveMap.gameObject);
             GameObject.Instantiate(mapTable.Maps[gameData.StageLevel]);
         }
