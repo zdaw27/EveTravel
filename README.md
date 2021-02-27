@@ -176,8 +176,8 @@ https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Setter/PlayerSetter
 Event Listner:  
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EventListenerComponent.cs  
 
-UI Script 폴더:
-https://github.com/zdaw27/EveTravel/tree/main/Assets/Scripts/UIScripts
+UI Script 폴더:  
+https://github.com/zdaw27/EveTravel/tree/main/Assets/Scripts/UIScripts  
 
 
 
