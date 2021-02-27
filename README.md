@@ -154,26 +154,30 @@ https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Character/Enemy.cs
 
 
 추후에 확장에 유연하도록, 최대한 클래스끼리 엮이지 않고 독립적인 개발이 가능하도록 노력했습니다.  
-모든 MonoBehaviour 클래스들 Scene이 종료되면 모두 삭제되고, Scene Load 시 클린 상태를 유지하여 다른 클래스의 동작방식을 이해하지 않고도 개발이 가능하게 유지했습니다.  
+모든 MonoBehaviour 클래스들 Scene이 종료되면 모두 삭제되고, Scene Load 시 클린 상태를 유지하여 제거되지않고 살아남은 클래스에 존재로 인한 복잡성을 없앴습니다.  
 Unite 2017 에서 ScriptableObject 를 이용해 구조 설계하는 것에 영감받아 Singltone 을 이용하지 않고 데이터 흐름을 제어해봤습니다.  
 런타임 데이터를 담고있는 GameData 클래스는 스스로 데이터 인풋과 아웃풋을 가담하지 않고 외부 Setter 컴포넌트가 그 기능을 담당합니다.  
 모든 UI 클래스는 이벤트에 기반하여 동작하도록 설계하였으며, 독립적인 개발이 가능합니다.  
-각 클래스의 고유 기능은 그 기능에 집중하기 위해서 이벤트 리스닝, Subscribe 기능, 종속성 주입 기능은 전부 외부 콤포넌트가 담당합니다.  
-프리팹 단위로 오브젝트를 관리하였으며, 단순 프리팹 드래그앤 드랍 으로 개발 테스트가 용이하도록 집중했습니다.  
+각 클래스의 고유 기능은 그 기능에 집중하기 위해서 이벤트 리스닝, 종속성 주입 기능은 최대한 외부 콤포넌트가 담당하도록 했습니다.  
+프리팹 단위로 오브젝트를 관리하였으며, 단순 프리팹 드래그앤 드랍으로 개발 테스트가 용이하도록 집중했습니다.  
 
 
 ### 관련 스크립트:  
 
-추상 캐릭터 클래스:  
-https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Character/Character.cs  
+GameData:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/ScriptableObjects/Runtime/GameData.cs  
 
-Player:  
-https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Character/Player.cs  
+Setter:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Setter/EnemySetter.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Setter/EveMapSetter.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Setter/PlayerSetter.cs  
 
-Enemy:  
-https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Character/Enemy.cs  
 
+Event Listner:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EventListenerComponent.cs  
 
+UI Script 폴더:
+https://github.com/zdaw27/EveTravel/tree/main/Assets/Scripts/UIScripts
 
 
 
