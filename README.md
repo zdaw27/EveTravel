@@ -33,9 +33,12 @@ Unity version : 2019.4.17.f1
 
 관련 스크립트:  
 
-맵 에디터: https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Editor/EveMapEditor.cs  
-에디터데이터 저장용 스크립터블오브젝트: https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Editor/ScriptableObjects/EditorData.cs  
-런타임에 사용하는 맵: https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EveMap.cs  
+맵 에디터:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Editor/EveMapEditor.cs  
+에디터데이터 저장용 스크립터블오브젝트:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Editor/ScriptableObjects/EditorData.cs  
+런타임에 사용하는 맵:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EveMap.cs  
 
 
 
