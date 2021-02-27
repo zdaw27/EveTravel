@@ -27,6 +27,7 @@ public class UISmoothInOut : MonoBehaviour
 
     public void OutSmooth()
     {
+        height = Screen.height;
         target.position = originalPosition;
         target.DOMoveY(originalPosition.y + height, 0.5f).SetEase(Ease.OutBounce).OnComplete(() => { OnEndOut.Invoke(); });
     }

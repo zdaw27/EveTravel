@@ -37,6 +37,8 @@ namespace EveTravel
         private GameEvent introEvent;
         [SerializeField]
         private GameEvent stageChangedEvent;
+        [SerializeField]
+        private GameEvent nextStageEvent;
 
         private FSM<GameManager> fsm;
         private BaseEffect aimEffect;
@@ -205,7 +207,12 @@ namespace EveTravel
 
         public bool CheckNextLevel()
         {
-            return gameData.EveMap.CheckNextLevel(gameData.Player);
+            if(gameData.EveMap.CheckNextLevel(gameData.Player))
+            {
+                nextStageEvent.Raise();
+                return true;
+            }
+            return false;
         }
 
         public void ChangeMap()
