@@ -35,8 +35,10 @@ Unity version : 2019.4.17.f1
 
 맵 에디터:  
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Editor/EveMapEditor.cs  
+
 에디터데이터 저장용 스크립터블오브젝트:  
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Editor/ScriptableObjects/EditorData.cs  
+
 런타임에 사용하는 맵:  
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EveMap.cs  
 
@@ -49,18 +51,27 @@ https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EveMap.cs
 
 ![EffectTest](https://user-images.githubusercontent.com/51247612/109385071-7e59b280-7934-11eb-8e51-1c3190796947.gif)
 
-전역에서 어디서든 사용가능 하도록 제작한 EffectManager 입니다.
-내부적으로 ObjectPooling으로 관리가 되어있습니다.
-BaseEffect 클래스를 상속하여 새로운 이팩트를 확장할 수 있습니다. 
+전역에서 어디서든 사용가능 하도록 제작한 EffectManager 입니다.  
+내부적으로 ObjectPooling으로 관리가 되어있습니다.  
+BaseEffect 클래스를 상속하여 새로운 이팩트를 확장할 수 있습니다.  
 
 관련 스크립트:  
 
-맵 에디터:  
-https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Editor/EveMapEditor.cs  
-에디터데이터 저장용 스크립터블오브젝트:  
-https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Editor/ScriptableObjects/EditorData.cs  
-런타임에 사용하는 맵:  
-https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EveMap.cs  
+이펙트 매니저:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EffectManager.cs  
+
+EffectManager 에서 사용하는 BaseEffect:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Effects/BaseEffect.cs  
+
+BaseEffect 상속하여 다형성으로 실행되는 Effect 클래스들:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Effects/DamageNumberEffect.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Effects/LevelUpTextEffect.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Effects/LootingEffect.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Effects/ParticleEffect.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Effects/PermanentEffect.cs  
+
+이펙트 테스트 클래스:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EffectTest.cs
 
 
 
