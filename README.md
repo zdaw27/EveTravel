@@ -31,7 +31,7 @@ Unity version : 2019.4.17.f1
 
 타일맵생성에 효율성을 더하고자 유니티 EditorWindow를 상속하여 맵에디터를 구현하였습니다.
 
-#### 관련 스크립트:  
+### 관련 스크립트:  
 
 맵 에디터:  
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Editor/EveMapEditor.cs  
@@ -55,7 +55,7 @@ https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EveMap.cs
 내부적으로 ObjectPooling으로 관리가 되어있습니다.  
 BaseEffect 클래스를 상속하여 새로운 이팩트를 확장할 수 있습니다.  
 
-#### 관련 스크립트:  
+### 관련 스크립트:  
 
 이펙트 매니저:  
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EffectManager.cs  
