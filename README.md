@@ -27,5 +27,6 @@ Unity version : 2019.4.17.f1
 
 ![EditingMap](https://user-images.githubusercontent.com/51247612/109381449-e355de00-791d-11eb-9fce-bfa4ccc34b34.gif)
 
+타일맵생성에 효율성을 더하고자 유니티 EditorWindow를 상속하여 맵에디터를 구현하였습니다.
 
 <a href="#top">123</a>
