@@ -17,5 +17,3 @@ MonoBehaviour:
   tile2: {fileID: 6263857364329313331, guid: 66838ba3737a264418bff3d397d47df8, type: 3}
   wallTile: {fileID: 6263857364329313331, guid: 3c7295968d8f59a4b9e95f169fde5ad5,
     type: 3}
-  width: 30
-  height: 10

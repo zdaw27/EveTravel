@@ -95,7 +95,13 @@ namespace EveTravel
             for (int i = 0; i < maxIndex; ++i)
             {
                 if (!gameData.Player && createPlayer && PlayerSpawnIndex.Contains(i))
+                {
                     CreatePlayer(i);
+                }
+                else if(createPlayer && PlayerSpawnIndex.Contains(i))
+                {
+                    gameData.Player.transform.position = IndexToPosition(i);
+                }
                 if (createEnemies && EnemySpawnIndex.Contains(i))
                     CreateEnemy(i);
                 if (createTreasures && TreasureIndex.Contains(i))
@@ -128,12 +134,19 @@ namespace EveTravel
         {
             GameObject exitObj = GameObject.Instantiate(exitPrefab);
             exitObj.transform.position = IndexToPosition(i);
+            exitObj.transform.position += Vector3.back * 0.5f;
             exits.Add(exitObj);
         }
 
         private Vector3 IndexToPosition(int index)
         {
             return new Vector3(index % width, index / width);
+        }
+
+        public Vector3 GetPlayerSpawnPosition()
+        {
+            playerSpawnIndex.GetEnumerator().Reset();
+            return IndexToPosition(playerSpawnIndex.GetEnumerator().Current);
         }
 
         public bool CheckWalkablePosition(Vector3 position)

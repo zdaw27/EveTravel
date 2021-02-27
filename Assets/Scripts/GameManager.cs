@@ -181,6 +181,7 @@ namespace EveTravel
             ChangeMap();
             playerStatChangedEvent.Raise();
             goldChangeEvent.Raise();
+            potionCountChangeEvent.Raise();
             RemoveAim();
             fsm.ChangeState<ReadyState>();
             gameData.IsPlay = true;
