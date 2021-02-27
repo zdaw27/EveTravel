@@ -26,4 +26,7 @@ Unity version : 2019.4.17.f1
 
 ![EditingMap](https://user-images.githubusercontent.com/51247612/109378795-a9360d80-7918-11eb-868e-01f1632fbd92.gif)
 
+![EditingMap](https://user-images.githubusercontent.com/51247612/109381449-e355de00-791d-11eb-9fce-bfa4ccc34b34.gif)
+
+
 <a href="#top">123</a>
