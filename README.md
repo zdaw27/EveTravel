@@ -21,7 +21,9 @@ Unity version : 2019.4.17.f1
 
 ![Eve_Mine](https://user-images.githubusercontent.com/51247612/109382834-1e5c0f80-7926-11eb-91a4-4c4e1337f991.gif)
 
-==========================
+<hr/>
+<hr/>
+
 ## 맵 에디터.
 
 
