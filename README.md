@@ -60,6 +60,9 @@ BaseEffect 클래스를 상속하여 새로운 이팩트를 확장할 수 있습
 이펙트 매니저:  
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EffectManager.cs  
 
+오브젝트 풀:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Misc/ObjectPool.cs  
+
 EffectManager 에서 사용하는 BaseEffect:  
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Effects/BaseEffect.cs  
 
