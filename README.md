@@ -31,7 +31,7 @@ Unity version : 2019.4.17.f1
 
 타일맵생성에 효율성을 더하고자 유니티 EditorWindow를 상속하여 맵에디터를 구현하였습니다.
 
-스크립트:
+스크립트: 
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Editor/EveMapEditor.cs
 
 <a href="#top">123</a>
