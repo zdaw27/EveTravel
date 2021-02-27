@@ -114,6 +114,29 @@ https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/FSM/State/GameMange
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/FSM/State/GameManger/ReadyState.cs  
 
 
+<hr/>
+<hr/>
+
+## 캐릭터.
+
+
+![image](https://user-images.githubusercontent.com/51247612/109386676-9d117680-793f-11eb-881b-83d9a5a59579.png)
+
+전투에 가담하는 캐릭터 클래스 입니다.  
+Player 와 Enemy 클래스는 Chracter 클래스를 상속합니다.  
+추후에 또다른 캐릭터를 확장할 때 Character 클래스를 상속하여 구현합니다.  
+
+### 관련 스크립트:  
+
+추상 캐릭터 클래스:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Character/Character.cs  
+
+Player:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Character/Player.cs  
+
+Enemy:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Character/Enemy.cs  
+
 
 
 
