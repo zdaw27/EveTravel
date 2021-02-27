@@ -69,7 +69,6 @@ namespace EveTravel
         public SerializableIntHashSet TreasureIndex { get => treasureIndex; set => treasureIndex = value; }
         public SerializableIntHashSet ExitIndex { get => exitIndex; set => exitIndex = value; }
         public SerializableIntHashSet StoreIndex { get => storeIndex; set => storeIndex = value; }
-        public Dictionary<int, Treasure> Treasures { get => treasures; private set => treasures = value; }
 
         private void Awake()
         {
@@ -79,9 +78,15 @@ namespace EveTravel
         public void ClearStuff()
         {
             foreach (KeyValuePair<int, Treasure> element in treasures)
-                GameObject.Destroy(element.Value.gameObject);
+            {
+                if(element.Value.gameObject)
+                    GameObject.Destroy(element.Value.gameObject);
+            }
             for (int i = 0; i < exits.Count; ++i)
-                GameObject.Destroy(exits[i]);
+            {
+                if (exits[i])
+                    GameObject.Destroy(exits[i]);
+            }
         }
 
         private void CreateMapObjects()
@@ -110,7 +115,7 @@ namespace EveTravel
         {
             GameObject treasureObj = GameObject.Instantiate(treasurePrefab);
             treasureObj.transform.position = IndexToPosition(i);
-            Treasures.Add(i, treasureObj.GetComponent<Treasure>());
+            treasures.Add(i, treasureObj.GetComponent<Treasure>());
         }
 
         private void CreateEnemy(int i)
@@ -205,12 +210,43 @@ namespace EveTravel
             }
         }
 
+        public void OpenTreasure(Player player)
+        {
+            int index = GetIndex(player.transform.position);
+
+            if (TreasureIndex.Contains(index))
+            {
+                treasures[index].OpenTreasure(player);
+                TreasureIndex.Remove(index);
+                treasures.Remove(index);
+            }
+        }
+
+        public bool CheckNextLevel(Player player)
+        {
+            int index = GetIndex(player.transform.position);
+
+            if (ExitIndex.Contains(index))
+                return true;
+            return false;
+        }
+
         /// <summary>
         /// Character 가 어느지점에 도착할지 기억해 놓는 인덱스 초기화.
         /// </summary>
         public void ClearWalkedIndices()
         {
             walkedIndices.Clear();
+        }
+
+        public void ClearTreasureIndex()
+        {
+            TreasureIndex.Clear();
+        }
+
+        public void ClearExitIndex()
+        {
+            ExitIndex.Clear();
         }
     }
 }

@@ -15,8 +15,6 @@ public class GameData : ScriptableObject
     [SerializeField]
     private Item equiped;
     [SerializeField]
-    private List<Item> inventory;
-    [SerializeField]
     private Player player = null;
     [SerializeField]
     private List<Enemy> enemys;
@@ -34,7 +32,6 @@ public class GameData : ScriptableObject
 
     public float NpcSpeed { get { return npcSpeed; } private set { } }
     public Item Equiped { get => equiped; set => equiped = value; }
-    public List<Item> Inventory { get => inventory; set => inventory = value; }
     public Player Player { get => player; set => player = value; }
     public List<Enemy> Enemys { get => enemys; set => enemys = value; }
     public EveMap EveMap { get => eveMap; set => eveMap = value; }
