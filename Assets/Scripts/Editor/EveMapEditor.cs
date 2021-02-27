@@ -27,7 +27,6 @@ namespace EveTravel
          
         private SerializedProperty objectFieldSP;
         private GameObject cursor = null;
-        private EveMap eveMap;
 
         [MenuItem("Editor/EveMapEditor")]
         static void OpenEditor()
@@ -63,7 +62,7 @@ namespace EveTravel
 
             if (GUILayout.Button("Init Map"))
             {
-                InitMap(editorData.Width, editorData.Height);
+                InitMap(editorData.EveMap.Width, editorData.EveMap.Height);
             }
 
             if (GUILayout.Button("Update Tile Prefabs"))
@@ -203,7 +202,7 @@ namespace EveTravel
             if (e.control && (e.type == EventType.MouseDown) && (e.button == 0))
             {
                 int tileIndex = GetIndex((int)cursor.transform.position.x, (int)cursor.transform.position.y);
-                if (cursor.transform.position.x < editorData.Width && cursor.transform.position.y < editorData.Height 
+                if (cursor.transform.position.x < editorData.EveMap.Width && cursor.transform.position.y < editorData.EveMap.Height 
                     && cursor.transform.position.x >= 0 && cursor.transform.position.y >= 0)
                 {
                     switch (mode)
@@ -285,12 +284,12 @@ namespace EveTravel
 
         private int GetIndex(int xPos, int yPos)
         {
-            return xPos + yPos * editorData.Width;
+            return xPos + yPos * editorData.EveMap.Width;
         }
 
         private Vector3 IndexToPos(int index)
         {
-            return new Vector3(index % editorData.Width, index / editorData.Width);
+            return new Vector3(index % editorData.EveMap.Width, index / editorData.EveMap.Width);
         }
 
         public float GetTilePosition(float pos)
