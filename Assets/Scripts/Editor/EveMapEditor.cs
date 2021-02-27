@@ -103,8 +103,8 @@ namespace EveTravel
             editorData.EveMap.TileCell.Clear();
             editorData.EveMap.PlayerSpawnIndex.Clear();
             editorData.EveMap.EnemySpawnIndex.Clear();
-            editorData.EveMap.TreasureIndex.Clear();
-            editorData.EveMap.ExitIndex.Clear();
+            editorData.EveMap.ClearTreasureIndex();
+            editorData.EveMap.ClearExitIndex();
             ClearTileGameObject();
 
             for (int y = 0; y < height; ++y)

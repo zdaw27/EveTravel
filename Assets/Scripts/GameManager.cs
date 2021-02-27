@@ -35,6 +35,8 @@ namespace EveTravel
         private GameEvent playerStatChangedEvent;
         [SerializeField]
         private GameEvent introEvent;
+        [SerializeField]
+        private GameEvent stageChangedEvent;
 
         private FSM<GameManager> fsm;
         private BaseEffect aimEffect;
@@ -86,6 +88,7 @@ namespace EveTravel
 
         public void GameOver()
         {
+            
             gameData.IsPlay = false;
             gameOverEvent.Raise();
         }
@@ -168,16 +171,23 @@ namespace EveTravel
 
         public void GameRestart()
         {
+            gameData.Exp = 0;
+            Inventory.ResetData();
             gameData.StageLevel = 0;
             GameObject.Destroy(gameData.Player.gameObject);
             gameData.Player = null;
             ChangeMap();
+            playerStatChangedEvent.Raise();
+            goldChangeEvent.Raise();
+            RemoveAim();
             fsm.ChangeState<ReadyState>();
+            gameData.IsPlay = true;
         }
 
         public void Intro()
         {
             gameData.StageLevel = 0;
+            stageChangedEvent.Raise();
             gameData.IsPlay = false;
             CreateNewMap();
             introEvent.Raise();
@@ -190,12 +200,12 @@ namespace EveTravel
 
         public void CheckPlayerInteraction()
         {
-            gameData.Player.PlayerInteraction(gameData.EveMap);
+            gameData.EveMap.OpenTreasure(gameData.Player);
         }
 
         public bool CheckNextLevel()
         {
-            return gameData.Player.CheckNextLevel(gameData.EveMap);
+            return gameData.EveMap.CheckNextLevel(gameData.Player);
         }
 
         public void ChangeMap()
@@ -209,6 +219,7 @@ namespace EveTravel
 
             GameObject.Destroy(gameData.EveMap.gameObject);
             GameObject.Instantiate(mapTable.Maps[gameData.StageLevel]);
+            stageChangedEvent.Raise();
         }
 
         public void CreateNewMap()
