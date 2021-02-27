@@ -79,7 +79,40 @@ https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Effects/ParticleEff
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Effects/PermanentEffect.cs  
 
 이펙트 테스트 클래스:  
-https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EffectTest.cs
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EffectTest.cs  
+
+
+
+<hr/>
+<hr/>
+
+## 게임 매니저.
+
+
+![GameManager](https://user-images.githubusercontent.com/51247612/109386433-e365d600-793d-11eb-863b-3062721811ba.png)
+
+게임 전체 흐름을 제어하는 클래스 입니다.  
+Finite State Machine 패턴을 사용하여 관리합니다.  
+
+### 관련 스크립트:  
+
+게임 매니저:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/GameManager.cs  
+
+FSM:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/FSM/FSM.cs  
+
+FSM 에서 제어하는 State 클래스들:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/FSM/State/IState.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/FSM/State/GameManger/BattleState.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/FSM/State/GameManger/GameOverState.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/FSM/State/GameManger/InputState.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/FSM/State/GameManger/IntroState.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/FSM/State/GameManger/LevelUpState.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/FSM/State/GameManger/MapChangeState.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/FSM/State/GameManger/PathFindState.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/FSM/State/GameManger/ReadyState.cs  
+
 
 
 
