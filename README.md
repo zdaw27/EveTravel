@@ -29,7 +29,8 @@ Unity version : 2019.4.17.f1
 
 ![EditingMap](https://user-images.githubusercontent.com/51247612/109381449-e355de00-791d-11eb-9fce-bfa4ccc34b34.gif)
 
-타일맵생성에 효율성을 더하고자 유니티 EditorWindow를 상속하여 맵에디터를 구현하였습니다.
+타일맵생성에 효율성을 더하고자 유니티 EditorWindow를 상속하여 맵에디터를 구현하였습니다.  
+Serialize 가능한 HashSet, Dictionary 컨테이너를 사용.
 
 ### 관련 스크립트:  
 
@@ -41,6 +42,10 @@ https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Editor/ScriptableOb
 
 런타임에 사용하는 맵:  
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EveMap.cs  
+
+Serializable Containers:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/SerializableContainer/SerializableDictionary.cs  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/SerializableContainer/SerializableHashSet.cs  
 
 
 <hr/>
