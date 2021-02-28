@@ -18,7 +18,7 @@ Unity version : 2019.4.17.f1
 <a href="#original">원작 모작 비교.</a>  
 <a href="#diagram">클래스 다이어그램</a>  
 <a href="#map editor">맵 에디터</a>  
-<a href="#effect manager">이펙트 </a>  
+<a href="#effect manager">이펙트 매니저</a>  
 <a href="#game manager">게임 매니저</a>  
 <a href="#character">캐릭터</a>  
 <a href="#architecture design">구조 디자인</a>  
