@@ -1,0 +1,49 @@
+@startuml
+GameManager o-- JoystickObserver
+GameManager o-- GameData
+GameManager o-- EffectRaiser
+GameManager o-- MapTable
+GameManager o-- Inventory
+GameManager *-- Fsm
+GameManager o-- EventListenerComponent
+GameManager o-- GameEvent
+
+
+GameData o-- Player
+GameData o-- EveMap
+GameData o-- Enemy
+
+HPBarGenerator o-- Character
+
+
+EffectManager o-- BaseEffect
+EffectManager o-- EffectRaiser
+EffectManager *-- ObjectPool
+
+BaseEffect <|-- DamageNumberEffect
+BaseEffect <|-- ParticleEffect
+BaseEffect <|-- LevelUpEffect
+BaseEffect <|-- LootingEffect
+BaseEffect <|-- ParticleEffect
+BaseEffect <|-- PermanentEffect
+
+Character <|-- Player
+Character <|-- Enemy
+Character o-- Character
+
+
+EventListenerComponent o-- GameEvent
+
+
+Inventory o-- Item
+Inventory o-- GameEvent
+Inventory o-- ItemTable
+
+InventoryUI *-- ItemCellUI
+InventoryUI o-- Inventory
+InventoryUI o-- GameData
+
+OtherUIs o-- GameEvent
+
+JoystickUI o-- JoystickObserver
+@enduml
