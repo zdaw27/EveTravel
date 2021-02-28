@@ -24,6 +24,13 @@ Unity version : 2019.4.17.f1
 <hr/>
 <hr/>
 
+## 클래스 다이어그램.
+
+
+![diagram](https://user-images.githubusercontent.com/51247612/109434533-1650bc80-7a59-11eb-94bc-8ac3ca2a1299.png)
+
+주요 클래스들의 포함 및 상속관계를 그려봤습니다.
+
 ## 맵 에디터.
 
 
