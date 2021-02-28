@@ -12,6 +12,17 @@ Unity version : 2019.4.17.f1
   <p>
     <p>
 <hr/>
+<hr/>
+
+## 목차.
+<a href="#top">클래스 다이어그램</a>  
+<a href="#top">클래스 다이어그램</a>  
+<a href="#top">클래스 다이어그램</a>  
+<a href="#top">클래스 다이어그램</a>  
+<a href="#top">클래스 다이어그램</a>  
+
+<hr/>
+<hr/>
 
 ## 원작.
 
@@ -27,7 +38,7 @@ Unity version : 2019.4.17.f1
 ## 클래스 다이어그램.
 
 
-![diagram](https://user-images.githubusercontent.com/51247612/109434533-1650bc80-7a59-11eb-94bc-8ac3ca2a1299.png)
+![diagram](https://user-images.githubusercontent.com/51247612/109434764-2917c100-7a5a-11eb-948a-2a1ccff2b92c.png)
 
 주요 클래스들의 포함 및 상속관계를 그려봤습니다.
 
