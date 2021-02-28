@@ -15,15 +15,17 @@ Unity version : 2019.4.17.f1
 <hr/>
 
 ## 목차.
-<a href="#top">클래스 다이어그램</a>  
-<a href="#top">클래스 다이어그램</a>  
-<a href="#top">클래스 다이어그램</a>  
-<a href="#top">클래스 다이어그램</a>  
-<a href="#top">클래스 다이어그램</a>  
+<a href="#original">원작 모작 비교.</a>  
+<a href="#diagram">클래스 다이어그램</a>  
+<a href="#map editor">맵 에디터</a>  
+<a href="#game manager">게임 매니저</a>  
+<a href="#character">캐릭터</a>  
+<a href="#architecture design">구조 디자인</a>  
 
 <hr/>
 <hr/>
 
+<a name="original"></a>
 ## 원작.
 
 ![Eve_original](https://user-images.githubusercontent.com/51247612/109377765-c4048400-7910-11eb-8cb0-3391fe3fc96a.gif)
@@ -35,6 +37,7 @@ Unity version : 2019.4.17.f1
 <hr/>
 <hr/>
 
+<a name="diagram"></a>
 ## 클래스 다이어그램.
 
 
@@ -42,6 +45,7 @@ Unity version : 2019.4.17.f1
 
 주요 클래스들의 포함 및 상속관계를 그려봤습니다.
 
+<a name="map editor"></a>
 ## 맵 에디터.
 
 
@@ -69,6 +73,7 @@ https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/SerializableContain
 <hr/>
 <hr/>
 
+<a name="effect manager"></a>
 ## 이펙트 매니저.
 
 
@@ -104,6 +109,7 @@ https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EffectTest.cs
 <hr/>
 <hr/>
 
+<a name="game manager"></a>
 ## 게임 매니저.
 
 
@@ -135,6 +141,7 @@ https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/FSM/State/GameMange
 <hr/>
 <hr/>
 
+<a name="character"></a>
 ## 캐릭터.
 
 
@@ -159,6 +166,7 @@ https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Character/Enemy.cs
 <hr/>
 <hr/>
 
+<a name="architecture design"></a>
 ## 구조 디자인.
 
 ### 이벤트 객체.  
