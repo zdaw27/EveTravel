@@ -172,6 +172,8 @@ https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Setter/EnemySetter.
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Setter/EveMapSetter.cs  
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Setter/PlayerSetter.cs  
 
+Event:  
+https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/ScriptableObjects/GameEvent.cs  
 
 Event Listner:  
 https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/EventListenerComponent.cs  
