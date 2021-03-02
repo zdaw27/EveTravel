@@ -23,7 +23,7 @@ Unity version : 2019.4.17.f1
 <a href="#game manager">게임 매니저</a>  
 <a href="#character">캐릭터</a>  
 <a href="#architecture design">구조 디자인</a>  
-<a href="#update">추후 </a>  
+<a href="#update">추후 업데이트 내용 </a>  
 
 <hr/>
 <hr/>
