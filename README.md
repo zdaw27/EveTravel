@@ -23,6 +23,7 @@ Unity version : 2019.4.17.f1
 <a href="#game manager">게임 매니저</a>  
 <a href="#character">캐릭터</a>  
 <a href="#architecture design">구조 디자인</a>  
+<a href="#update">추후 </a>  
 
 <hr/>
 <hr/>
@@ -231,7 +232,7 @@ https://github.com/zdaw27/EveTravel/tree/main/Assets/Scripts/UIScripts
 
 1 - 몬스터 및 타일 풀링 시스템.  
 2 - DataDriven 기반 아키텍처 구성:  
-Item 능력치와, Monster 능력치등 기타 데이터들을 로컬 파일 또는 서버에서 받은 데이터를 자동 파싱하여 게임에 밸런스 조절을 효율적으로 진행.   
+Item 능력치와, Monster 능력치등 기타 데이터들을 로컬 파일 또는 서버에서 받은 데이터를 자동 파싱하여 게임에 밸런스 조절을 효율적하기 위함.   
 3 - 맵 랜덤 생성 기능:   
 맵을 부분별로 분할하여 프리팹을 저장하고 랜덤조합으로 생성.   
 
