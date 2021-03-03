@@ -13,9 +13,7 @@ namespace EveTravel
         private float time;
         private int effectIndex = 0;
         private int yOffset;
-        // Start is called before the first frame update
-
-        // Update is called once per frame
+       
         void Update()
         {
             time += Time.deltaTime;
