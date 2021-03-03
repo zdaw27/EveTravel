@@ -5,12 +5,6 @@ using DG.Tweening;
 
 namespace EveTravel
 {
-    /// <summary>
-    /// Enemy들의 타겟을 찾고, 타겟을 찾은 객체들은 AttackState 로 변경.
-    /// Player의 타겟은 Input State 에서 결정, 공격은 여기서 실행.
-    /// 전투 이후 Player 가 죽을경우, GameOverState로 변경.
-    /// 전투 이후 살아남을 경우, PathFindState로 변경.
-    /// </summary>
     public class BattleState : IState<GameManager>
     {
         public void Enter(GameManager owner)
