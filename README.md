@@ -232,7 +232,7 @@ https://github.com/zdaw27/EveTravel/tree/main/Assets/Scripts/UIScripts
 
 1 - 몬스터 및 타일 풀링 시스템.  
 2 - DataDriven 기반 아키텍처 구성:  
-Item 능력치와, Monster 능력치등 기타 데이터들을 파일 단위로 관리하여 게임을 업데이트 할 수 있도록 하기 위함.
+Item 능력치와, Monster 능력치등 기타 데이터들을 파일 단위로 관리하여 게임을 업데이트 할 수 있도록 하기 위함.  
 3 - 맵 랜덤 생성 기능:   
 맵을 부분별로 분할하여 프리팹을 저장하고 랜덤조합으로 생성.   
 
