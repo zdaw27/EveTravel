@@ -17,10 +17,8 @@ namespace EveTravel
 
         protected Character attackTarget;
 
-        public Animator Animator { get { return animator; } }
         public CharacterStat Stat { get { return stat; } set { stat = value; } }
         public Vector3 NextPos { get; set; }
-        protected GameData GameData { get { return gameData; } private set { } }
         public Character AttackTarget { get { return attackTarget; } }
 
         public virtual void Attack()
@@ -93,7 +91,7 @@ namespace EveTravel
         {
             while(true)
             {
-                Vector3 move = Vector3.MoveTowards(transform.position, NextPos, Time.deltaTime * GameData.NpcSpeed);
+                Vector3 move = Vector3.MoveTowards(transform.position, NextPos, Time.deltaTime * gameData.NpcSpeed);
                 transform.position = move;
 
                 if (transform.position == NextPos)

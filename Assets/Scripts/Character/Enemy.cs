@@ -29,8 +29,8 @@ namespace EveTravel
 
         public void GetAttackTarget()
         {
-            if (Vector3.Distance(GameData.Player.transform.position, transform.position) <= 1f)
-                attackTarget = GameData.Player;
+            if (Vector3.Distance(gameData.Player.transform.position, transform.position) <= 1f)
+                attackTarget = gameData.Player;
             else
                 attackTarget = null;
         }

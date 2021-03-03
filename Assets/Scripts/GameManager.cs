@@ -46,10 +46,7 @@ namespace EveTravel
 
         public FSM<GameManager> Fsm { get { return fsm; } private set { } }
         public GameData GameData { get => gameData; private set => gameData = value; }
-        public EffectRaiser EffectRaiser { get => effectRaiser; private set => effectRaiser = value; }
         public JoystickObserver JoystickObserver { get => joystickObserver; private set => joystickObserver = value; }
-        public MapTable MapTable { get => mapTable; private set => mapTable = value; }
-        public Inventory Inventory { get => inventory; private set => inventory = value; }
         public bool IsAttackButtonPushed { get => isAttackButtonPushed; private set => isAttackButtonPushed = value; }
 
         private void Awake()
@@ -107,9 +104,9 @@ namespace EveTravel
 
         public void UsePotion()
         {
-            if (fsm.CheckCurrentState<InputState>() && Inventory.Potion > 0 && gameData.Player.Stat.hp < gameData.Player.Stat.maxHp)
+            if (fsm.CheckCurrentState<InputState>() && inventory.Potion > 0 && gameData.Player.Stat.hp < gameData.Player.Stat.maxHp)
             {
-                Inventory.Potion--;
+                inventory.Potion--;
                 potionCountChangeEvent.Raise();
                 CharacterStat playerStat = gameData.Player.Stat;
                 playerStat.hp += 50;
@@ -174,7 +171,7 @@ namespace EveTravel
         public void GameRestart()
         {
             gameData.Exp = 0;
-            Inventory.ResetData();
+            inventory.ResetData();
             gameData.StageLevel = 0;
             GameObject.Destroy(gameData.Player.gameObject);
             gameData.Player = null;
