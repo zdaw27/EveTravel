@@ -197,7 +197,7 @@ https://github.com/zdaw27/EveTravel/blob/main/Assets/Scripts/Character/Enemy.cs
 
 추후에 확장에 유연하도록, 최대한 클래스끼리 엮이지 않고 독립적인 개발이 가능하도록 노력했습니다.  
 모든 MonoBehaviour 클래스들 Scene이 종료되면 모두 삭제되고, Scene Load 시 클린 상태를 유지하여 제거되지않고 살아남은 클래스에 존재로 인한 복잡성을 없앴습니다.  
-Unite 2017 에서 ScriptableObject 를 이용해 구조 설계하는 것에 영감받아 Singltone 을 이용하지 않고 데이터 흐름을 제어해봤습니다.  
+Unite 2017 에서 ScriptableObject 를 이용해 구조 설계하는 것에 영감받아 Singleton 을 이용하지 않고 데이터 흐름을 제어해봤습니다.  
 런타임 데이터를 담고있는 GameData 클래스는 스스로 데이터 인풋과 아웃풋을 가담하지 않고 외부 Setter 컴포넌트가 그 기능을 담당합니다.  
 모든 UI 클래스는 이벤트에 기반하여 동작하도록 설계하였으며, 독립적인 개발이 가능합니다.  
 각 클래스의 고유 기능은 그 기능에 집중하기 위해서 이벤트 리스닝, 종속성 주입 기능은 최대한 외부 콤포넌트가 담당하도록 했습니다.  
@@ -232,7 +232,7 @@ https://github.com/zdaw27/EveTravel/tree/main/Assets/Scripts/UIScripts
 
 1 - 몬스터 및 타일 풀링 시스템.  
 2 - DataDriven 기반 아키텍처 구성:  
-Item 능력치와, Monster 능력치등 기타 데이터들을 로컬 파일 또는 서버에서 받은 데이터를 자동 파싱하여 게임에 밸런스 조절을 효율적하기 위함.   
+Item 능력치와, Monster 능력치등 기타 데이터들을 파일 단위로 관리하여 게임을 업데이트 할 수 있도록 하기 위함.
 3 - 맵 랜덤 생성 기능:   
 맵을 부분별로 분할하여 프리팹을 저장하고 랜덤조합으로 생성.   
 
