@@ -14,15 +14,13 @@ namespace EveTravel
         protected Animator animator;
         [SerializeField]
         protected EffectRaiser effectListener;
-        [SerializeField]
-        protected EveMap evemap;
 
         protected Character attackTarget;
 
         public Animator Animator { get { return animator; } }
         public CharacterStat Stat { get { return stat; } set { stat = value; } }
         public Vector3 NextPos { get; set; }
-        public GameData GameData { get { return gameData; } private set { } }
+        protected GameData GameData { get { return gameData; } private set { } }
         public Character AttackTarget { get { return attackTarget; } }
 
         public virtual void Attack()
