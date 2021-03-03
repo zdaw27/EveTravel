@@ -178,6 +178,7 @@ namespace EveTravel
                 return;
             }
 
+            //이동전에 몬스터 위치가 player 바로 옆이면 공격하기 때문에 이동할 필요가 없음.
             if(Vector3.Distance(enemy.transform.position, gameData.Player.NextPos) <= 1f 
                 || Vector3.Distance(enemy.transform.position, gameData.Player.transform.position) <= 1f)
             {
@@ -186,6 +187,7 @@ namespace EveTravel
                 return;
             }
 
+            //몬스터 이동 가능한 타일중에 몬스터에서 플에이어를 바라보는 기준으로 180내부가 아닐경우 이동할 필요가 없음.
             for (int i = 0; i < checkList.Count; ++i)
             {
                 if (CheckWalkablePosition(enemy.transform.position + checkList[i])
@@ -195,6 +197,7 @@ namespace EveTravel
                 }
             }
 
+            //플에이어에서 가까운 기준으로 컨테이너 정렬.
             tileCandidate.Sort((Vector3 a, Vector3 b) =>
             {
                 if (Vector3.Distance(a, gameData.Player.NextPos) < Vector3.Distance(b, gameData.Player.NextPos))
