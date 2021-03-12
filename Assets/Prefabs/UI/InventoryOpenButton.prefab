@@ -218,3 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  second: 1
+  onAfterSecond:
+    m_PersistentCalls:
+      m_Calls: []
