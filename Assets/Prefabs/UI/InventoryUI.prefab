@@ -4321,6 +4321,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6599822322914646072}
+  second: 1
+  onAfterSecond:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6599822321765637193
 GameObject:
   m_ObjectHideFlags: 0
